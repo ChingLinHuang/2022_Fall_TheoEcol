@@ -1,5 +1,5 @@
 --- 
-title: "Introduction to Theoretical Ecology (Bootstrap Style)"
+title: "Introduction to Theoretical Ecology"
 author: "Instructor: Po-Ju Ke $~~~~~$ Teaching Assistant: Ching-Lin Huang (Andy)"
 date: "2022 Fall at National Taiwan Univeristy ![](./bifurcation.gif)"
 
