@@ -1,0 +1,240 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Introduction to Theoretical Ecology},
+  pdfauthor={Instructor: Po-Ju Ke \textasciitilde\textasciitilde\textasciitilde\textasciitilde\textasciitilde{} Teaching Assistant: Ching-Lin Huang (Andy)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Introduction to Theoretical Ecology}
+\author{Instructor: Po-Ju Ke \(~~~~~\) Teaching Assistant: Ching-Lin Huang (Andy)}
+\date{2022 Fall at National Taiwan Univeristy \includegraphics{./bifurcation.gif}}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\textbf{Course Description}
+
+The development of theory plays an important role in advancing ecology as a scientific field. This three-unit course is for students at the graduate or advanced undergraduate level. The course will cover classic theoretical topics in ecology, starting from single-species dynamics and gradually build up to multi-species models. The course will primarily focus on population and community ecology, but we will also briefly discuss models in epidemiology and ecosystem ecology. Emphasis will be on theoretical concepts and corresponding mathematical approaches.
+
+This course is designed as a two-hour lecture followed by a one-hour hands-on practice module. In the lecture, we will analyze dynamical models and derive general theories in ecology. In the hands-on practice section, we will use a combination of analytical problem sets, interactive applications, and numerical simulations to gain a general understanding of the dynamics and behavior of different models.
+
+\textbf{Course Objective}
+
+By the end of the course, students are expected to be familiar with the basic building blocks of ecological models and would be able to formulate and analyze simple models of their own. The hands-on practice component should allow students to link their ecological intuition with the underlying mathematical model, helping them to better understand the primary literature of theoretical ecology.
+
+\textbf{Course Requirement}
+
+Students are expected to have a basic understanding of \textbf{Calculus} (e.g., freshman introductory course) and \textbf{Ecology}.
+
+\textbf{Format}
+
+Tuesday 6,7,8 (1:20 pm \textasciitilde{} 4:20 pm) at 共207
+
+\textbf{Grading}
+
+The final grade consists of:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  Assignment problem sets (60\%)
+\item
+  Midterm exam (15\%)
+\item
+  Final exam (15\%)
+\item
+  Course participation (10\%)
+\end{enumerate}
+
+\textbf{Course materials}
+
+We will be using a combination of textbooks and literature articles on theoretical ecology in this course. Textbook chapters and additional reading materials will be provided (see \textbf{Syllabus} for more details).
+
+Below are the textbook references:
+- \emph{A Primer of Ecology 4\textsuperscript{th} edition}. Nicholas Gotelli, 2008.
+- \emph{An Illustrated Guide to Theoretical Ecology}. Ted Case, 2000.
+- \emph{A Biologist's Guide to Mathematical Modeling in Ecology and Evolution}. Sarah Otto \& Troy Day, 2011.
+- \emph{Mathematical Ecology of Populations and Ecosystems}. John Pastor, 2008.
+
+\textbf{Contacts}
+
+\textbf{Instructor}: Po-Ju Ke
+
+\begin{itemize}
+\tightlist
+\item
+  Office: Life Science Building R635
+\item
+  Email: \href{mailto:pojuke@ntu.edu.tw}{\nolinkurl{pojuke@ntu.edu.tw}}
+\item
+  Office hours: by appointment
+\end{itemize}
+
+\textbf{Teaching assistant}: Ching-Lin Huang (Andy)
+
+\begin{itemize}
+\tightlist
+\item
+  Office: Life Science Building R635
+\item
+  Email: \href{mailto:r09b44010@ntu.edu.tw}{\nolinkurl{r09b44010@ntu.edu.tw}}
+\item
+  Office hours: 14:00 \textasciitilde{} 15:00 on Thursday
+\end{itemize}
+
+\hypertarget{syllabus}{%
+\chapter*{Syllabus}\label{syllabus}}
+\addcontentsline{toc}{chapter}{Syllabus}
+
+\begingroup\fontsize{17}{19}\selectfont
+
+\begin{tabu} to \linewidth {>{\centering}X>{\centering}X>{\centering}X>{\raggedright}X}
+\hline
+\begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Date}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Lecture topic}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Lab}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Readings}}\endgroup\\
+\hline
+**Week 1** <span style='vertical-align:-30%'> </span>
+           <br> 9/6 & Introduction: what is theoretical ecology? & \- & Grainger et al., 2021\\
+\hline
+**Week 2** <span style='vertical-align:-30%'> </span>
+           <br> 9/13 & Exponential population growth & Solving exponential growth equation using "deSolve" & Visualization & Gotelli [Ch.1] <br> Case [Ch.1]\\
+\hline
+**Week 3** <span style='vertical-align:-30%'> </span>
+           <br> 9/20 & Logistic population growth and stability analysis & Solving logistic growth equation using "deSolve" & Visualization & Gotelli [Ch.2] <br> Case [Ch.5] <br> Otto & Day [Ch.5]\\
+\hline
+**Week 4** <span style='vertical-align:-30%'> </span>
+           <br> 9/27 & Discrete population models & Modeling discrete logistic growth using for loops & Visualization & May, 1976\\
+\hline
+**Week 5** <span style='vertical-align:-30%'> </span>
+           <br> 10/4 & Age-structured population models & Analyzing Leslie matrix using for loops and eigenanalysis & Gotelli [Ch.3] <br> Case[Ch.3]\\
+\hline
+**Week 6** <span style='vertical-align:-30%'> </span>
+           <br> 10/11 & Metapopulations and patch occupancy models & Building and analyzing a model on plant-soil dynamics & Gotelli [Ch.4] <br> Case [Ch.16]\\
+\hline
+**Week 7** <span style='vertical-align:-30%'> </span>
+           <br> 10/18 & Lotka-Volterra model of competition: graphical analysis and invasion analysis & Visualizing state-phase diagrams of Lotka-Volterra competition model & Gotelli [Ch.5] <br> Case [Ch.14]\\
+\hline
+**Week 8** <span style='vertical-align:-30%'> </span>
+           <br> 10/25 & Midterm exam & Analyzing system dynamics of Lotka-Volterra competition model & Otto & Day [Ch.8]\\
+\hline
+**Week 9** <span style='vertical-align:-30%'> </span>
+           <br> 11/1 & Lotka-Volterra model of competition: linear stability analysis & \- & $~~~~~~~~~~~~$ \-\\
+\hline
+**Week 10** <span style='vertical-align:-30%'> </span>
+           <br> 11/8 & Modern coexistence theory and predator-prey interactions (I) & Analyzing Lotka-Volterra model of predator-prey interactions (basic) & Broekman et al., 2019\\
+\hline
+**Week 11** <span style='vertical-align:-30%'> </span>
+           <br> 11/15 & Predator-prey interactions (II) & Analyzing Lotka-Volterra model of predator-prey interactions (variants) & Gotelli [Ch.6] <br> Case [Ch.12 & 13]\\
+\hline
+**Week 12** <span style='vertical-align:-30%'> </span>
+           <br> 11/22 & Mechanistic models for competition: consumer-resource dynamics & Analyzing the dynamics of various consumer-resource systems & Armstrong & McGehee, 1980 <br> Tilman, 1980\\
+\hline
+**Week 13** <span style='vertical-align:-30%'> </span>
+           <br> 11/29 & Multispecies models of predation: apparent competition & Visualizing the area of prey coexistence under apparent competition & Holt, 1977\\
+\hline
+**Week 14** <span style='vertical-align:-30%'> </span>
+           <br> 12/6 & Disease dynamics and SIR models & Analyzing the SIR model with demography & Visualization & Anderson & May, 1979\\
+\hline
+**Week 15** <span style='vertical-align:-30%'> </span>
+           <br> 12/13 & Research applcations: plant-soil feedback as an example & \- & $~~~~~~~~~~~~$ \-\\
+\hline
+**Week 16** <span style='vertical-align:-30%'> </span>
+           <br> 12/20 & Final exam & \- & $~~~~~~~~~~~~$ \-\\
+\hline
+\end{tabu}
+\endgroup{}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

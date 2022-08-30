@@ -15,32 +15,20 @@ link-citations: yes
 
 description: "This is the course website for **_Introduction to Theoretical Ecology_** 2022 Fall at National Taiwan University."
 ---
-
-
-# Course Information {-}
-
-<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px; text-align: center"> **IMPORTANT ANOUNCEMENT!!!** </p>
-The first three weeks of this course will be online. We will host the two modules of this course (i.e., 2-hr lecture and 1-hr practice) on different platforms. We will use Google Meet for the lecture section [(link here)](https://meet.google.com/nzd-cdjp-kbt). To mimic an environment where we can provide one-on-one coding advice, we will use Gather Town for the hands-on practice section [(link here)](https://gather.town/app/osrqFSf0a7q0I6uo/TheoreticalEcology). Please login in advance to make sure it is working; learn how to use Gather Town [here](https://www.youtube.com/watch?v=89at5EvCEvk).
-
-For those who wish to enroll manually, please join the first lecture and stay online afterward. Since we have moved to a larger classroom due to COVID-19 regulation, we can accommodate more students. We have asked students to introduce themselves (e.g., research interest and familiarity with R; 1-2 minutes) during the first time we meet online, so please also be prepared if you wish to enroll.
-
-********************************************************************************
-
+# Course information{-}
 <p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Description** </p> The development of theory plays an important role in advancing ecology as a scientific field. This three-unit course is for students at the graduate or advanced undergraduate level. The course will cover classic theoretical topics in ecology, starting from single-species dynamics and gradually build up to multi-species models. The course will primarily focus on population and community ecology, but we will also briefly discuss models in epidemiology and ecosystem ecology. Emphasis will be on theoretical concepts and corresponding mathematical approaches.
 
 This course is designed as a two-hour lecture followed by a one-hour hands-on practice module. In the lecture, we will analyze dynamical models and derive general theories in ecology. In the hands-on practice section, we will use a combination of analytical problem sets, interactive applications, and numerical simulations to gain a general understanding of the dynamics and behavior of different models. 
 
-<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Objectives** </p>
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Objective** </p>
 By the end of the course, students are expected to be familiar with the basic building blocks of ecological models and would be able to formulate and analyze simple models of their own. The hands-on practice component should allow students to link their ecological intuition with the underlying mathematical model, helping them to better understand the primary literature of theoretical ecology. 
 
-<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Requirements** </p>
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Requirement** </p>
 Students are expected to have a basic understanding of **Calculus** (e.g., freshman introductory course) and **Ecology**.
 
 <p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Format** </p>
-Tuesday 1:20 pm ~ 4:20 pm at Classroom 3C, Life Science Building
+Tuesday 6,7,8 (1:20 pm ~ 4:20 pm) at 共207
 
-- Lecture (two hours): selected topics of ecological theories and models (blackboard writing) 
-- Lab (one hour): hands-on practice in programming and simulation (using R) + discussion
 
 <p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Grading** </p>
 The final grade consists of:
@@ -51,14 +39,15 @@ The final grade consists of:
 (4) Course participation (10%)
 
 <p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Course materials** </p>
-We will be using a combination of textbooks and literature articles on theoretical ecology in this course. Textbook chapters and additional reading materials will be provided (see **Syllabus** for more details).
+We will be using a combination of textbooks and literature articles on theoretical ecology in this course. Textbook chapters and additional reading materials will be provided (see [**Syllabus**](https://chinglinhuang.github.io/2022_Fall_TheoEcol/syllabus.html) for more details).
 
 Below are the textbook references:
 
-- Case, Ted J. *An illustrated guide to theoretical ecology*. Oxford University Press, 2000.
-- Gotelli, Nicholas J. *A primer of ecology 4^th^ edition*. Sinauer Associates, 2008.
-- Pastor, John. *Mathematical ecology of populations and ecosystems*. John Wiley & Sons, 2011.
-- Otto, Sarah P. and Troy Day. *A biologist's guide to mathematical modeling in ecology and evolution*. Princeton University Press, 2011.
+(1) *A Primer of Ecology 4^th^ edition. Nicholas Gotelli*, 2008. 
+(2) *An Illustrated Guide to Theoretical Ecology*. Ted Case, 2000. 
+(3) *A Biologist's Guide to Mathematical Modeling in Ecology and Evolution*. Sarah Otto & Troy Day, 2011. 
+(4) *Mathematical Ecology of Populations and Ecosystems*. John Pastor, 2008. 
+
 
 <p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Contacts** </p>
 **Instructor**: Po-Ju Ke
@@ -133,38 +122,38 @@ syllabus <- tibble(
     
   Lab = c(" \\- ",
           'Solving exponential growth equation using "deSolve" & Visualization',
-          'Solving logistic growth equation using "deSolve" & Visualization',
-          "Modeling discrete logistic growth using for loops & Visualization",
-          "Analyzing Leslie matrix using for loops and eigenanalysis",
-          "Building and analyzing a model on plant-soil dynamics",
-          "Visualizing state-phase diagrams of Lotka-Volterra competition model",
-          "Analyzing system dynamics of Lotka-Volterra competition model",
           " \\- ",
-          "Analyzing Lotka-Volterra model of predator-prey interactions (basic)",
-          "Analyzing Lotka-Volterra model of predator-prey interactions (variants)",
-          "Analyzing the dynamics of various consumer-resource systems",
-          "Visualizing the area of prey coexistence under apparent competition",
-          "Analyzing the SIR model with demography & Visualization",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
           " \\- ",
           " \\- "),
     
     
   Readings = c("Grainger et al., 2021",
-               "Gotelli [Ch.1] <br> Case [Ch.1]",
-               "Gotelli [Ch.2] <br> Case [Ch.5] <br> Otto & Day [Ch.5]",
-               "May, 1976",
-               "Gotelli [Ch.3] <br> Case[Ch.3]",
-               "Gotelli [Ch.4] <br> Case [Ch.16]",
-               "Gotelli [Ch.5] <br> Case [Ch.14]",
-               "Otto & Day [Ch.8]",
-               " $~~~~~~~~~~~~$ \\- ",
-               "Broekman et al., 2019",
-               "Gotelli [Ch.6] <br> Case [Ch.12 & 13]",
-               "Armstrong & McGehee, 1980 <br> Tilman, 1980",
-               "Holt, 1977",
-               "Anderson & May, 1979",
-               " $~~~~~~~~~~~~$ \\- ",
-               " $~~~~~~~~~~~~$ \\- ")  
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ")  
   
 )
 
