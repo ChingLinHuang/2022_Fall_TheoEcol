@@ -1,52 +1,3 @@
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(message = F, 
-                      error = F, 
-                      warning = F)
-
-```
-
-# Week 2 - Exponential population growth {-} 
-
-In part 1, we will solve the differential equation for exponential population growth and visualize how the population sizes change over time. 
-
-<br>
-
-**Part 1 - Numerical solution using the package "deSolve"**
-
-Two main phases:
-
-(1) Model specification: specify the structure of differential equation model
-
-(2) Model application: set the time steps, initial population size and model parameters (e.g., intrinsic population growth rate *r*), and then solve the equation model
-
-<style>
-
-p span#aaa:before { 
-  content: "(1) "; 
-  display: inline-block;
-  margin-left: -1.5em;
-  margin-right: 0.3em;
-}
-
-p span#bbb:before { 
-  content: "(2) "; 
-  display: inline-block;
-  margin-left: -1.5em;
-  margin-right: 0.3em;
-}
-
-d-article table.lightable-paper {
-  margin-bottom: 0px; 
-}
-
-</style>
-
-Consider the model
-\[
-\frac{dN}{dt} = rN
-\]
-where $N$ is population size and $r$ is the intrinsic growth rate.
-```{r}
 ###### part 1 ######
 # install.packages("deSolve")
 library(deSolve)
@@ -58,40 +9,21 @@ exponential_model <- function(times, state, parms) {
     return(list(c(dN_dt)))  # return the results
   })
 }
-```
 
-Set the time steps, initial population size and model parameters.
-```{r}
 ### (2) Model application
 times <- seq(0, 10, by = 0.1)  # time steps to integrate over
 state <- c(N = 10)  # initial population size
 parms <- c(r = 1.5)  # intrinsic growth rate
-```
 
-Solve the equation by `ode()` numerically.
-```{r}
 # run the ode solver
 pop_size <- ode(func = exponential_model, times = times, y = state, parms = parms)
 
 # take a look at the results
 head(pop_size)
 
-```
-
-Visualization
-```{r}
+### (3) Plotting
 plot(N ~ time, data = pop_size)
 plot(N ~ time, data = pop_size, log = "y")
-```
-
-
-<br>
-
-**Part 2 - Comparing different ode solvers**
-<br>
-In default of `ode()`, the equations are solved by LSODA method. We can change the method by modifying the argument `method` in `ode()`. 
-
-```{r}
 
 ###### part 2 ######
 # original setting
@@ -127,49 +59,26 @@ plot(N ~ time, data = pop_size, main = "LSODA")
 curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
 plot(N ~ time, data = pop_size_1, main = "Euler")
 curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
-```
 
-<br>
 
-**Part 3 - Solving exponential growth model with fluctuating growth rate**
-<br>
-Consider the model
-\[
-\frac{dN}{dt} = r(t)N \ \text{, } r(t) = \overline{r} + \sigma\sin(\omega t)
-\]
-where $\overline{r}$ and $\omega$ are constants.
-The analytical solution of the ode model is 
-\[
-N(t) = N_0\exp\{\overline{r}t - \frac{\sigma}{\omega}[\cos(\omega t) - 1]\}
-\]
-
-```{r}
 ###### part 3 ######
 ### Model specification
 exponential_model_fluc <- function(times, state, parms) {
   with(as.list(c(state, parms)), {
-    dN_dt = (r_bar + sigma*sin(omega*times))*N  # exponential growth equation
+    dN_dt = (r_hat + sigma*sin(omega*times))*N  # exponential growth equation
     return(list(c(dN_dt)))  # return the results
   })
 }
-```
-
-
-```{r}
 ### Parameters
 times <- seq(0, 10, by = 0.1)  # time steps to integrate over
 state <- c(N = 10)  # initial population size
-parms <- c(r_bar = 1.5, sigma = 5, omega = 2*pi)  # intrinsic growth rate
-```
+parms <- c(r_hat = -0.1, sigma = 5, omega = 2*pi)  # intrinsic growth rate
 
-Plot $r(t)$
-```{r}
 ### Fluctuating growth rate
 r = parms[1] + parms[2]*sin(parms[3]*times)
-plot(r ~ times, type = "l")
-```
+plot(r ~ times)
+curve(parms[1] + parms[2]*sin(parms[3]*x), add = T, col = "red")
 
-```{r}
 ### Solving model
 pop_size <- ode(func = exponential_model_fluc, times = times, y = state, parms = parms)
 
@@ -178,23 +87,3 @@ plot(N ~ times, data = pop_size)
 curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T) # correct curve
 plot(N ~ times, data = pop_size, log = "y")
 curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T) # correct curve
-```
-
-Adjust $\overline{r}$
-```{r}
-### Parameters
-times <- seq(0, 10, by = 0.1)  # time steps to integrate over
-state <- c(N = 10)  # initial population size
-parms <- c(r_bar = 0.1, sigma = 5, omega = 2*pi)  # intrinsic growth rate
-
-### Fluctuating growth rate
-r = parms[1] + parms[2]*sin(parms[3]*times)
-plot(r ~ times, type = "l")
-
-### Solving model
-pop_size <- ode(func = exponential_model_fluc, times = times, y = state, parms = parms)
-
-### Plotting
-plot(N ~ times, data = pop_size)
-curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T) # correct curve
-```

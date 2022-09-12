@@ -76,7 +76,8 @@ parms <- c(r_hat = 0.1, sigma = 5, omega = 2*pi)  # intrinsic growth rate
 
 ### Fluctuating growth rate
 r = parms[1] + parms[2]*sin(parms[3]*times)
-plot(r ~ times, type = "l")
+plot(r ~ times)
+curve(parms[1] + parms[2]*sin(parms[3]*x), add = T, col = "red")
 
 ### Solving model
 pop_size <- ode(func = exponential_model_fluc, times = times, y = state, parms = parms)

@@ -1,0 +1,5 @@
+"0","
+plot(r ~ times, type = ""l"")
+"
+"2","錯誤發生在 eval(predvars, data, env)：找不到物件 'r'
+"
