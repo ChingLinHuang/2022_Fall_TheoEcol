@@ -1,0 +1,1 @@
+{"frames":[],"message":"錯誤發生在 ode(func = exponential_model, times = times, y = state, parms = parms)：\n  沒有這個函式 \"ode\"\n"}

@@ -94,7 +94,7 @@ In default of `ode()`, the equations are solved by LSODA method. We can change t
 ```{r}
 
 ###### part 2 ######
-
+# original setting
 times <- seq(0, 10, by = 0.1)  # time steps to integrate over
 state <- c(N = 10)  # initial population size
 parms <- c(r = 1.5)  # intrinsic growth rate
@@ -111,11 +111,21 @@ curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add
 plot(N ~ time, data = pop_size_1, main = "Euler")
 curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
 
-# compare different method in log transformation
+# minimize the time step
+times <- seq(0, 10, by = 0.01)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r = 1.5)  # intrinsic growth rate
+# default: LSODA
+pop_size <- ode(func = exponential_model, times = times, y = state, parms = parms)
+
+# Euler's method
+pop_size_1 <- ode(func = exponential_model, times = times, y = state, parms = parms, method = "euler")
+
+# compare different method
 par(mfrow = c(1,2))
-plot(N ~ time, data = pop_size, log = "y", main = "LSODA")
+plot(N ~ time, data = pop_size, main = "LSODA")
 curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
-plot(N ~ time, data = pop_size_1, log = "y", main = "Euler")
+plot(N ~ time, data = pop_size_1, main = "Euler")
 curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
 ```
 
@@ -125,12 +135,12 @@ curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add
 <br>
 Consider the model
 \[
-\frac{dN}{dt} = r(t)N \ \text{, } r(t) = \overline{r} + \frac{\sigma}{2}\sin(\omega t+\phi)
+\frac{dN}{dt} = r(t)N \ \text{, } r(t) = \overline{r} + \sigma\sin(\omega t)
 \]
-where $\overline{r}$, $\omega$ and $\phi$ are constants.
+where $\overline{r}$ and $\omega$ are constants.
 The analytical solution of the ode model is 
 \[
-N(t) = N_0\exp\{\overline{r}t - \frac{\sigma}{2}[\cos(\omega t + \phi) - \cos(\phi)]\}
+N(t) = N_0\exp\{\overline{r}t - \frac{\sigma}{\omega}[\cos(\omega t) - 1]\}
 \]
 
 ```{r}
@@ -138,7 +148,7 @@ N(t) = N_0\exp\{\overline{r}t - \frac{\sigma}{2}[\cos(\omega t + \phi) - \cos(\p
 ### Model specification
 exponential_model_fluc <- function(times, state, parms) {
   with(as.list(c(state, parms)), {
-    dN_dt = (r_hat + sigma*sin(omega*times + phi)/2)*N  # exponential growth equation
+    dN_dt = (r_bar + sigma*sin(omega*times))*N  # exponential growth equation
     return(list(c(dN_dt)))  # return the results
   })
 }
@@ -149,12 +159,13 @@ exponential_model_fluc <- function(times, state, parms) {
 ### Parameters
 times <- seq(0, 10, by = 0.1)  # time steps to integrate over
 state <- c(N = 10)  # initial population size
-parms <- c(r_hat = 1.5, sigma = 10, omega = 2*pi, phi = 0)  # intrinsic growth rate
+parms <- c(r_bar = 1.5, sigma = 5, omega = 2*pi)  # intrinsic growth rate
 ```
+
 Plot $r(t)$
 ```{r}
 ### Fluctuating growth rate
-r = parms[1] + parms[2]/2*sin(parms[3]*times + parms[4])
+r = parms[1] + parms[2]*sin(parms[3]*times)
 plot(r ~ times, type = "l")
 ```
 
@@ -164,7 +175,26 @@ pop_size <- ode(func = exponential_model_fluc, times = times, y = state, parms =
 
 ### Plotting
 plot(N ~ times, data = pop_size)
-curve(state[1]*exp(parms[1]*x - parms[2]/2/parms[3]*(cos(parms[3]*x + parms[4]) - cos(parms[4]))), add = T) # correct curve
+curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T) # correct curve
 plot(N ~ times, data = pop_size, log = "y")
-curve(state[1]*exp(parms[1]*x - parms[2]/2/parms[3]*(cos(parms[3]*x + parms[4]) - cos(parms[4]))), add = T) # correct curve
+curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T) # correct curve
+```
+
+Adjust $\overline{r}$
+```{r}
+### Parameters
+times <- seq(0, 10, by = 0.1)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r_bar = 0.1, sigma = 5, omega = 2*pi)  # intrinsic growth rate
+
+### Fluctuating growth rate
+r = parms[1] + parms[2]*sin(parms[3]*times)
+plot(r ~ times, type = "l")
+
+### Solving model
+pop_size <- ode(func = exponential_model_fluc, times = times, y = state, parms = parms)
+
+### Plotting
+plot(N ~ times, data = pop_size)
+curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T) # correct curve
 ```
