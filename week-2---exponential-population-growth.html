@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Week 2 - Exponential population growth | Introduction to Theoretical Ecology</title>
+  <meta name="description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Week 2 - Exponential population growth | Introduction to Theoretical Ecology" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://ChingLinHuang.github.io/2022_Fall_TheoEcol/bifurcation.gif" />
+  <meta property="og:description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
+  <meta name="github-repo" content="ChingLinHuang/2022_Fall_TheoEcol" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Week 2 - Exponential population growth | Introduction to Theoretical Ecology" />
+  
+  <meta name="twitter:description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
+  <meta name="twitter:image" content="https://ChingLinHuang.github.io/2022_Fall_TheoEcol/bifurcation.gif" />
+
+<meta name="author" content="Instructor: Po-Ju Ke ~~~~~ Teaching Assistant: Ching-Lin Huang (Andy)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="syllabus.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Theoretical Ecology</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a></li>
+<li class="chapter" data-level="" data-path="week-2---exponential-population-growth.html"><a href="week-2---exponential-population-growth.html"><i class="fa fa-check"></i>Week 2 - Exponential population growth</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Theoretical Ecology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week-2---exponential-population-growth" class="section level1 unnumbered hasAnchor">
+<h1>Week 2 - Exponential population growth<a href="week-2---exponential-population-growth.html#week-2---exponential-population-growth" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In part 1, we will solve the differential equation for exponential population growth and visualize how the population sizes change over time.</p>
+<p><br></p>
+<p><strong>Part 1 - Numerical solution using the package “deSolve”</strong></p>
+<p>Two main phases:</p>
+<ol style="list-style-type: decimal">
+<li><p>Model specification: specify the structure of differential equation model</p></li>
+<li><p>Model application: set the time steps, initial population size and model parameters (e.g., intrinsic population growth rate <em>r</em>), and then solve the equation model</p></li>
+</ol>
+<style>
+
+p span#aaa:before { 
+  content: "(1) "; 
+  display: inline-block;
+  margin-left: -1.5em;
+  margin-right: 0.3em;
+}
+
+p span#bbb:before { 
+  content: "(2) "; 
+  display: inline-block;
+  margin-left: -1.5em;
+  margin-right: 0.3em;
+}
+
+d-article table.lightable-paper {
+  margin-bottom: 0px; 
+}
+
+</style>
+<p>Consider the model
+<span class="math display">\[
+\frac{dN}{dt} = rN
+\]</span>
+where <span class="math inline">\(N\)</span> is population size and <span class="math inline">\(r\)</span> is the intrinsic growth rate.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="week-2---exponential-population-growth.html#cb1-1"></a><span class="co">###### part 1 ######</span></span>
+<span id="cb1-2"><a href="week-2---exponential-population-growth.html#cb1-2"></a><span class="co"># install.packages(&quot;deSolve&quot;)</span></span>
+<span id="cb1-3"><a href="week-2---exponential-population-growth.html#cb1-3"></a><span class="kw">library</span>(deSolve)</span>
+<span id="cb1-4"><a href="week-2---exponential-population-growth.html#cb1-4"></a></span>
+<span id="cb1-5"><a href="week-2---exponential-population-growth.html#cb1-5"></a><span class="co">### (1) Model specification</span></span>
+<span id="cb1-6"><a href="week-2---exponential-population-growth.html#cb1-6"></a>exponential_model &lt;-<span class="st"> </span><span class="cf">function</span>(times, state, parms) {</span>
+<span id="cb1-7"><a href="week-2---exponential-population-growth.html#cb1-7"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(<span class="kw">c</span>(state, parms)), {</span>
+<span id="cb1-8"><a href="week-2---exponential-population-growth.html#cb1-8"></a>    dN_dt =<span class="st"> </span>r<span class="op">*</span>N  <span class="co"># exponential growth equation</span></span>
+<span id="cb1-9"><a href="week-2---exponential-population-growth.html#cb1-9"></a>    <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(dN_dt)))  <span class="co"># return the results</span></span>
+<span id="cb1-10"><a href="week-2---exponential-population-growth.html#cb1-10"></a>  })</span>
+<span id="cb1-11"><a href="week-2---exponential-population-growth.html#cb1-11"></a>}</span></code></pre></div>
+<p>Set the time steps, initial population size and model parameters.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="week-2---exponential-population-growth.html#cb2-1"></a><span class="co">### (2) Model application</span></span>
+<span id="cb2-2"><a href="week-2---exponential-population-growth.html#cb2-2"></a>times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)  <span class="co"># time steps to integrate over</span></span>
+<span id="cb2-3"><a href="week-2---exponential-population-growth.html#cb2-3"></a>state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">N =</span> <span class="dv">10</span>)  <span class="co"># initial population size</span></span>
+<span id="cb2-4"><a href="week-2---exponential-population-growth.html#cb2-4"></a>parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">r =</span> <span class="fl">1.5</span>)  <span class="co"># intrinsic growth rate</span></span></code></pre></div>
+<p>Solve the equation by <code>ode()</code> numerically.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="week-2---exponential-population-growth.html#cb3-1"></a><span class="co"># run the ode solver</span></span>
+<span id="cb3-2"><a href="week-2---exponential-population-growth.html#cb3-2"></a>pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> exponential_model, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb3-3"><a href="week-2---exponential-population-growth.html#cb3-3"></a></span>
+<span id="cb3-4"><a href="week-2---exponential-population-growth.html#cb3-4"></a><span class="co"># take a look at the results</span></span>
+<span id="cb3-5"><a href="week-2---exponential-population-growth.html#cb3-5"></a><span class="kw">head</span>(pop_size)</span></code></pre></div>
+<pre><code>##      time        N
+## [1,]  0.0 10.00000
+## [2,]  0.1 11.61834
+## [3,]  0.2 13.49860
+## [4,]  0.3 15.68313
+## [5,]  0.4 18.22120
+## [6,]  0.5 21.17002</code></pre>
+<p>Visualization</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="week-2---exponential-population-growth.html#cb5-1"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>time, <span class="dt">data =</span> pop_size)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="week-2---exponential-population-growth.html#cb6-1"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>time, <span class="dt">data =</span> pop_size, <span class="dt">log =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<p><br></p>
+<p><strong>Part 2 - Comparing different ode solvers</strong>
+<br>
+In default of <code>ode()</code>, the equations are solved by LSODA method. We can change the method by modifying the argument <code>method</code> in <code>ode()</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="week-2---exponential-population-growth.html#cb7-1"></a><span class="co">###### part 2 ######</span></span>
+<span id="cb7-2"><a href="week-2---exponential-population-growth.html#cb7-2"></a><span class="co"># original setting</span></span>
+<span id="cb7-3"><a href="week-2---exponential-population-growth.html#cb7-3"></a>times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)  <span class="co"># time steps to integrate over</span></span>
+<span id="cb7-4"><a href="week-2---exponential-population-growth.html#cb7-4"></a>state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">N =</span> <span class="dv">10</span>)  <span class="co"># initial population size</span></span>
+<span id="cb7-5"><a href="week-2---exponential-population-growth.html#cb7-5"></a>parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">r =</span> <span class="fl">1.5</span>)  <span class="co"># intrinsic growth rate</span></span>
+<span id="cb7-6"><a href="week-2---exponential-population-growth.html#cb7-6"></a><span class="co"># default: LSODA</span></span>
+<span id="cb7-7"><a href="week-2---exponential-population-growth.html#cb7-7"></a>pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> exponential_model, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb7-8"><a href="week-2---exponential-population-growth.html#cb7-8"></a></span>
+<span id="cb7-9"><a href="week-2---exponential-population-growth.html#cb7-9"></a><span class="co"># Euler&#39;s method</span></span>
+<span id="cb7-10"><a href="week-2---exponential-population-growth.html#cb7-10"></a>pop_size_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> exponential_model, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms, <span class="dt">method =</span> <span class="st">&quot;euler&quot;</span>)</span>
+<span id="cb7-11"><a href="week-2---exponential-population-growth.html#cb7-11"></a></span>
+<span id="cb7-12"><a href="week-2---exponential-population-growth.html#cb7-12"></a><span class="co"># compare different method</span></span>
+<span id="cb7-13"><a href="week-2---exponential-population-growth.html#cb7-13"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb7-14"><a href="week-2---exponential-population-growth.html#cb7-14"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>time, <span class="dt">data =</span> pop_size, <span class="dt">main =</span> <span class="st">&quot;LSODA&quot;</span>)</span>
+<span id="cb7-15"><a href="week-2---exponential-population-growth.html#cb7-15"></a><span class="kw">curve</span>(state[<span class="dv">1</span>]<span class="op">*</span><span class="kw">exp</span>(parms[<span class="dv">1</span>]<span class="op">*</span>x), times[<span class="dv">1</span>], times[<span class="kw">length</span>(times)], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> T) <span class="co"># correct curve</span></span>
+<span id="cb7-16"><a href="week-2---exponential-population-growth.html#cb7-16"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>time, <span class="dt">data =</span> pop_size_<span class="dv">1</span>, <span class="dt">main =</span> <span class="st">&quot;Euler&quot;</span>)</span>
+<span id="cb7-17"><a href="week-2---exponential-population-growth.html#cb7-17"></a><span class="kw">curve</span>(state[<span class="dv">1</span>]<span class="op">*</span><span class="kw">exp</span>(parms[<span class="dv">1</span>]<span class="op">*</span>x), times[<span class="dv">1</span>], times[<span class="kw">length</span>(times)], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> T) <span class="co"># correct curve</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="week-2---exponential-population-growth.html#cb8-1"></a><span class="co"># minimize the time step</span></span>
+<span id="cb8-2"><a href="week-2---exponential-population-growth.html#cb8-2"></a>times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.01</span>)  <span class="co"># time steps to integrate over</span></span>
+<span id="cb8-3"><a href="week-2---exponential-population-growth.html#cb8-3"></a>state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">N =</span> <span class="dv">10</span>)  <span class="co"># initial population size</span></span>
+<span id="cb8-4"><a href="week-2---exponential-population-growth.html#cb8-4"></a>parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">r =</span> <span class="fl">1.5</span>)  <span class="co"># intrinsic growth rate</span></span>
+<span id="cb8-5"><a href="week-2---exponential-population-growth.html#cb8-5"></a><span class="co"># default: LSODA</span></span>
+<span id="cb8-6"><a href="week-2---exponential-population-growth.html#cb8-6"></a>pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> exponential_model, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb8-7"><a href="week-2---exponential-population-growth.html#cb8-7"></a></span>
+<span id="cb8-8"><a href="week-2---exponential-population-growth.html#cb8-8"></a><span class="co"># Euler&#39;s method</span></span>
+<span id="cb8-9"><a href="week-2---exponential-population-growth.html#cb8-9"></a>pop_size_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> exponential_model, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms, <span class="dt">method =</span> <span class="st">&quot;euler&quot;</span>)</span>
+<span id="cb8-10"><a href="week-2---exponential-population-growth.html#cb8-10"></a></span>
+<span id="cb8-11"><a href="week-2---exponential-population-growth.html#cb8-11"></a><span class="co"># compare different method</span></span>
+<span id="cb8-12"><a href="week-2---exponential-population-growth.html#cb8-12"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb8-13"><a href="week-2---exponential-population-growth.html#cb8-13"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>time, <span class="dt">data =</span> pop_size, <span class="dt">main =</span> <span class="st">&quot;LSODA&quot;</span>)</span>
+<span id="cb8-14"><a href="week-2---exponential-population-growth.html#cb8-14"></a><span class="kw">curve</span>(state[<span class="dv">1</span>]<span class="op">*</span><span class="kw">exp</span>(parms[<span class="dv">1</span>]<span class="op">*</span>x), times[<span class="dv">1</span>], times[<span class="kw">length</span>(times)], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> T) <span class="co"># correct curve</span></span>
+<span id="cb8-15"><a href="week-2---exponential-population-growth.html#cb8-15"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>time, <span class="dt">data =</span> pop_size_<span class="dv">1</span>, <span class="dt">main =</span> <span class="st">&quot;Euler&quot;</span>)</span>
+<span id="cb8-16"><a href="week-2---exponential-population-growth.html#cb8-16"></a><span class="kw">curve</span>(state[<span class="dv">1</span>]<span class="op">*</span><span class="kw">exp</span>(parms[<span class="dv">1</span>]<span class="op">*</span>x), times[<span class="dv">1</span>], times[<span class="kw">length</span>(times)], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">add =</span> T) <span class="co"># correct curve</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<p><br></p>
+<p><strong>Part 3 - Solving exponential growth model with fluctuating growth rate</strong>
+<br>
+Consider the model
+<span class="math display">\[
+\frac{dN}{dt} = r(t)N \ \text{, } r(t) = \overline{r} + \sigma\sin(\omega t)
+\]</span>
+where <span class="math inline">\(\overline{r}\)</span> and <span class="math inline">\(\omega\)</span> are constants.
+The analytical solution of the ode model is
+<span class="math display">\[
+N(t) = N_0\exp\{\overline{r}t - \frac{\sigma}{\omega}[\cos(\omega t) - 1]\}
+\]</span></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="week-2---exponential-population-growth.html#cb9-1"></a><span class="co">###### part 3 ######</span></span>
+<span id="cb9-2"><a href="week-2---exponential-population-growth.html#cb9-2"></a><span class="co">### Model specification</span></span>
+<span id="cb9-3"><a href="week-2---exponential-population-growth.html#cb9-3"></a>exponential_model_fluc &lt;-<span class="st"> </span><span class="cf">function</span>(times, state, parms) {</span>
+<span id="cb9-4"><a href="week-2---exponential-population-growth.html#cb9-4"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(<span class="kw">c</span>(state, parms)), {</span>
+<span id="cb9-5"><a href="week-2---exponential-population-growth.html#cb9-5"></a>    dN_dt =<span class="st"> </span>(r_bar <span class="op">+</span><span class="st"> </span>sigma<span class="op">*</span><span class="kw">sin</span>(omega<span class="op">*</span>times))<span class="op">*</span>N  <span class="co"># exponential growth equation</span></span>
+<span id="cb9-6"><a href="week-2---exponential-population-growth.html#cb9-6"></a>    <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(dN_dt)))  <span class="co"># return the results</span></span>
+<span id="cb9-7"><a href="week-2---exponential-population-growth.html#cb9-7"></a>  })</span>
+<span id="cb9-8"><a href="week-2---exponential-population-growth.html#cb9-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="week-2---exponential-population-growth.html#cb10-1"></a><span class="co">### Parameters</span></span>
+<span id="cb10-2"><a href="week-2---exponential-population-growth.html#cb10-2"></a>times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)  <span class="co"># time steps to integrate over</span></span>
+<span id="cb10-3"><a href="week-2---exponential-population-growth.html#cb10-3"></a>state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">N =</span> <span class="dv">10</span>)  <span class="co"># initial population size</span></span>
+<span id="cb10-4"><a href="week-2---exponential-population-growth.html#cb10-4"></a>parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">r_bar =</span> <span class="fl">1.5</span>, <span class="dt">sigma =</span> <span class="dv">5</span>, <span class="dt">omega =</span> <span class="dv">2</span><span class="op">*</span>pi)  <span class="co"># intrinsic growth rate</span></span></code></pre></div>
+<p>Plot <span class="math inline">\(r(t)\)</span></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="week-2---exponential-population-growth.html#cb11-1"></a><span class="co">### Fluctuating growth rate</span></span>
+<span id="cb11-2"><a href="week-2---exponential-population-growth.html#cb11-2"></a>r =<span class="st"> </span>parms[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>parms[<span class="dv">2</span>]<span class="op">*</span><span class="kw">sin</span>(parms[<span class="dv">3</span>]<span class="op">*</span>times)</span>
+<span id="cb11-3"><a href="week-2---exponential-population-growth.html#cb11-3"></a><span class="kw">plot</span>(r <span class="op">~</span><span class="st"> </span>times, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="week-2---exponential-population-growth.html#cb12-1"></a><span class="co">### Solving model</span></span>
+<span id="cb12-2"><a href="week-2---exponential-population-growth.html#cb12-2"></a>pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> exponential_model_fluc, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb12-3"><a href="week-2---exponential-population-growth.html#cb12-3"></a></span>
+<span id="cb12-4"><a href="week-2---exponential-population-growth.html#cb12-4"></a><span class="co">### Plotting</span></span>
+<span id="cb12-5"><a href="week-2---exponential-population-growth.html#cb12-5"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>times, <span class="dt">data =</span> pop_size)</span>
+<span id="cb12-6"><a href="week-2---exponential-population-growth.html#cb12-6"></a><span class="kw">curve</span>(state[<span class="dv">1</span>]<span class="op">*</span><span class="kw">exp</span>(parms[<span class="dv">1</span>]<span class="op">*</span>x <span class="op">-</span><span class="st"> </span>parms[<span class="dv">2</span>]<span class="op">/</span>parms[<span class="dv">3</span>]<span class="op">*</span>(<span class="kw">cos</span>(parms[<span class="dv">3</span>]<span class="op">*</span>x) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)), <span class="dt">add =</span> T) <span class="co"># correct curve</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="week-2---exponential-population-growth.html#cb13-1"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>times, <span class="dt">data =</span> pop_size, <span class="dt">log =</span> <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb13-2"><a href="week-2---exponential-population-growth.html#cb13-2"></a><span class="kw">curve</span>(state[<span class="dv">1</span>]<span class="op">*</span><span class="kw">exp</span>(parms[<span class="dv">1</span>]<span class="op">*</span>x <span class="op">-</span><span class="st"> </span>parms[<span class="dv">2</span>]<span class="op">/</span>parms[<span class="dv">3</span>]<span class="op">*</span>(<span class="kw">cos</span>(parms[<span class="dv">3</span>]<span class="op">*</span>x) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)), <span class="dt">add =</span> T) <span class="co"># correct curve</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p>Adjust <span class="math inline">\(\overline{r}\)</span></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="week-2---exponential-population-growth.html#cb14-1"></a><span class="co">### Parameters</span></span>
+<span id="cb14-2"><a href="week-2---exponential-population-growth.html#cb14-2"></a>times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)  <span class="co"># time steps to integrate over</span></span>
+<span id="cb14-3"><a href="week-2---exponential-population-growth.html#cb14-3"></a>state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">N =</span> <span class="dv">10</span>)  <span class="co"># initial population size</span></span>
+<span id="cb14-4"><a href="week-2---exponential-population-growth.html#cb14-4"></a>parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">r_bar =</span> <span class="fl">0.1</span>, <span class="dt">sigma =</span> <span class="dv">5</span>, <span class="dt">omega =</span> <span class="dv">2</span><span class="op">*</span>pi)  <span class="co"># intrinsic growth rate</span></span>
+<span id="cb14-5"><a href="week-2---exponential-population-growth.html#cb14-5"></a></span>
+<span id="cb14-6"><a href="week-2---exponential-population-growth.html#cb14-6"></a><span class="co">### Fluctuating growth rate</span></span>
+<span id="cb14-7"><a href="week-2---exponential-population-growth.html#cb14-7"></a>r =<span class="st"> </span>parms[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>parms[<span class="dv">2</span>]<span class="op">*</span><span class="kw">sin</span>(parms[<span class="dv">3</span>]<span class="op">*</span>times)</span>
+<span id="cb14-8"><a href="week-2---exponential-population-growth.html#cb14-8"></a><span class="kw">plot</span>(r <span class="op">~</span><span class="st"> </span>times, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="week-2---exponential-population-growth.html#cb15-1"></a><span class="co">### Solving model</span></span>
+<span id="cb15-2"><a href="week-2---exponential-population-growth.html#cb15-2"></a>pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> exponential_model_fluc, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb15-3"><a href="week-2---exponential-population-growth.html#cb15-3"></a></span>
+<span id="cb15-4"><a href="week-2---exponential-population-growth.html#cb15-4"></a><span class="co">### Plotting</span></span>
+<span id="cb15-5"><a href="week-2---exponential-population-growth.html#cb15-5"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>times, <span class="dt">data =</span> pop_size)</span>
+<span id="cb15-6"><a href="week-2---exponential-population-growth.html#cb15-6"></a><span class="kw">curve</span>(state[<span class="dv">1</span>]<span class="op">*</span><span class="kw">exp</span>(parms[<span class="dv">1</span>]<span class="op">*</span>x <span class="op">-</span><span class="st"> </span>parms[<span class="dv">2</span>]<span class="op">/</span>parms[<span class="dv">3</span>]<span class="op">*</span>(<span class="kw">cos</span>(parms[<span class="dv">3</span>]<span class="op">*</span>x) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)), <span class="dt">add =</span> T) <span class="co"># correct curve</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="syllabus.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ChingLinHuang/2022_Fall_TheoEcol/02_Week_2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
