@@ -1,17 +1,17 @@
 {
-    "id": "2AD93BCE",
+    "id": "9F6E88BE",
     "path": "~/2022_Fall_TheoEcol/02_Week_2.Rmd",
     "project_path": "02_Week_2.Rmd",
     "type": "r_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1662699235358.0,
+    "created": 1663590321887.0,
     "source_on_save": false,
-    "relative_order": 1,
+    "relative_order": 2,
     "properties": {
-        "cursorPosition": "111,37",
-        "scrollLine": "108",
+        "cursorPosition": "3,34",
+        "scrollLine": "0",
         "last_setup_crc32": "D00EC12A6347c84e"
     },
     "folds": "",
@@ -19,7 +19,7 @@
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1663046762463,
+    "last_content_update": 1663046762,
     "read_only": false,
     "read_only_alternatives": []
 }

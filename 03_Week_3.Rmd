@@ -1,0 +1,5 @@
+# Week 3 - Logistic population growth and stability analysis  {-} 
+
+```{r, out.width="800px", echo = F}
+knitr::include_app("https://genchanghsu0115.shinyapps.io/Logistic_mod_shinyapp/", height = "550px")
+```
