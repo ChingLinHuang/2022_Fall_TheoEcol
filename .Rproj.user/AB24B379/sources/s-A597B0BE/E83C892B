@@ -1,0 +1,25 @@
+{
+    "id": "E83C892B",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1663659681730.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "id": "46b9b7304d58473a85dcd179589aac5c",
+        "name": "pop_size",
+        "title": "pop_size"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1646975273,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1663659681730,
+    "read_only": false,
+    "read_only_alternatives": []
+}
