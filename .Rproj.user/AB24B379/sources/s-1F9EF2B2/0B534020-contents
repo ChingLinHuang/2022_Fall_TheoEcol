@@ -1,4 +1,4 @@
-# Week 4 Discrete exponential and logistic models{-} 
+# Week 4 - Discrete exponential and logistic models{-} 
 
 **Part 1 - Model the discrete logistic population growth using for loops**
 Model:
@@ -81,7 +81,7 @@ for (lo in 1:length(r_seq)){
   dat_plot$N[(1 + (lo - 1)*N_rep):(lo*N_rep)] <- pop_size$N[(nrow(pop_size) - N_rep + 1):nrow(pop_size)]
 }
 
-plot(N ~ r, data = dat_plot)
+plot(N ~ r, data = dat_plot, cex = 0.7, pch = 20)
 
 ```
 
