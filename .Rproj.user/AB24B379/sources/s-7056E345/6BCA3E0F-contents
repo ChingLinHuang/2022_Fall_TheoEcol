@@ -1,0 +1,21 @@
+# install.packages("deSolve")
+library(deSolve)
+# Model specification
+allee_effct_model <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dN_dt = r*N*(1-N/K)*(N/A-1) # logistic growth equation with allee effect
+    return(list(c(dN_dt))) # return the results
+  })
+}
+# run the ode solver
+pop_size <- ode(func = allee_effct_model, times = seq(0, 10, by = 0.1), y = c(N = 50),
+                parms = c(r = 1.2 ,K = 1000 ,A = 150))
+#Visualizing
+plot(N ~ time, data = pop_size, ylim = c(0,1500), xlim = c(0,6), type = "l")
+N0 <- seq(50, 1500, by = 50) #test different initial population size
+for (i in c(1:29)) {
+  pop_size <- ode(func = allee_effct_model, times = seq(0, 10, by = 0.1), y = c(N =
+                                                                                  N0[i]), parms = c(r = 1.2 ,K = 1000 ,A = 150))
+  lines(N ~ time, data = pop_size)
+}
+axis(side = 2, at = 150, labels = "A")

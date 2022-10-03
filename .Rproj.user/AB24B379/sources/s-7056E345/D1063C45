@@ -1,0 +1,32 @@
+{
+    "id": "D1063C45",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1664265863012.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "expression": "dat_plot",
+        "caption": "dat_plot",
+        "totalObservations": 12100,
+        "displayedObservations": 12100,
+        "variables": 2,
+        "cacheKey": "14F4FECE",
+        "object": "dat_plot",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=dat_plot&cache_key=14F4FECE&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2154734823320,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1664265863012,
+    "read_only": false,
+    "read_only_alternatives": []
+}

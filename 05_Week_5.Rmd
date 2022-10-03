@@ -1,0 +1,123 @@
+# Week 5 - Age-structure population model{-} 
+
+In this lab section, we will analyze a Leslie matrix using for loops and matrix algebra, compare the results with those obtained via eigen-analysis, and visualize the population dynamics and age distribution.
+
+**Part 1 - Analyzing Leslie matrix**
+
+Consider an age-strutured population model
+\[
+n_{t+1} = L^tn_0
+\]
+where $L$ is a Leslie matrix and $n_t = (n_{1,t}, n_{2,t}, n_{3,t})$ is the population sizes with three different ages in time $t$.
+```{r}
+### Leslie matrix and initial age classes
+leslie <- matrix(data = c(0, 1, 5,
+                               0.5, 0, 0,
+                               0, 0.3, 0),
+                      nrow = 3,
+                      ncol = 3,
+                      byrow = T)
+
+N0 <- c(10, 0, 0)
+
+### for loop and matrix algebra
+time <- 50
+pop_size <- data.frame(Age1 = 0,
+                       Age2 = 0,
+                       Age3 = 0)
+pop_size[1, ] <- N0
+
+for (i in 2:time) {
+  # Matrix multiplication
+  pop_size[i, ] <- leslie %*% t(pop_size[i-1, ])
+}
+
+# Total abundance
+pop_size$N <- rowSums(pop_size)
+
+head(pop_size)
+
+plot(c(1,time), c(0,265), type = "n", ann = F)
+lines(1:time , pop_size$Age1, col = "red")
+lines(1:time , pop_size$Age2, col = "blue")
+lines(1:time , pop_size$Age3, col = "green")
+legend("topleft",
+       legend = c("Age1", "Age2", "Age3"),
+       col = c("red", "blue", "green"),
+       lty = 1)
+
+```
+By the derivation in the class, the asymptotic population sizes can be approximated by 
+\[
+n_t \approx c\cdot \lambda_1^t\cdot u_1
+\]
+where $c$ is a constant, $\lambda_1$ is the dominant eigenvalue and $u_1$ is the corresponding eigenvector. Hence, with the long-term dynamics, the population grows at a rate $\lambda_1$ and with the age distribution $u_1$. Here, we check this fact numerically.
+```{r}
+### Asymptotic growth rate and stable age distribution
+
+asymptotic_growth <- pop_size$N[time]/pop_size$N[time-1]
+asymptotic_growth
+
+age_distribution <- pop_size[time, 1:3]/sum(pop_size[time, 1:3])
+age_distribution
+
+### Eigen-analysis of the Leslie matrix
+EIGEN <- eigen(leslie)
+EIGEN
+as.numeric(EIGEN$values[1]) # dominant eigenvalue
+as.numeric(EIGEN$vectors[, 1] / sum(EIGEN$vectors[, 1])) # corresponding eigenvector
+```
+
+The asymptotic growth rate and stable age distribution obtained from for loops and eigen-analysis are similar.
+
+<br>
+
+**Part 2 - Visualizing stable age distribution**
+
+For any diagonalizable n-by-n matrix $M$ with only one dominant eigenvalue, and for any n-by-1 vector $v$, $M^tv$ will shift to the same direction with the eigenvector of $M$ corresponding to the dominant eigenvalue. Here, we visualize this fact numerically.
+```{r}
+library(ggplot2)
+set.seed(1234)
+MAT <- matrix(rnorm(25), ncol = 5, nrow = 5)
+abs(eigen(MAT)$values) # check only one dominant eigenvalue
+
+v <- rnorm(5)
+time <- 15
+
+dat_v <- data.frame(matrix(ncol = 5, nrow = time))
+dat_v[1, ] <- v
+for(i in 2:time){
+  dat_v[i, ] <- MAT %*% t(dat_v[i-1, ])
+}
+
+# Remake data for gganimate
+dat <- data.frame(X1 = 0, X2 = 0, Time = 1)
+for(i in 1:time){
+  dat <- rbind(dat, data.frame(dat_v[i,1:2] / sqrt(sum(dat_v[i,1:2]^2)) * i, Time = i))
+  dat <- rbind(dat, c(0,0, i+1))
+}
+dat <- dat[-nrow(dat), ]
+
+
+ggplot(dat, aes(X1, X2, color = Time)) +
+  geom_path(arrow = arrow(length = unit(0.55, "cm")))
+```
+
+
+<br>
+
+**Part 3 - In-class exercise: Analyzing population matrix of common teasel**
+
+[Common teasel (_Dipsacus sylvestris_)](https://en.wikipedia.org/wiki/Dipsacus_fullonum) is a herbaceous plant commonly found in abandoned fields and meadows in North America. It has a complex life cycle consisting of various stages. The seeds may lie dormant for one or two years. Seeds that germinate form small rosettes, which will gradually transit into medium and eventually large rosettes. These rosettes (all three sizes) may remain in the same stage for years before entering the next stage. After undergoing vernalization, large (and a few medium) rosettes will form stalks and flower in the upcoming summer, set seeds once, and die. Occasionally, the flowering plants will produce seeds that directly germinate into small/medium/large rosettes without entering dormancy.
+
+Here is a transition diagram for the teasel. Please convert this diagram into a stage-based transition matrix (Lefkovitch matrix) and derive the asymptotic growth rate $\lambda$ in R. 
+
+<img src="./Teasel Diagram.png" width= "100%"/>
+
+<br>
+
+**Part 4 - COM(P)ADRE: A global database of population matrices**
+
+[COM(P)ADRE](https://compadre-db.org/ExploreDatabase) is an online repository containing matrix population models on hundreds of plants, animals, algae, fungi, bacteria, and viruses around the world, as well as their associated metadata. Take a look at the website: You will be exploring the population dynamics of a species (of your choice) in your assignment!
+
+<br>
