@@ -1,0 +1,43 @@
+# model and initial population
+leslie <- matrix(data = c(0, 1, 5,
+                          0.5, 0, 0,
+                          0, 0.3, 0),
+                 nrow = 3,
+                 ncol = 3,
+                 byrow = T)
+
+N0 <- c(10, 0, 0)
+
+# simulation
+time <- 50
+pop_size <- data.frame(Age1 = 0, Age2 = 0, Age = 0)
+pop_size[1, ] <- N0
+
+for (i in 2: time){
+  pop_size[i, ] <- leslie %*% t(pop_size[i-1, ])
+}
+
+pop_size$N <- rowSums(pop_size)
+plot(1:time, pop_size$Age1)
+
+# eigenanalysis
+eigen(leslie)
+abs(eigen(leslie)$values)[1] # 1.089 # asymptotic population growth
+eig_vec1 <- as.numeric(eigen(leslie)$vectors[ ,1]) # asymptotic age distribution
+eig_vec1 / sum(eig_vec1) # 0.63092527 0.28941777 0.07965696
+
+asymptotic_growth <- pop_size$N[50] / pop_size$N[49] # 1.089
+age_distribution <- pop_size[50, 1:3] / pop_size$N[50] # 0.6309262 0.2894167 0.07965713
+
+# 
+Lef <- matrix(c(0,0,0,0,0,322.38,
+                0.966,0,0,0,0,0,
+                0.013, 0.01, 0.125, 0,0,3.448,
+                0.007, 0,0.125,0.238,0,30.17,
+                0.008, 0, 0, 0.245,0.167, 0.862,
+                0, 0, 0, 0.023, 0.75, 0),
+              ncol = 6, 
+              nrow = 6, 
+              byrow = T)
+abs(eigen(Lef)$values) # 2.32
+
