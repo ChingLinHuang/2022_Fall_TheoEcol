@@ -4,7 +4,7 @@ In this lab section, we will analyze a Leslie matrix using for loops and matrix 
 
 **Part 1 - Visualizing stable age distribution**
 
-For any diagonalizable n-by-n matrix $M$ with only one dominant eigenvalue, and for any n-by-1 vector $v$, $M^tv$ will shift to the same direction with the eigenvector of $M$ corresponding to the dominant eigenvalue. Here, we visualize this fact numerically.
+For any diagonalizable n-by-n matrix $M$ with only one dominant eigenvalue, and for any n-by-1 vector $v$, $M^tv$ will shift to the same direction with the eigenvector of $M$ corresponding to the dominant eigenvalue when $t$ is large. Here, we visualize this fact numerically.
 ```{r}
 library(ggplot2)
 set.seed(1234)
@@ -50,8 +50,8 @@ where $L$ is a Leslie matrix and $n_t = (n_{1,t}, n_{2,t}, n_{3,t})$ is the popu
 ```{r}
 ### Leslie matrix and initial age classes
 leslie <- matrix(data = c(0, 1, 5,
-                               0.5, 0, 0,
-                               0, 0.3, 0),
+                          0.5, 0, 0,
+                          0, 0.3, 0),
                       nrow = 3,
                       ncol = 3,
                       byrow = T)
