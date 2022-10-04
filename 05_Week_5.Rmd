@@ -103,7 +103,7 @@ age_distribution
 ### Eigen-analysis of the Leslie matrix
 EIGEN <- eigen(leslie)
 EIGEN
-as.numeric(EIGEN$values[1]) # dominant eigenvalue
+abs(EIGEN$values[1]) # dominant eigenvalue
 as.numeric(EIGEN$vectors[, 1] / sum(EIGEN$vectors[, 1])) # corresponding eigenvector
 ```
 

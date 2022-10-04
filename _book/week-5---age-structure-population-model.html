@@ -275,7 +275,7 @@ where <span class="math inline">\(c\)</span> is a constant, <span class="math in
 ## [1,] 0.9030054+0i  0.8418972+0.0000000i  0.8418972+0.0000000i
 ## [2,] 0.4142263+0i -0.3334136-0.3825709i -0.3334136+0.3825709i
 ## [3,] 0.1140082+0i -0.0250833+0.1818099i -0.0250833-0.1818099i</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="week-5---age-structure-population-model.html#cb37-1"></a><span class="kw">as.numeric</span>(EIGEN<span class="op">$</span>values[<span class="dv">1</span>]) <span class="co"># dominant eigenvalue</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="week-5---age-structure-population-model.html#cb37-1"></a><span class="kw">abs</span>(EIGEN<span class="op">$</span>values[<span class="dv">1</span>]) <span class="co"># dominant eigenvalue</span></span></code></pre></div>
 <pre><code>## [1] 1.089991</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="week-5---age-structure-population-model.html#cb39-1"></a><span class="kw">as.numeric</span>(EIGEN<span class="op">$</span>vectors[, <span class="dv">1</span>] <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(EIGEN<span class="op">$</span>vectors[, <span class="dv">1</span>])) <span class="co"># corresponding eigenvector</span></span></code></pre></div>
 <pre><code>## [1] 0.63092527 0.28941777 0.07965696</code></pre>
