@@ -91,7 +91,7 @@ leslie <- matrix(c(0    ,0   ,0    ,0    ,0    ,322.38,
                    0    ,0   ,0    ,0.023,0.75 ,0)
                  , ncol = 6, byrow = T)
 
-max(abs(eigen(leslie)$values)) # 2.32188
+eigen(leslie)$values # 2.32188
 
 M = matrix(c(0, 0.966, 0.013, 0.007, 0.008, 0,
              0, 0, 0.01, 0, 0, 0,
