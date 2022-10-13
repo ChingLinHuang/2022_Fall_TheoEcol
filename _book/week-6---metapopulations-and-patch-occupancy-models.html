@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="week-5---age-structure-population-model.html"/>
-
+<link rel="next" href="week-7---lotka-volterra-model-of-competition.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -145,6 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="week-4---discrete-exponential-and-logistic-models.html"><a href="week-4---discrete-exponential-and-logistic-models.html"><i class="fa fa-check"></i>Week 4 - Discrete exponential and logistic models</a></li>
 <li class="chapter" data-level="" data-path="week-5---age-structure-population-model.html"><a href="week-5---age-structure-population-model.html"><i class="fa fa-check"></i>Week 5 - Age-structure population model</a></li>
 <li class="chapter" data-level="" data-path="week-6---metapopulations-and-patch-occupancy-models.html"><a href="week-6---metapopulations-and-patch-occupancy-models.html"><i class="fa fa-check"></i>Week 6 - Metapopulations and patch occupancy models</a></li>
+<li class="chapter" data-level="" data-path="week-7---lotka-volterra-model-of-competition.html"><a href="week-7---lotka-volterra-model-of-competition.html"><i class="fa fa-check"></i>Week 7 - Lotka-Volterra model of competition</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -179,37 +180,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="Plant_soil_model.png" width= "100%"/></p>
 <p>Here, <span class="math inline">\(P_{00}\)</span> can be colonized by plant <span class="math inline">\(A\)</span> when propagules arrive (per capita rate <span class="math inline">\(r_{A}\)</span>), transitioning the state from <span class="math inline">\(P_{00}\)</span> to <span class="math inline">\(P_{A0}\)</span>. Plants may die, with rate <span class="math inline">\(m_{A}\)</span>, before conditioning the soil (i.e., transition from <span class="math inline">\(P_{A0}\)</span> back to <span class="math inline">\(P_{00}\)</span>), or may successfully condition the soil with rate <span class="math inline">\(c_{A}\)</span> (i.e., transition from <span class="math inline">\(P_{A0}\)</span> to <span class="math inline">\(P_{AA}\)</span>). After plants within the state <span class="math inline">\(P_{AA}\)</span> die, a site with microbial legacy is left behind, denoted as <span class="math inline">\(P_{0A}\)</span>. These empty sites can be recolonized (i.e., transition from <span class="math inline">\(P_{0A}\)</span> back to <span class="math inline">\(P_{AA}\)</span>) with rates affected by the microbial legacy effect, <span class="math inline">\(\alpha\)</span>. Finally, the microbial community within the soil may decay to unconditioned state with rate <span class="math inline">\(d_{A}\)</span>, transitioning the state from <span class="math inline">\(P_{0A}\)</span> to <span class="math inline">\(P_{00}\)</span>.</p>
 <p>In this lab, we are going to model the dynamics of this plant-soil system. We will start by converting the flow diagram into a set of differential equations and then solve them numerically using the package <code>deSolve</code>.</p>
-<!-- ```{r} -->
-<!-- library(deSolve) -->
-<!-- library(tidyverse) -->
-<!-- ### Model specification -->
-<!-- plant_soil_model <- function(times, state, parms) { -->
-<!--   with(as.list(c(state, parms)), { -->
-<!--     dP00_dt = P0A*dA + PA0*mA - P00*(PA0 + PAA)*RA -->
-<!--     dPA0_dt = P00*(PA0 + PAA)*RA - PA0*mA - PA0*CA -->
-<!--     dPAA_dt = PA0*CA - PAA*mA + P0A*(PA0 + PAA)*RA*a -->
-<!--     dP0A_dt = PAA*mA - P0A*(PA0 + PAA)*RA*a - P0A*dA -->
-<!--     return(list(c(dP00_dt, dPA0_dt, dPAA_dt, dP0A_dt))) -->
-<!--   }) -->
-<!-- } -->
-<!-- ### Model parameters -->
-<!-- times <- seq(0, 20, by = 0.1) -->
-<!-- state <- c(P00 = 0.25, PA0 = 0.25, PAA = 0.25, P0A = 0.25) -->
-<!-- parms <- c(RA = 0.5, mA = 0.1, CA = 0.5, dA = 0.4, a = 0.7) -->
-<!-- ### ODE solver -->
-<!-- patch_prop <- ode(func = plant_soil_model, times = times, y = state, parms = parms) -->
-<!-- ### Visualization -->
-<!-- patch_prop %>% -->
-<!--   as.data.frame() %>% -->
-<!--   pivot_longer(cols = -time, names_to = "patch", values_to = "prop") %>% -->
-<!--   ggplot(aes(x = time, y = prop, color = fct_reorder(patch, prop, last,  .desc = T))) + -->
-<!--   geom_line(size = 1.5) + -->
-<!--   theme_classic(base_size = 12) + -->
-<!--   labs(x = "Time", y = "Proportion") + -->
-<!--   scale_x_continuous(limits = c(0, 20.5), expand = c(0, 0)) + -->
-<!--   scale_y_continuous(limits = c(0, 0.8), expand = c(0, 0)) + -->
-<!--   scale_color_brewer(name = NULL, palette = "Set1") -->
-<!-- ``` -->
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-1"></a><span class="kw">library</span>(deSolve)</span>
+<span id="cb41-2"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb41-3"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-3"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb41-4"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-4"></a></span>
+<span id="cb41-5"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-5"></a></span>
+<span id="cb41-6"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-6"></a><span class="co">### Model specification</span></span>
+<span id="cb41-7"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-7"></a>PSF &lt;-<span class="st"> </span><span class="cf">function</span>(times, state, parms) {</span>
+<span id="cb41-8"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-8"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(<span class="kw">c</span>(state, parms)), {</span>
+<span id="cb41-9"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-9"></a>    dP00_dt =<span class="st"> </span>P0A<span class="op">*</span>dA <span class="op">+</span><span class="st"> </span>PA0<span class="op">*</span>mA <span class="op">-</span><span class="st"> </span>P00<span class="op">*</span>(PA0 <span class="op">+</span><span class="st"> </span>PAA)<span class="op">*</span>rA</span>
+<span id="cb41-10"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-10"></a>    dPA0_dt =<span class="st"> </span>P00<span class="op">*</span>(PA0 <span class="op">+</span><span class="st"> </span>PAA)<span class="op">*</span>rA <span class="op">-</span><span class="st"> </span>PA0<span class="op">*</span>mA <span class="op">-</span><span class="st"> </span>PA0<span class="op">*</span>cA</span>
+<span id="cb41-11"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-11"></a>    dPAA_dt =<span class="st"> </span>PA0<span class="op">*</span>cA <span class="op">-</span><span class="st"> </span>PAA<span class="op">*</span>mA <span class="op">+</span><span class="st"> </span>P0A<span class="op">*</span>(PA0 <span class="op">+</span><span class="st"> </span>PAA)<span class="op">*</span>rA<span class="op">*</span>alpha</span>
+<span id="cb41-12"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-12"></a>    dP0A_dt =<span class="st"> </span>PAA<span class="op">*</span>mA <span class="op">-</span><span class="st"> </span>P0A<span class="op">*</span>(PA0 <span class="op">+</span><span class="st"> </span>PAA)<span class="op">*</span>rA<span class="op">*</span>alpha <span class="op">-</span><span class="st"> </span>P0A<span class="op">*</span>dA</span>
+<span id="cb41-13"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-13"></a></span>
+<span id="cb41-14"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-14"></a>    <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(dP00_dt, dPA0_dt, dPAA_dt, dP0A_dt)))</span>
+<span id="cb41-15"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-15"></a>  })</span>
+<span id="cb41-16"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-16"></a>}</span>
+<span id="cb41-17"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-17"></a></span>
+<span id="cb41-18"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-18"></a><span class="co">### Model parameters</span></span>
+<span id="cb41-19"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-19"></a>times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb41-20"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-20"></a>state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">P00 =</span> <span class="fl">0.25</span>, <span class="dt">PA0 =</span> <span class="fl">0.25</span>, <span class="dt">PAA =</span> <span class="fl">0.25</span>, <span class="dt">P0A =</span> <span class="fl">0.25</span>)</span>
+<span id="cb41-21"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-21"></a>parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">rA =</span> <span class="fl">0.5</span>, <span class="dt">mA =</span> <span class="fl">0.1</span>, <span class="dt">cA =</span> <span class="fl">0.5</span>, <span class="dt">dA =</span> <span class="fl">0.4</span>, <span class="dt">alpha =</span> <span class="fl">0.7</span>)</span>
+<span id="cb41-22"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-22"></a></span>
+<span id="cb41-23"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-23"></a><span class="co">### ODE solver</span></span>
+<span id="cb41-24"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-24"></a>pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> PSF, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb41-25"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-25"></a></span>
+<span id="cb41-26"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-26"></a><span class="co"># take a look at the results</span></span>
+<span id="cb41-27"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb41-27"></a><span class="kw">head</span>(pop_size)</span></code></pre></div>
+<pre><code>##      time       P00       PA0       PAA       P0A
+## [1,]  0.0 0.2500000 0.2500000 0.2500000 0.2500000
+## [2,]  0.1 0.2558649 0.2416153 0.2640144 0.2385055
+## [3,]  0.2 0.2609930 0.2339241 0.2773399 0.2277430
+## [4,]  0.3 0.2654349 0.2268709 0.2900255 0.2176687
+## [5,]  0.4 0.2692386 0.2204039 0.3021162 0.2082413
+## [6,]  0.5 0.2724484 0.2144756 0.3136533 0.1994227</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb43-1"></a><span class="kw">tail</span>(pop_size)</span></code></pre></div>
+<pre><code>##        time       P00        PA0       PAA       P0A
+## [196,] 19.5 0.1283001 0.08252532 0.6866677 0.1025070
+## [197,] 19.6 0.1282914 0.08250852 0.6866865 0.1025136
+## [198,] 19.7 0.1282832 0.08249240 0.6867045 0.1025199
+## [199,] 19.8 0.1282754 0.08247693 0.6867217 0.1025260
+## [200,] 19.9 0.1282679 0.08246208 0.6867382 0.1025319
+## [201,] 20.0 0.1282608 0.08244784 0.6867539 0.1025375</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb45-1"></a><span class="co">### Visualization I</span></span>
+<span id="cb45-2"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb45-2"></a>pop_size <span class="op">%&gt;%</span></span>
+<span id="cb45-3"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb45-3"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></span>
+<span id="cb45-4"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb45-4"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;patch&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;proportion&quot;</span>, <span class="op">-</span>time) <span class="op">%&gt;%</span></span>
+<span id="cb45-5"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb45-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> proportion, <span class="dt">color =</span> patch)) <span class="op">+</span></span>
+<span id="cb45-6"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb45-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb46-1"></a><span class="co">### Visualization II</span></span>
+<span id="cb46-2"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb46-2"></a><span class="kw">plot</span>(<span class="kw">range</span>(times), <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;time&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;proportion&quot;</span>)</span>
+<span id="cb46-3"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb46-3"></a><span class="kw">lines</span>(P00 <span class="op">~</span><span class="st"> </span>time, <span class="dt">data =</span> pop_size, <span class="dt">col =</span> <span class="st">&quot;tomato&quot;</span>)</span>
+<span id="cb46-4"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb46-4"></a><span class="kw">lines</span>(P0A <span class="op">~</span><span class="st"> </span>time, <span class="dt">data =</span> pop_size, <span class="dt">col =</span> <span class="st">&quot;navy&quot;</span>)</span>
+<span id="cb46-5"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb46-5"></a><span class="kw">lines</span>(PA0 <span class="op">~</span><span class="st"> </span>time, <span class="dt">data =</span> pop_size, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</span>
+<span id="cb46-6"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb46-6"></a><span class="kw">lines</span>(PAA <span class="op">~</span><span class="st"> </span>time, <span class="dt">data =</span> pop_size, <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb46-7"><a href="week-6---metapopulations-and-patch-occupancy-models.html#cb46-7"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;P00&quot;</span>, <span class="st">&quot;P0A&quot;</span>, <span class="st">&quot;PA0&quot;</span>, <span class="st">&quot;PAA&quot;</span>), <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;tomato&quot;</span>, <span class="st">&quot;navy&quot;</span>, <span class="st">&quot;gray&quot;</span>, <span class="st">&quot;orange&quot;</span>), <span class="dt">lty =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
 
 </div>
             </section>
@@ -217,8 +244,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="week-5---age-structure-population-model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="week-5---age-structure-population-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="week-7---lotka-volterra-model-of-competition.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -17,43 +17,50 @@ Here, $P_{00}$ can be colonized by plant $A$ when propagules arrive (per capita 
 
 In this lab, we are going to model the dynamics of this plant-soil system. We will start by converting the flow diagram into a set of differential equations and then solve them numerically using the package `deSolve`. 
 
+```{r}
+library(deSolve)
+library(ggplot2)
+library(tidyr)
 
-<!-- ```{r} -->
-<!-- library(deSolve) -->
-<!-- library(tidyverse) -->
 
-<!-- ### Model specification -->
-<!-- plant_soil_model <- function(times, state, parms) { -->
-<!--   with(as.list(c(state, parms)), { -->
-<!--     dP00_dt = P0A*dA + PA0*mA - P00*(PA0 + PAA)*RA -->
-<!--     dPA0_dt = P00*(PA0 + PAA)*RA - PA0*mA - PA0*CA -->
-<!--     dPAA_dt = PA0*CA - PAA*mA + P0A*(PA0 + PAA)*RA*a -->
-<!--     dP0A_dt = PAA*mA - P0A*(PA0 + PAA)*RA*a - P0A*dA -->
+### Model specification
+PSF <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dP00_dt = P0A*dA + PA0*mA - P00*(PA0 + PAA)*rA
+    dPA0_dt = P00*(PA0 + PAA)*rA - PA0*mA - PA0*cA
+    dPAA_dt = PA0*cA - PAA*mA + P0A*(PA0 + PAA)*rA*alpha
+    dP0A_dt = PAA*mA - P0A*(PA0 + PAA)*rA*alpha - P0A*dA
 
-<!--     return(list(c(dP00_dt, dPA0_dt, dPAA_dt, dP0A_dt))) -->
-<!--   }) -->
-<!-- } -->
+    return(list(c(dP00_dt, dPA0_dt, dPAA_dt, dP0A_dt)))
+  })
+}
 
-<!-- ### Model parameters -->
-<!-- times <- seq(0, 20, by = 0.1) -->
-<!-- state <- c(P00 = 0.25, PA0 = 0.25, PAA = 0.25, P0A = 0.25) -->
-<!-- parms <- c(RA = 0.5, mA = 0.1, CA = 0.5, dA = 0.4, a = 0.7) -->
+### Model parameters
+times <- seq(0, 20, by = 0.1)
+state <- c(P00 = 0.25, PA0 = 0.25, PAA = 0.25, P0A = 0.25)
+parms <- c(rA = 0.5, mA = 0.1, cA = 0.5, dA = 0.4, alpha = 0.7)
 
-<!-- ### ODE solver -->
-<!-- patch_prop <- ode(func = plant_soil_model, times = times, y = state, parms = parms) -->
+### ODE solver
+pop_size <- ode(func = PSF, times = times, y = state, parms = parms)
 
-<!-- ### Visualization -->
-<!-- patch_prop %>% -->
-<!--   as.data.frame() %>% -->
-<!--   pivot_longer(cols = -time, names_to = "patch", values_to = "prop") %>% -->
-<!--   ggplot(aes(x = time, y = prop, color = fct_reorder(patch, prop, last,  .desc = T))) + -->
-<!--   geom_line(size = 1.5) + -->
-<!--   theme_classic(base_size = 12) + -->
-<!--   labs(x = "Time", y = "Proportion") + -->
-<!--   scale_x_continuous(limits = c(0, 20.5), expand = c(0, 0)) + -->
-<!--   scale_y_continuous(limits = c(0, 0.8), expand = c(0, 0)) + -->
-<!--   scale_color_brewer(name = NULL, palette = "Set1") -->
+# take a look at the results
+head(pop_size)
+tail(pop_size)
 
-<!-- ``` -->
+### Visualization I
+pop_size %>%
+  as.data.frame() %>%
+  gather(key = "patch", value = "proportion", -time) %>%
+  ggplot(aes(x = time, y = proportion, color = patch)) +
+  geom_line(size = 1.5)
+
+### Visualization II
+plot(range(times), c(0,1), type = "n", xlab = "time", ylab = "proportion")
+lines(P00 ~ time, data = pop_size, col = "tomato")
+lines(P0A ~ time, data = pop_size, col = "navy")
+lines(PA0 ~ time, data = pop_size, col = "gray")
+lines(PAA ~ time, data = pop_size, col = "orange")
+legend("topleft", legend = c("P00", "P0A", "PA0", "PAA"), col = c("tomato", "navy", "gray", "orange"), lty = 1)
+```
 
 
