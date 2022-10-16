@@ -3,22 +3,22 @@
     "path": "~/2022_Fall_TheoEcol/07_Week_7.Rmd",
     "project_path": "07_Week_7.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "212426179",
     "contents": "",
     "dirty": false,
     "created": 1665658905679.0,
     "source_on_save": false,
     "relative_order": 4,
     "properties": {
-        "cursorPosition": "8,14",
-        "scrollLine": "0"
+        "cursorPosition": "9,16",
+        "scrollLine": "5"
     },
     "folds": "",
-    "lastKnownWriteTime": 1665661557,
+    "lastKnownWriteTime": 1665917434,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1665661557746,
+    "last_content_update": 1665917434899,
     "read_only": false,
     "read_only_alternatives": []
 }
