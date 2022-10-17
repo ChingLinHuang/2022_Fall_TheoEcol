@@ -61,7 +61,8 @@ LV_model <- function(r1 = 1.4, r2 = 1.2, a11 = 1/200, a21 = 1/400, a22 = 1/200, 
 
 
 ```
-xxx
+
+
 
 ```{r}
 #### phase diagram
