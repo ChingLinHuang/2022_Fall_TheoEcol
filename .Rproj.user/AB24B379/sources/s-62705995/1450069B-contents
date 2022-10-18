@@ -103,7 +103,9 @@ phase_plane <- function(r1, r2, a11, a21, a22, a12, title, t){
       geom_abline(slope = -a21/a22, intercept = r2/a22, color = "#377EB8", size = 1.5) +
       geom_segment(data = vector_data,
                    aes(x = x, y = y, xend = xend, yend = yend),
-                   arrow = arrow(length = unit(0.1, "cm"))) +
+                   arrow = arrow(length = unit(0.1, "cm"))) +    
+      scale_x_continuous(name = "N1", limits = c(0, x_inter), expand = c(0, 0)) +
+      scale_y_continuous(name = "N2", limits = c(0, y_inter), expand = c(0, 0)) +
       theme_bw(base_size = 13) +
       theme(panel.grid = element_blank(),
             plot.title = element_text(hjust = 0.5)) +

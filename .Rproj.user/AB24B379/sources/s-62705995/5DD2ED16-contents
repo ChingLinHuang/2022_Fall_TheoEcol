@@ -92,12 +92,14 @@ phase_plane <- function(r1, r2, a11, a21, a22, a12, title, t){
                  size = 4,
                  shape = 1,
                  stroke = 2) +
+      scale_x_continuous(name = "N1", limits = c(0, x_inter), expand = c(0, 0)) +
+      scale_y_continuous(name = "N2", limits = c(0, y_inter), expand = c(0, 0)) +
       theme_bw(base_size = 13) +
       theme(panel.grid = element_blank(),
             plot.title = element_text(hjust = 0.5)) +
       labs(title = title)
   }
 
-  phase_plane(r1 = 1.2, r2 = 1.2, a11 = 1/100, a21 = 1/200, a22 = 1/100, a12 = 1/300, t = 0.3, title = "Stable coexistence")
+  phase_plane(r1 = 1.2, r2 = 1.2, a11 = 1/190, a21 = 1/200, a22 = 1/100, a12 = 1/180, t = 0.3, title = "Stable coexistence")
 
   phase_plane(r1 = 1.2, r2 = 1.2, a11 = 1/200, a21 = 1/100, a22 = 1/200, a12 = 1/100, t = 0.3, title = "Unstable coexistence (saddle)")
