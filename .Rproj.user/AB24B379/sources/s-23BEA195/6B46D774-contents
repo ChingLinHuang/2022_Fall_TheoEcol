@@ -39,3 +39,40 @@ lines(PA0 ~ time, data = pop_size, col = "gray")
 lines(PAA ~ time, data = pop_size, col = "orange")
 legend("topleft", legend = c("P00", "P0A", "PA0", "PAA"), col = c("tomato", "navy", "gray", "orange"), lty = 1)
 
+
+#####  Assignment 6
+library(deSolve)
+
+MP_model <- function(c_0, e_0){
+
+  MP <- function(times, state, parms) {
+    with(as.list(c(state, parms)), {
+      dP_dt = c_0*P*(1 - h - P) - e_0*P
+
+      return(list(dP_dt))
+    })
+  }
+
+  # dataframe for saving final fate of population size with corresponding h
+  h_seq <- seq(0, 1, by = 0.01)
+  dat <- data.frame(h = h_seq, P = 0)
+  for (ind in 1:length(h_seq)){
+    times <- seq(0, 500, by = 0.1)
+    state <- c(P = 0.5)
+    parms <- c(c_0 = c_0, e_0 = e_0, h = h_seq[ind])
+
+    pop_size <- ode(MP, times = times, y = state, parms = parms)
+
+    dat$P[ind] <- pop_size[length(times), 2]
+  }
+  plot(P ~ h, data = dat, type = "l", main = paste0("e = ", e_0, ", c = ", c_0))
+  abline(v = 1 - e_0/c_0, lty = 2)
+}
+
+MP_model(c_0 = 0.1, e_0 = 0.02)
+MP_model(c_0 = 0.1, e_0 = 0.05)
+MP_model(c_0 = 0.1, e_0 = 0.07)
+
+
+
+

@@ -1,0 +1,37 @@
+###### part 1 ######
+# install.packages("deSolve")
+library(deSolve)
+
+### (1) Model specification
+exponential_model <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dN_dt = r(times)*N + I # exponential growth equation
+    return(list(c(dN_dt)))  # return the results
+  })
+}
+
+
+### (2) Model application
+times <- seq(0, 10, by = 0.1)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- list(r = function(times) times, I = 5)  # intrinsic growth rate
+
+
+# run the ode solver
+pop_size <- ode(func = exponential_model, times = times, y = state, parms = parms)
+
+plot(log(N) ~ time, data = pop_size, type = "l")
+# take a look at the results
+head(pop_size)
+tail(pop_size)
+
+
+# R program to calculate root of an equation
+
+# Function with equation
+x <- seq(0, 1, by = 0.01)
+fun <- function(x) {x ^ 0.2 + -1 * x ^ (0.2 - 1) + 10}
+plot(x, fun(x))
+
+# Calling uniroot() function
+abline(v = uniroot(fun, lower = 0, upper = 4, tol = 0.0000001)$root, h = 0)
