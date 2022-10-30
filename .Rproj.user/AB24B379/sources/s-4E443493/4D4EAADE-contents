@@ -1,0 +1,858 @@
+--- 
+title: "Introduction to Theoretical Ecology"
+author: "Instructor: Po-Ju Ke $~~~~~$ Teaching Assistant: Ching-Lin Huang (Andy)"
+date: "2022 Fall at National Taiwan Univeristy ![](./bifurcation.gif)"
+
+url: "https://ChingLinHuang.github.io/2022_Fall_TheoEcol/"
+github-repo: "ChingLinHuang/2022_Fall_TheoEcol"
+cover-image: "bifurcation.gif"
+
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+
+description: "This is the course website for **_Introduction to Theoretical Ecology_** 2022 Fall at National Taiwan University."
+---
+# Course information{-}
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Description** </p> The development of theory plays an important role in advancing ecology as a scientific field. This three-unit course is for students at the graduate or advanced undergraduate level. The course will cover classic theoretical topics in ecology, starting from single-species dynamics and gradually build up to multi-species models. The course will primarily focus on population and community ecology, but we will also briefly discuss models in epidemiology and ecosystem ecology. Emphasis will be on theoretical concepts and corresponding mathematical approaches.
+
+This course is designed as a two-hour lecture followed by a one-hour hands-on practice module. In the lecture, we will analyze dynamical models and derive general theories in ecology. In the hands-on practice section, we will use a combination of analytical problem sets, interactive applications, and numerical simulations to gain a general understanding of the dynamics and behavior of different models. 
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Objective** </p>
+By the end of the course, students are expected to be familiar with the basic building blocks of ecological models and would be able to formulate and analyze simple models of their own. The hands-on practice component should allow students to link their ecological intuition with the underlying mathematical model, helping them to better understand the primary literature of theoretical ecology. 
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Requirement** </p>
+Students are expected to have a basic understanding of **Calculus** (e.g., freshman introductory course) and **Ecology**.
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Format** </p>
+Tuesday 6,7,8 (1:20 pm ~ 4:20 pm) at 共207
+
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Grading** </p>
+The final grade consists of:
+
+(1) Assignment problem sets (60%)
+(2) Midterm exam (15%)
+(3) Final exam (15%)
+(4) Course participation (10%)
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Course materials** </p>
+We will be using a combination of textbooks and literature articles on theoretical ecology in this course. Textbook chapters and additional reading materials will be provided (see [**Syllabus**](https://chinglinhuang.github.io/2022_Fall_TheoEcol/syllabus.html) for more details).
+
+Below are the textbook references:
+
+(1) *A Primer of Ecology 4^th^ edition. Nicholas Gotelli*, 2008. 
+(2) *An Illustrated Guide to Theoretical Ecology*. Ted Case, 2000. 
+(3) *A Biologist's Guide to Mathematical Modeling in Ecology and Evolution*. Sarah Otto & Troy Day, 2011. 
+(4) *Mathematical Ecology of Populations and Ecosystems*. John Pastor, 2008. 
+
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Contacts** </p>
+**Instructor**: Po-Ju Ke
+
+- Office: Life Science Building R635
+- Email: pojuke@ntu.edu.tw
+- Office hours: by appointment
+
+**Teaching assistant**: Ching-Lin Huang (Andy)
+
+- Office: Life Science Building R635
+- Email: r09b44010@ntu.edu.tw
+- Office hours: 14:00 ~ 15:00 on Thursday
+
+
+# Syllabus {-}
+```{r, echo = FALSE, message = F, warning = F, error = F}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+syllabus <- tibble(
+  Date = c("**Week 1** <span style='vertical-align:-30%'> </span>
+           <br> 9/6",
+           "**Week 2** <span style='vertical-align:-30%'> </span>
+           <br> 9/13",
+           "**Week 3** <span style='vertical-align:-30%'> </span>
+           <br> 9/20",
+           "**Week 4** <span style='vertical-align:-30%'> </span>
+           <br> 9/27",
+           "**Week 5** <span style='vertical-align:-30%'> </span>
+           <br> 10/4",
+           "**Week 6** <span style='vertical-align:-30%'> </span>
+           <br> 10/11",
+           "**Week 7** <span style='vertical-align:-30%'> </span>
+           <br> 10/18",
+           "**Week 8** <span style='vertical-align:-30%'> </span>
+           <br> 10/25",
+           "**Week 9** <span style='vertical-align:-30%'> </span>
+           <br> 11/1",
+           "**Week 10** <span style='vertical-align:-30%'> </span>
+           <br> 11/8",
+           "**Week 11** <span style='vertical-align:-30%'> </span>
+           <br> 11/15",
+           "**Week 12** <span style='vertical-align:-30%'> </span>
+           <br> 11/22",
+           "**Week 13** <span style='vertical-align:-30%'> </span>
+           <br> 11/29",
+           "**Week 14** <span style='vertical-align:-30%'> </span>
+           <br> 12/6",
+           "**Week 15** <span style='vertical-align:-30%'> </span>
+           <br> 12/13",
+           "**Week 16** <span style='vertical-align:-30%'> </span>
+           <br> 12/20"),
+  
+  `Lecture topic` = c("Introduction: what is theoretical ecology?",
+                      "Exponential population growth",
+                      "Logistic population growth and stability analysis",
+                      "Discrete population models",
+                      "Age-structured population models",
+                      "Metapopulations and patch occupancy models",
+                      "Lotka-Volterra model of competition: graphical analysis and invasion analysis",
+                      "Midterm exam",
+                      "Lotka-Volterra model of competition: linear stability analysis",
+                      "Modern coexistence theory and predator-prey interactions (I)",
+                      "Predator-prey interactions (II)",
+                      "Mechanistic models for competition: consumer-resource dynamics",
+                      "Multispecies models of predation: apparent competition",
+                      "Disease dynamics and SIR models",
+                      "Research applcations: plant-soil feedback as an example",
+                      "Final exam"),
+    
+  Lab = c(" \\- ",
+          'Solving exponential growth equation using "deSolve" & Visualization',
+          "Shinny App for logistic population growth",
+          "Discrete logistic population growth model and bifurcation",
+          "Age-structured population model",
+          "Metapopulations and patch occupancy models",
+          "Lotka-Volterra competition model",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- "),
+    
+    
+  Readings = c("Grainger et al., 2021",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ")  
+  
+)
+
+kbl(syllabus, align = "cccl", escape = F) %>%  
+  kable_paper(full_width = T, 
+              html_font = "Arial",
+              font_size = 17) %>%
+  kable_styling(bootstrap_options = c("bordered")) %>%
+  row_spec(0, bold = T, color = "black", font_size = 20) %>%
+  column_spec(1, width = "10em", border_right = T) %>%
+  column_spec(2, width = "17em") %>%
+  column_spec(3, width = "17em") %>%
+  column_spec(4, width = "13em")
+
+```
+
+
+
+<!--chapter:end:index.Rmd-->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = F, 
+                      error = F, 
+                      warning = F)
+
+```
+
+# Week 2 - Exponential population growth {-} 
+
+In part 1, we will solve the differential equation for exponential population growth and visualize how the population sizes change over time. 
+
+<br>
+
+**Part 1 - Numerical solution using the package "deSolve"**
+
+Two main phases:
+
+(1) Model specification: specify the structure of differential equation model
+
+(2) Model application: set the time steps, initial population size and model parameters (e.g., intrinsic population growth rate *r*), and then solve the equation model
+
+<style>
+
+p span#aaa:before { 
+  content: "(1) "; 
+  display: inline-block;
+  margin-left: -1.5em;
+  margin-right: 0.3em;
+}
+
+p span#bbb:before { 
+  content: "(2) "; 
+  display: inline-block;
+  margin-left: -1.5em;
+  margin-right: 0.3em;
+}
+
+d-article table.lightable-paper {
+  margin-bottom: 0px; 
+}
+
+</style>
+
+Consider the model
+\[
+\frac{dN}{dt} = rN
+\]
+where $N$ is population size and $r$ is the intrinsic growth rate.
+```{r}
+###### part 1 ######
+# install.packages("deSolve")
+library(deSolve)
+
+### (1) Model specification
+exponential_model <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dN_dt = r*N  # exponential growth equation
+    return(list(c(dN_dt)))  # return the results
+  })
+}
+```
+
+Set the time steps, initial population size and model parameters.
+```{r}
+### (2) Model application
+times <- seq(0, 10, by = 0.1)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r = 1.5)  # intrinsic growth rate
+```
+
+Solve the equation by `ode()` numerically.
+```{r}
+# run the ode solver
+pop_size <- ode(func = exponential_model, times = times, y = state, parms = parms)
+
+# take a look at the results
+head(pop_size)
+
+```
+
+Visualization
+```{r}
+plot(N ~ time, data = pop_size)
+plot(N ~ time, data = pop_size, log = "y")
+```
+
+
+<br>
+
+**Part 2 - Comparing different ode solvers**
+<br>
+In default of `ode()`, the equations are solved by LSODA method. We can change the method by modifying the argument `method` in `ode()`. 
+
+```{r}
+
+###### part 2 ######
+# original setting
+times <- seq(0, 10, by = 0.1)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r = 1.5)  # intrinsic growth rate
+# default: LSODA
+pop_size <- ode(func = exponential_model, times = times, y = state, parms = parms)
+
+# Euler's method
+pop_size_1 <- ode(func = exponential_model, times = times, y = state, parms = parms, method = "euler")
+
+# compare different method
+par(mfrow = c(1,2))
+plot(N ~ time, data = pop_size, main = "LSODA")
+curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
+plot(N ~ time, data = pop_size_1, main = "Euler")
+curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
+
+# minimize the time step
+times <- seq(0, 10, by = 0.01)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r = 1.5)  # intrinsic growth rate
+# default: LSODA
+pop_size <- ode(func = exponential_model, times = times, y = state, parms = parms)
+
+# Euler's method
+pop_size_1 <- ode(func = exponential_model, times = times, y = state, parms = parms, method = "euler")
+
+# compare different method
+par(mfrow = c(1,2))
+plot(N ~ time, data = pop_size, main = "LSODA")
+curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
+plot(N ~ time, data = pop_size_1, main = "Euler")
+curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
+```
+
+<br>
+
+**Part 3 - Solving exponential growth model with fluctuating growth rate**
+<br>
+Consider the model
+\[
+\frac{dN}{dt} = r(t)N \ \text{, } r(t) = \overline{r} + \sigma\sin(\omega t)
+\]
+where $\overline{r}$ and $\omega$ are constants.
+The analytical solution of the ode model is 
+\[
+N(t) = N_0\exp\{\overline{r}t - \frac{\sigma}{\omega}[\cos(\omega t) - 1]\}
+\]
+
+```{r}
+###### part 3 ######
+### Model specification
+exponential_model_fluc <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dN_dt = (r_bar + sigma*sin(omega*times))*N  # exponential growth equation
+    return(list(c(dN_dt)))  # return the results
+  })
+}
+```
+
+
+```{r}
+### Parameters
+times <- seq(0, 10, by = 0.1)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r_bar = 1.5, sigma = 5, omega = 2*pi)  # intrinsic growth rate
+```
+
+Plot $r(t)$
+```{r}
+### Fluctuating growth rate
+r = parms[1] + parms[2]*sin(parms[3]*times)
+plot(r ~ times, type = "l")
+```
+
+```{r}
+### Solving model
+pop_size <- ode(func = exponential_model_fluc, times = times, y = state, parms = parms)
+
+### Plotting
+plot(N ~ times, data = pop_size)
+curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T, col = "red") # correct curve
+plot(N ~ times, data = pop_size, log = "y")
+curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T, col = "red") # correct curve
+```
+
+Adjust $\overline{r}$
+```{r}
+### Parameters
+times <- seq(0, 10, by = 0.1)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r_bar = 0.1, sigma = 5, omega = 2*pi)  # intrinsic growth rate
+
+### Fluctuating growth rate
+r = parms[1] + parms[2]*sin(parms[3]*times)
+plot(r ~ times, type = "l")
+
+### Solving model
+pop_size <- ode(func = exponential_model_fluc, times = times, y = state, parms = parms)
+
+### Plotting
+plot(N ~ times, data = pop_size)
+curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T, col = "red") # correct curve
+```
+
+<!--chapter:end:02_Week_2.Rmd-->
+
+# Week 3 - Logistic population growth and stability analysis  {-} 
+
+```{r, out.width="800px", echo = F}
+knitr::include_app("https://genchanghsu0115.shinyapps.io/Logistic_mod_shinyapp/", height = "500px")
+```
+Credit to [Gen-Chang Hsu](https://genchanghsu.github.io/index.html)
+
+<!--chapter:end:03_Week_3.Rmd-->
+
+# Week 4 - Discrete exponential and logistic models{-} 
+
+**Part 1 - Model the discrete logistic population growth using for loops**
+Model:
+\[
+N_{t+1} = N_t(1+r(1-\frac{N_t}{K}))
+\]
+
+```{r}
+### (1) Define the discrete logistic growth equation
+log_fun <- function(r, N, K){N + r*N*(1-N/K)}
+```
+
+You may modify $r$ to see the change in stability of equilibrium $K$.
+```{r}
+### (2) Set the parameters
+r <- 1.8
+K <- 500
+N0 <- 10
+time <- 100
+
+### (3) Use for loop to iterate over the time sequence
+pop_size <- data.frame(times = 1:time)
+pop_size$N[1] <- N0
+head(pop_size)
+
+for(i in 2:time){
+  pop_size$N[i] <- log_fun(r = r, N = pop_size$N[i - 1], K = K)
+}
+
+head(pop_size)
+
+### (4) Population trajectory
+plot(N ~ times, data = pop_size, type = "l")
+abline(h = K, col = "red")
+points(N ~ times, data = pop_size)
+```
+
+<br>
+
+
+Here is a shiny app for the discrete logistic growth model. 
+
+```{r, out.width="800px", echo = F}
+knitr::include_app("https://genchanghsu0115.shinyapps.io/Discrete_logistic_mod_shinyapp/", height = "750px")
+```
+Credit to [Gen-Chang Hsu](https://genchanghsu.github.io/index.html)
+
+
+**Part 2 - Bifurcation**
+
+```{r}
+###### Part 2: Bifurcation curve
+### (1) data setting
+# intrinsic growth rate sequence
+r_seq <- seq(from = 1.8, to = 3, by = 0.01)
+# number of sampling
+N_rep <- 200
+
+# data 
+dat_plot <- data.frame(r = rep(r_seq, each = N_rep), N = 0)
+head(dat_plot)
+
+### (2) Run the discrete logistic model
+for (lo in 1:length(r_seq)){
+  log_fun <- function(r, N, K){N + r*N*(1-N/K)}
+
+  r <- r_seq[lo]
+  K <- 500
+  N0 <- 10
+  time <- 1000
+
+  pop_size <- data.frame(times = 1:time)
+  pop_size$N[1] <- N0
+
+  for(i in 2:time){
+    pop_size$N[i] <- log_fun(r = r, N = pop_size$N[i - 1], K = K)
+  }
+
+  # save the data
+  dat_plot$N[(1 + (lo - 1)*N_rep):(lo*N_rep)] <- pop_size$N[(nrow(pop_size) - N_rep + 1):nrow(pop_size)]
+}
+
+plot(N ~ r, data = dat_plot, cex = 0.7, pch = 20)
+
+```
+
+
+
+<!--chapter:end:04_Week_4.Rmd-->
+
+# Week 5 - Age-structure population model{-} 
+
+In this lab section, we will analyze a Leslie matrix using for loops and matrix algebra, compare the results with those obtained via eigen-analysis, and visualize the population dynamics and age distribution.
+
+**Part 1 - Visualizing stable age distribution**
+
+For any diagonalizable n-by-n matrix $M$ with only one dominant eigenvalue, and for any n-by-1 vector $v$, $M^tv$ will shift to the same direction with the eigenvector of $M$ corresponding to the dominant eigenvalue when $t$ is large. Here, we visualize this fact numerically.
+```{r}
+library(ggplot2)
+set.seed(1234)
+MAT <- matrix(rnorm(25), ncol = 5, nrow = 5)
+abs(eigen(MAT)$values) # check only one dominant eigenvalue
+eig_vec1 <- as.numeric(eigen(MAT)$vector[, 1])
+v <- rnorm(5)
+time <- 15
+
+dat_v <- data.frame(matrix(ncol = 5, nrow = time))
+dat_v[1, ] <- v
+for(i in 2:time){
+  dat_v[i, ] <- MAT %*% t(dat_v[i-1, ])
+}
+
+# Remake data for gganimate
+dat <- data.frame(X1 = 0, X2 = 0, Time = 1)
+for(i in 1:time){
+  dat <- rbind(dat, data.frame(dat_v[i,1:2] / sqrt(sum(dat_v[i,1:2]^2)) * i, Time = i))
+  dat <- rbind(dat, c(0,0, i+1))
+}
+dat <- dat[-nrow(dat), ]
+
+
+ggplot(dat, aes(X1, X2, color = Time)) +
+  geom_path(arrow = arrow(length = unit(0.55, "cm"))) + 
+  geom_abline(intercept = 0, 
+              slope = eig_vec1[2]/eig_vec1[1], 
+              color = "red", 
+              linetype = "dashed") # red dashed eigenvector
+```
+
+
+<br>
+
+**Part 2 - Analyzing Leslie matrix**
+
+Consider an age-strutured population model
+\[
+n_{t} = L^tn_0
+\]
+where $L$ is a Leslie matrix and $n_t = (n_{1,t}, n_{2,t}, n_{3,t})$ is the population sizes with three different ages in time $t$.
+```{r}
+### Leslie matrix and initial age classes
+leslie <- matrix(data = c(0, 1, 5,
+                          0.5, 0, 0,
+                          0, 0.3, 0),
+                      nrow = 3,
+                      ncol = 3,
+                      byrow = T)
+
+N0 <- c(10, 0, 0)
+
+### for loop and matrix algebra
+time <- 50
+pop_size <- data.frame(Age1 = 0,
+                       Age2 = 0,
+                       Age3 = 0)
+pop_size[1, ] <- N0
+
+for (i in 2:time) {
+  # Matrix multiplication
+  pop_size[i, ] <- leslie %*% t(pop_size[i-1, ])
+}
+
+# Total abundance
+pop_size$N <- rowSums(pop_size)
+
+head(pop_size)
+
+plot(c(1,time), c(0,265), type = "n", xlab = "time", ylab = "pop_size")
+lines(1:time , pop_size$Age1, col = "red")
+lines(1:time , pop_size$Age2, col = "blue")
+lines(1:time , pop_size$Age3, col = "green")
+legend("topleft",
+       legend = c("Age1", "Age2", "Age3"),
+       col = c("red", "blue", "green"),
+       lty = 1)
+
+```
+
+By the derivation in the class, the asymptotic population sizes can be approximated by 
+\[
+n_t \approx c\cdot \lambda_1^t\cdot u_1
+\]
+where $c$ is a constant, $\lambda_1$ is the dominant eigenvalue and $u_1$ is the corresponding eigenvector. Hence, with the long-term dynamics, the population grows at a rate $\lambda_1$ and with the age distribution $u_1$. Here, we check this fact numerically.
+```{r}
+### Asymptotic growth rate and stable age distribution
+
+asymptotic_growth <- pop_size$N[time]/pop_size$N[time-1]
+asymptotic_growth
+
+age_distribution <- pop_size[time, 1:3]/sum(pop_size[time, 1:3])
+age_distribution
+
+### Eigen-analysis of the Leslie matrix
+EIGEN <- eigen(leslie)
+EIGEN
+abs(EIGEN$values[1]) # dominant eigenvalue
+as.numeric(EIGEN$vectors[, 1] / sum(EIGEN$vectors[, 1])) # corresponding eigenvector
+```
+
+The asymptotic growth rate and stable age distribution obtained from for loops and eigen-analysis are similar.
+
+<br>
+
+
+**Part 3 - In-class exercise: Analyzing population matrix of common teasel**
+
+[Common teasel (_Dipsacus sylvestris_)](https://en.wikipedia.org/wiki/Dipsacus_fullonum) is a herbaceous plant commonly found in abandoned fields and meadows in North America. It has a complex life cycle consisting of various stages. The seeds may lie dormant for one or two years. Seeds that germinate form small rosettes, which will gradually transit into medium and eventually large rosettes. These rosettes (all three sizes) may remain in the same stage for years before entering the next stage. After undergoing vernalization, large (and a few medium) rosettes will form stalks and flower in the upcoming summer, set seeds once, and die. Occasionally, the flowering plants will produce seeds that directly germinate into small/medium/large rosettes without entering dormancy.
+
+Here is a transition diagram for the teasel. Please convert this diagram into a stage-based transition matrix (Lefkovitch matrix) and derive the asymptotic growth rate $\lambda$ in R. 
+
+<img src="./Teasel Diagram.png" width= "100%"/>
+
+<br>
+
+**Part 4 - COM(P)ADRE: A global database of population matrices**
+
+[COM(P)ADRE](https://compadre-db.org/ExploreDatabase) is an online repository containing matrix population models on hundreds of plants, animals, algae, fungi, bacteria, and viruses around the world, as well as their associated metadata. Take a look at the website: You will be exploring the population dynamics of a species (of your choice) in your assignment!
+
+<br>
+
+<!--chapter:end:05_Week_5.Rmd-->
+
+# Week 6 - Metapopulations and patch occupancy models{-} 
+
+Plants can condition nearby soil microbial communities, which will in turn influence the performance of subsequent colonizing plants. The soil beneath plant communities are therefore a mosaic with different cultivation histories. Po-Ju wants to understand how plant demographic rates (i.e., colonization and mortality rate) and microbial dynamics (i.e., the conditioning and decay rate of microbial communities) affect the percentage of different soil types in natural forests. As a starting point, Po-Ju builds a one-species patch occupancy model to track the dynamics of different types of plant-soil combination. 
+
+In this model, he characterizes sites by their plant-soil microbe state, using the notation $P_{ij}$ to indicate sites that are now occupied by plant species $i$ but have soil microbes state $j$. Here, as a single species model, $i$ can be 0 or $A$, representing uncolonized sites or sites colonized by plant $A$, respectively. Similarly, $j$ can be 0 or $A$, indicating sites without recent plant conditioning history or sites conditioned by plant $A$, respectively. In summary:  
+
+1. $P_{00}$ represents uncolonized and unconditioned sites 
+2. $P_{A0}$ represents cites colonized by plant $A$ but the soil is yet to be conditioned 
+3. $P_{AA}$ represents plant $A$ colonizing a site with plant-$A$-specific microbial community 
+4. $P_{0A}$ represents sites that are currently unoccupied but have soil microbes that were associated with plant $A$ 
+
+At the landscape scale, $P_{ij}$ represents the proportion of sites belonging to a particular plant-soil microbe state, and its dynamics, $\frac {dP_{ij}}{dt}$, summarizes the processes of plant colonization and death. The transitions between different plant-soil microbe states can be described by the following figure. 
+
+<img src="./Plant_soil_model.png" width= "100%"/>
+
+Here, $P_{00}$ can be colonized by plant $A$ when propagules arrive (per capita rate $r_{A}$), transitioning the state from $P_{00}$ to $P_{A0}$. Plants may die, with rate $m_{A}$, before conditioning the soil (i.e., transition from $P_{A0}$ back to $P_{00}$), or may successfully condition the soil with rate $c_{A}$ (i.e., transition from $P_{A0}$ to $P_{AA}$). After plants within the state $P_{AA}$ die, a site with microbial legacy is left behind, denoted as $P_{0A}$. These empty sites can be recolonized (i.e., transition from $P_{0A}$ back to $P_{AA}$) with rates affected by the microbial legacy effect, $\alpha$. Finally, the microbial community within the soil may decay to unconditioned state with rate $d_{A}$, transitioning the state from $P_{0A}$ to $P_{00}$.
+
+In this lab, we are going to model the dynamics of this plant-soil system. We will start by converting the flow diagram into a set of differential equations and then solve them numerically using the package `deSolve`. 
+
+```{r}
+library(deSolve)
+library(ggplot2)
+library(tidyr)
+
+
+### Model specification
+PSF <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dP00_dt = P0A*dA + PA0*mA - P00*(PA0 + PAA)*rA
+    dPA0_dt = P00*(PA0 + PAA)*rA - PA0*mA - PA0*cA
+    dPAA_dt = PA0*cA - PAA*mA + P0A*(PA0 + PAA)*rA*alpha
+    dP0A_dt = PAA*mA - P0A*(PA0 + PAA)*rA*alpha - P0A*dA
+
+    return(list(c(dP00_dt, dPA0_dt, dPAA_dt, dP0A_dt)))
+  })
+}
+
+### Model parameters
+times <- seq(0, 20, by = 0.1)
+state <- c(P00 = 0.25, PA0 = 0.25, PAA = 0.25, P0A = 0.25)
+parms <- c(rA = 0.5, mA = 0.1, cA = 0.5, dA = 0.4, alpha = 0.7)
+
+### ODE solver
+pop_size <- ode(func = PSF, times = times, y = state, parms = parms)
+
+# take a look at the results
+head(pop_size)
+tail(pop_size)
+
+### Visualization I
+pop_size %>%
+  as.data.frame() %>%
+  gather(key = "patch", value = "proportion", -time) %>%
+  ggplot(aes(x = time, y = proportion, color = patch)) +
+  geom_line(size = 1.5)
+
+### Visualization II
+plot(range(times), c(0,1), type = "n", xlab = "time", ylab = "proportion")
+lines(P00 ~ time, data = pop_size, col = "tomato")
+lines(P0A ~ time, data = pop_size, col = "navy")
+lines(PA0 ~ time, data = pop_size, col = "gray")
+lines(PAA ~ time, data = pop_size, col = "orange")
+legend("topleft", legend = c("P00", "P0A", "PA0", "PAA"), col = c("tomato", "navy", "gray", "orange"), lty = 1)
+```
+
+
+
+<!--chapter:end:06_Week_6.Rmd-->
+
+
+# Week 7 - Lotka-Volterra competition model {-} 
+
+
+In this lab, we are going to analyze the two-species Lotka-Volterra competition model numerically and visualize the population dynamics under different parameter settings.
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(deSolve)
+
+LV_model <- function(r1 = 1.4, r2 = 1.2, a11 = 1/200, a21 = 1/400, a22 = 1/200, a12 = 1/300, N1_0 = 10, N2_0 = 10) {
+
+  ### Model specification
+  LV <- function(times, state, parms) {
+    with(as.list(c(state, parms)), {
+      dN1_dt = N1 * (r1 - a11*N1 - a12*N2)
+      dN2_dt = N2 * (r2 - a22*N2 - a21*N1)
+      return(list(c(dN1_dt, dN2_dt)))
+    })
+  }
+
+  ### Model parameters
+  times <- seq(0, 100, by = 0.1)
+  state <- c(N1 = N1_0, N2 = N2_0)
+  parms <- c(r1 = r1, r2 = r2, a11 = a11, a21 = a21, a22 = a22, a12 = a12)
+
+  ### Model application
+  pop_size <- ode(func = LV, times = times, y = state, parms = parms)
+
+  ### Visualize the population dynamics
+  pop_size %>%
+    as.data.frame() %>%
+    gather(key = "Species", value = "pop_size", -time) %>%
+    ggplot(aes(x = time, y = pop_size, color = Species)) +
+    geom_line(size = 1.5)
+
+}
+
+  ### Different parameter settings
+  ## N1_0 = 200 and N2_0 = 5
+  LV_model(r1 = 1.2, r2 = 1.2, a11 = 1/200, a21 = 1/100, a22 = 1/100, a12 = 1/200, N1_0 = 200, N2_0 = 5)  # N1 wins
+  ## N1_0 = 5 and N2_0 = 200
+  LV_model(r1 = 1.2, r2 = 1.2, a11 = 1/200, a21 = 1/100, a22 = 1/100, a12 = 1/200, N1_0 = 10, N2_0 = 200)  # N1 wins
+  
+  ## N1_0 = 200 and N2_0 = 5
+  LV_model(r1 = 1.2, r2 = 1.2, a11 = 1/100, a21 = 1/200, a22 = 1/200, a12 = 1/100, N1_0 = 200, N2_0 = 5)  # N2 wins
+  ## N1_0 = 5 and N2_0 = 200
+  LV_model(r1 = 1.2, r2 = 1.2, a11 = 1/100, a21 = 1/200, a22 = 1/200, a12 = 1/100, N1_0 = 5, N2_0 = 200)  # N2 wins
+  
+  ## N1_0 = 200 and N2_0 = 5
+  LV_model(r1 = 1.2, r2 = 1.2, a11 = 1/100, a21 = 1/200, a22 = 1/100, a12 = 1/300, N1_0 = 200, N2_0 = 5)  # stable coexistence
+  ## N1_0 = 5 and N2_0 = 200
+  LV_model(r1 = 1.2, r2 = 1.2, a11 = 1/100, a21 = 1/200, a22 = 1/100, a12 = 1/300, N1_0 = 5, N2_0 = 200)  # stable coexistence
+  
+  ## N1_0 = 200 and N2_0 = 150
+  LV_model(r1 = 1.2, r2 = 1.2, a11 = 1/200, a21 = 1/100, a22 = 1/200, a12 = 1/100, N1_0 = 200, N2_0 = 150)  # priority effect (N1 wins)
+  ## N1_0 = 150 and N2_0 = 200
+  LV_model(r1 = 1.2, r2 = 1.2, a11 = 1/200, a21 = 1/100, a22 = 1/200, a12 = 1/100, N1_0 = 150, N2_0 = 200)  # priority effect (N2 wins)
+
+
+
+```
+
+
+
+```{r}
+#### phase diagram
+phase_plane <- function(r1, r2, a11, a21, a22, a12, title, t){
+    ### Vectors
+  LV <- function(times, state, parms) {
+    with(as.list(c(state, parms)), {
+      dN1_dt = N1 * (r1 - a11*N1 - a12*N2)
+      dN2_dt = N2 * (r2 - a22*N2 - a21*N1)
+      return(list(c(dN1_dt, dN2_dt)))
+    })
+  }
+
+  times <- c(0, t)
+  parms <- c(r1 = r1, r2 = r2, a11 = a11, a21 = a21, a22 = a22, a12 = a12)
+
+  x_inter<- max(c(r1/a11, r2/a21))
+  y_inter <- max(c(r2/a22, r1/a12))
+
+  # create position of arrows
+  vector_grid <- expand.grid(seq(5, x_inter, length.out = 10),
+                             seq(5, y_inter, length.out = 10))
+
+  vector_data <- vector_grid %>%
+    pmap(., function(Var1, Var2){
+      state <- c(N1 = Var1, N2 = Var2)
+      pop_size <- ode(func = LV, times = times, y = state, parms = parms)
+      pop_size[2, 2:3]
+    }) %>%
+    bind_rows() %>%
+    rename(xend = N1, yend = N2) %>%
+    bind_cols(vector_grid) %>%
+    rename(x = Var1, y = Var2)
+
+    ### Phase plane
+    ggplot() +
+      geom_abline(slope = -a11/a12, intercept = r1/a12, color = "#E41A1C", size = 1.5) +
+      geom_abline(slope = -a21/a22, intercept = r2/a22, color = "#377EB8", size = 1.5) +
+      geom_segment(data = vector_data,
+                   aes(x = x, y = y, xend = xend, yend = yend),
+                   arrow = arrow(length = unit(0.1, "cm"))) +    
+      scale_x_continuous(name = "N1", limits = c(0, x_inter), expand = c(0, 0)) +
+      scale_y_continuous(name = "N2", limits = c(0, y_inter), expand = c(0, 0)) +
+      theme_bw(base_size = 13) +
+      theme(panel.grid = element_blank(),
+            plot.title = element_text(hjust = 0.5)) +
+      labs(title = title)
+  }
+
+  phase_plane(r1 = 1.2, r2 = 1.2, a11 = 1/100, a21 = 1/200, a22 = 1/100, a12 = 1/300, t = 0.3, title = "Stable coexistence")
+
+  phase_plane(r1 = 1.2, r2 = 1.2, a11 = 1/200, a21 = 1/100, a22 = 1/200, a12 = 1/100, t = 0.3, title = "Unstable coexistence (saddle)")
+
+```
+
+<!--chapter:end:07_Week_7.Rmd-->
+
+
+# Week 8 - Midterm {-} 
+
+
+<!--chapter:end:08_Week_8.Rmd-->
+
+
+# Week 9 - Lotka-Volterra competition model {-} 
+
+
+```{r, echo = F, results = 'hide', message=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(deSolve)
+library(gganimate)
+library(gifski)
+
+  ### Model specification
+  ERROR <- function(times, state, parms) {
+    with(as.list(c(state, parms)), {
+      de1_dt = c1 * e1 + c2 * e2
+      de2_dt = d1 * e1 + d2 * e2
+      return(list(c(de1_dt, de2_dt)))
+    })
+  }
+  
+  ### Model parameters
+  times <- seq(0, 5, by = 0.0001)
+  state <- c(e1 = 1, e2 = 1)
+  parms <- c(c1 = -1, c2 = 1, d1 = -2, d2 = -1)
+  
+  ### Model application
+  error <- ode(func = ERROR, times = times, y = state, parms = parms)
+  tail(error)
+  
+```
+
+
+```{r, echo = F}
+  plot(e1 ~ e2, error, type = "l")
+  
+  ### Visualize the population dynamics
+p <- error %>%
+    as.data.frame() %>%
+    ggplot(aes(x = e1, y = e2)) +
+    geom_point() +
+    geom_vline(xintercept = 0, linetype="dashed", color = "red") +
+    geom_hline(yintercept = 0, linetype="dashed", color = "red") + 
+    labs(subtitle = "Time: {round(frame_time, digit = 1)}") + 
+    transition_time(time) +
+    shadow_wake(wake_length = 1)
+animate(p, renderer = gifski_renderer()) 
+```
+
+<!--chapter:end:09_Week_9.Rmd-->
+
