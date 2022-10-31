@@ -4,6 +4,10 @@ library(deSolve)
 library(gganimate)
 library(gifski)
 
+time <- seq(0, 10, by = 0.001)
+e1 <-
+
+
   ### Model specification
   ERROR <- function(times, state, parms) {
     with(as.list(c(state, parms)), {

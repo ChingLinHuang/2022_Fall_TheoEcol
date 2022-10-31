@@ -170,6 +170,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="week-9---lotka-volterra-competition-model" class="section level1 unnumbered hasAnchor">
 <h1>Week 9 - Lotka-Volterra competition model<a href="week-9---lotka-volterra-competition-model.html#week-9---lotka-volterra-competition-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Consider a linear system
+<span class="math display">\[
+\dfrac{d \vec{\pmb\varepsilon}}{d t} = \mathcal{J}\vec{\pmb\varepsilon}
+\]</span>
+where <span class="math inline">\(\vec{\pmb\varepsilon} = (\varepsilon_1, \varepsilon_2)^T\)</span> and <span class="math inline">\(\mathcal{J} = \begin{pmatrix} -1 &amp; 1\\ -2 &amp; -1 \end{pmatrix}\)</span>.
+Or, we can write the linear system by two ODEs:
+<span class="math display">\[\begin{align*}
+  \dfrac{d \varepsilon_1}{d t} &amp;= (-1)\times \varepsilon_1 + (1)\times\varepsilon_2\\
+  \dfrac{d \varepsilon_2}{d t} &amp;= (-2)\times \varepsilon_1 + (-1)\times\varepsilon_2\\
+\end{align*}\]</span></p>
+<p>Note that the element in the first row and second column is positive.</p>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <pre><code>##              time           e1            e2
 ##  [99996,]  9.9995 3.192479e-05 -6.443030e-05
