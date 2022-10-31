@@ -1,6 +1,19 @@
 
-# Week 9 - Lotka-Volterra competition model {-} 
+# Week 9 - Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues {-} 
 
+
+Consider a linear system
+\[
+\dfrac{d \vec{\pmb\varepsilon}}{d t} = \mathcal{J}\vec{\pmb\varepsilon}
+\]
+where $\vec{\pmb\varepsilon} = (\varepsilon_1, \varepsilon_2)^T$ and $\mathcal{J} = \begin{pmatrix} -1 & 1\\ -2 & -1 \end{pmatrix}$.
+Or, we can write the linear system by two ODEs:
+\begin{align*}
+  \dfrac{d \varepsilon_1}{d t} &= (-1)\times \varepsilon_1 + (1)\times\varepsilon_2\\
+  \dfrac{d \varepsilon_2}{d t} &= (-2)\times \varepsilon_1 + (-1)\times\varepsilon_2\\
+\end{align*}
+
+Note that the element in the first row and second column is positive.
 
 ```{r, echo = F, results = 'hold', message=FALSE}
 library(ggplot2)

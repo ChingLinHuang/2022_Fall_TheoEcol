@@ -1,5 +1,5 @@
 
-# Week 9 - Lotka-Volterra competition model {-} 
+# Week 9 - Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues {-} 
 
 
 Consider a linear system

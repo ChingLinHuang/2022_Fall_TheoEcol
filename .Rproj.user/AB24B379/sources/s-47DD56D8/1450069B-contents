@@ -1,5 +1,5 @@
 
-# Week 7 - Lotka-Volterra competition model {-} 
+# Week 7 - Lotka-Volterra competition model - Population dynamics{-} 
 
 
 In this lab, we are going to analyze the two-species Lotka-Volterra competition model numerically and visualize the population dynamics under different parameter settings.
