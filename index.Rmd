@@ -129,7 +129,7 @@ syllabus <- tibble(
           "Lotka-Volterra competition model - Population dynamics",
           " \\- ",
           "Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues",
-          " \\- ",
+          " Lotka-Volterra model of predator-prey interactions and time-scale separation",
           " \\- ",
           " \\- ",
           " \\- ",

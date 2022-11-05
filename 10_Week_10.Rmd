@@ -1,0 +1,112 @@
+# Week 10 Lotka-Volterra model of predator-prey interactions and time-scale separation {-} 
+
+**Part 1: analyzing the classic Lotka-Volterra predator-prey model**
+
+In this lab, we are going to analyze the classic Lotka-Volterra predator-prey model:
+
+\begin{align*}
+\frac {dN}{dt} &= rN-aNP\\
+\frac {dP}{dt} &= eaNP-dP
+\end{align*}
+
+The non-trivial equilibrium of this system is $E_c = (N = \frac{d}{ea}, P = \frac{r}{a})$.
+
+We simulate the model using the following parameter set ($N_0$ = 10, $P_0$ = 2, $r$ = 1.0, $a$ = 0.1, $e$ = 0.8, $d$ = 0.5) and plot the population trajectories of predator and prey over time. We also show their population dynamics in the state-space diagram.
+
+What will happen if you add a perturbation to the system (i.e., change the initial conditions)? Try out different values of $N$ and $P$ and visualize the differences in the state-space diagram by yourselve.
+
+```{r}
+library(deSolve)
+### Model specification
+LV_predation_model <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dN_dt = r*N - a*N*P
+    dP_dt = e*a*N*P - d*P
+    return(list(c(dN_dt, dP_dt)))
+  })
+}
+
+### Model parameters
+times <- seq(0, 100, by = 0.01)
+state <- c(N = 10, P = 2)
+parms <- c(r = 1.0, a = 0.1, e = 0.8, d = 0.5)
+
+### Model application
+pop_size <- ode(func = LV_predation_model, times = times, y = state, parms = parms)
+
+### Visualization -- population dynamics
+plot(c(0, max(times)), c(0, max(pop_size[, c("N", "P")] + 10)), type = "n", xlab = "time", ylab = "population size")
+lines(N ~ time, data = pop_size, col = "blue") # dynamics of N
+lines(P ~ time, data = pop_size, col = "red") # dynamics of P
+abline(h = parms[4]/(parms[3] * parms[2]), col = "blue", lty = 2) # equilibrium of N
+abline(h = parms[1] / parms[2], col = "red", lty = 2) # equilibrium of P
+legend("topright", legend = c("N", "P"), col = c("blue", "red"), lty = 1)
+
+### Visualization -- state-space diagram
+plot(N ~ P, data = pop_size, type = "l")
+points(parms[4]/(parms[3] * parms[2]), parms[1] / parms[2]) # equilibrium
+```
+
+**Part 2: Time-scale separation**
+
+Time-scale separation is a useful technique to reduce the dimension of the model system, where some state variables are assumed to operate at a much shorter time scale (i.e., fast variables) compared with the others (i.e., slow variables). The fast variables will be attracted rapidly to their new equilibrium in response to a slight change in the slow variables, such that the slow variables can be viewed as "constants" from the perspective of fast variables.
+
+Here, we are going to use the Lotka-Volterra model with logistic prey growth to demonstrate the time-scale separation technique: 
+
+\begin{align*}
+\frac {dN}{dt} &= rN(1-\frac{N}{K})-aNP\\
+\frac {dP}{dt} &= eaNP-dP
+\end{align*}
+
+The ZNGIs of $N$ are $N = 0$ and $r(1-\frac{N}{K}) - aP = 0$ and the ZNGIs of $P$ are $P = 0$ and $eaN = d$ in this model.
+
+We treat **prey as a fast variable and predator as a slow variable**. First, we find the quasi-equilibrium $\widehat{N}$ of prey by setting the prey equation to zero: 
+
+\[\widehat{N} = K(1-\frac{aP}{r})\]
+
+And then we plug $\widehat{N}$ into predator equation:
+
+\[\frac {dP}{dt} = (eaK-d)P(1-\frac{eaK(\frac{a}{r})}{eaK-d}P)\]
+
+One simple way to achieve time-scale separation in this model is to increase the prey growth rate so that prey will grow much faster than predator, mimicking the shorter generation time of prey relative to that of predator.
+
+```{r}
+library(deSolve)
+
+Prey_logistic_model <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dN_dt = r*N*(1-(N/K))-a*N*P
+    dP_dt = e*a*N*P-d*P
+    return(list(c(dN_dt, dP_dt)))
+  })
+}
+
+times <- seq(0, 100, by = 0.01)
+state <- c(N = 40, P = 20)
+parms <- c(r = 40, K = 60, a = 0.1, e = 0.1, d = 0.5)  # r is chosen to be sufficiently large for time-scale separation
+
+pop_size <- ode(func = Prey_logistic_model, times = times, y = state, parms = parms)
+```
+
+Under time-scale separation, population of prey rapidly becomes stable and predator exhibits a logistic growth. We show these by the trajectories of $P$ and $N$ over time.
+
+```{r}
+# population trajectories
+plot(c(0, max(times)), c(0, max(pop_size[, c("N", "P")] + 10)), type = "n", xlab = "time", ylab = "population size")
+lines(N ~ time, data = pop_size, col = "blue") # dynamics of N
+lines(P ~ time, data = pop_size, col = "red") # dynamics of P
+legend("topright", legend = c("N", "P"), col = c("blue", "red"), lty = 1)
+```
+
+Since $N$ is a fast variable, it will immediately achieve the its ZNGI on the state-space diagram.
+
+```{r}
+# state-space diagram
+plot(c(0, max(pop_size[, "N"])), c(0, max(pop_size[, "P"])), type = "n", xlab = "N", ylab = "P")
+abline(v = 0, col = "blue") # ZNGI of N
+abline(a = parms[1]/parms[3], b = -parms[1]/(parms[3]*parms[2]), col = "blue") # ZNGI of N
+abline(h = 0, col = "red") # ZNGI of P
+abline(v = parms[5]/(parms[4]*parms[3]), col = "red") # ZNGI of P
+points(P ~ N, data = pop_size, col = "gray")
+
+```
