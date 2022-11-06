@@ -65,3 +65,28 @@ abline(h = 0, col = "red") # ZNGI of P
 abline(v = parms[5]/(parms[4]*parms[3]), col = "red") # ZNGI of P
 points(P ~ N, data = pop_size, col = "gray")
 
+
+#### assignment ####
+# code for building May's random matrix
+BuildMay = function(S, C, d, sigma){
+  # fill the whole matrix
+  entry <- rnorm(S * S, mean = 0, sd = sigma)
+  M <- matrix(entry, nrow = S, ncol = S)
+  # remove connections
+  R <- matrix(sample(c(0,1), size = S * S, prob = c(1-C, C), replace = T), nrow = S, ncol = S)
+  M <- M * R
+
+  sum(M != 0) / (S*S) # should equal to C
+
+  # substract diagonal elements by d
+  diag(M) <- diag(M) - d
+  return(M)
+}
+
+May <- BuildMay(S = 500, C = 0.5, d = 10, sigma = 1)
+EVals <- eigen(May)$values
+Re.EVals <- Re(EVals)
+Im.EVals <- Im(EVals)
+
+plot(Re.EVals, Im.EVals, xlab = "Real part", ylab = "Imaginary part")
+abline(v = 0, col = "red", lty = 2)

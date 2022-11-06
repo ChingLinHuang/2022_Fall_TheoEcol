@@ -1,4 +1,4 @@
-# Week 10 Lotka-Volterra model of predator-prey interactions and time-scale separation {-} 
+# Week 10 - Lotka-Volterra model of predator-prey interactions and time-scale separation {-} 
 
 **Part 1: analyzing the classic Lotka-Volterra predator-prey model**
 
