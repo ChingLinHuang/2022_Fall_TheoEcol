@@ -3,22 +3,22 @@
     "path": "~/2022_Fall_TheoEcol/code/week10.R",
     "project_path": "code/week10.R",
     "type": "r_source",
-    "hash": "2634357189",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1667622786024.0,
     "source_on_save": false,
     "relative_order": 2,
     "properties": {
-        "cursorPosition": "92,0",
-        "scrollLine": "78"
+        "cursorPosition": "40,0",
+        "scrollLine": "33"
     },
     "folds": "",
-    "lastKnownWriteTime": 1667728487,
+    "lastKnownWriteTime": 1667791995,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1667728487956,
+    "last_content_update": 1667791995453,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -15,6 +15,7 @@ We simulate the model using the following parameter set ($N_0$ = 10, $P_0$ = 2, 
 
 What will happen if you add a perturbation to the system (i.e., change the initial conditions)? Try out different values of $N$ and $P$ and visualize the differences in the state-space diagram by yourselve.
 
+
 ```{r}
 library(deSolve)
 ### Model specification
@@ -47,9 +48,13 @@ plot(N ~ P, data = pop_size, type = "l")
 points(parms[4]/(parms[3] * parms[2]), parms[1] / parms[2]) # equilibrium
 ```
 
+What is the relationship between the **long-term average** of the cycle and the originally-expected equilibrium? To calculate long-term average, we need to find out the period of the cycle and then calculate the average population size within a period. The period of the cycle may be derived from the distance between peaks in the dynamics shown above, or by some algorithms, e.g. `pracma::findpeaks`. 
+
+<br>
+
 **Part 2: Time-scale separation**
 
-Time-scale separation is a useful technique to reduce the dimension of the model system, where some state variables are assumed to operate at a much shorter time scale (i.e., fast variables) compared with the others (i.e., slow variables). The fast variables will be attracted rapidly to their new equilibrium in response to a slight change in the slow variables, such that the slow variables can be viewed as "constants" from the perspective of fast variables.
+Time-scale separation is a useful technique to reduce the dimension of the model system, where some state variables are assumed to operate at a much shorter time scale (i.e., fast variables) compared with the others (i.e., slow variables). The fast variables will be attracted rapidly to their new equilibrium in response to a slight change in the slow variables, such that the slow variables can be viewed as "constants" from the perspective of fast variables (and the fast variable will always be at its quasi-equilibrium from the perspective of the slow variable).
 
 Here, we are going to use the Lotka-Volterra model with logistic prey growth to demonstrate the time-scale separation technique: 
 
@@ -110,3 +115,11 @@ abline(v = parms[5]/(parms[4]*parms[3]), col = "red") # ZNGI of P
 points(P ~ N, data = pop_size, col = "gray")
 
 ```
+
+Play with the growth rate $r$ from small to large values and see how the trajectory of prey and predator moves along the state-space. 
+
+```{r, out.width = "800px", echo = F}
+knitr::include_app("https://genchanghsu0115.shinyapps.io/Time_scale_sep_shinyapp/", height = "700px")
+```
+
+Shiny app is credit to [Gen-Chang Hsu](https://genchanghsu.github.io/index.html)

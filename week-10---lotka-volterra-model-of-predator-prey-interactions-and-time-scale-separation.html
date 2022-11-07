@@ -210,8 +210,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb59-2"><a href="week-10---lotka-volterra-model-of-predator-prey-interactions-and-time-scale-separation.html#cb59-2"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>P, <span class="dt">data =</span> pop_size, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span>
 <span id="cb59-3"><a href="week-10---lotka-volterra-model-of-predator-prey-interactions-and-time-scale-separation.html#cb59-3"></a><span class="kw">points</span>(parms[<span class="dv">4</span>]<span class="op">/</span>(parms[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>parms[<span class="dv">2</span>]), parms[<span class="dv">1</span>] <span class="op">/</span><span class="st"> </span>parms[<span class="dv">2</span>]) <span class="co"># equilibrium</span></span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-24-2.png" width="672" /></p>
+<p>What is the relationship between the <strong>long-term average</strong> of the cycle and the originally-expected equilibrium? To calculate long-term average, we need to find out the period of the cycle and then calculate the average population size within a period. The period of the cycle may be derived from the distance between peaks in the dynamics shown above, or by some algorithms, e.g. <code>pracma::findpeaks</code>.</p>
+<p><br></p>
 <p><strong>Part 2: Time-scale separation</strong></p>
-<p>Time-scale separation is a useful technique to reduce the dimension of the model system, where some state variables are assumed to operate at a much shorter time scale (i.e., fast variables) compared with the others (i.e., slow variables). The fast variables will be attracted rapidly to their new equilibrium in response to a slight change in the slow variables, such that the slow variables can be viewed as “constants” from the perspective of fast variables.</p>
+<p>Time-scale separation is a useful technique to reduce the dimension of the model system, where some state variables are assumed to operate at a much shorter time scale (i.e., fast variables) compared with the others (i.e., slow variables). The fast variables will be attracted rapidly to their new equilibrium in response to a slight change in the slow variables, such that the slow variables can be viewed as “constants” from the perspective of fast variables (and the fast variable will always be at its quasi-equilibrium from the perspective of the slow variable).</p>
 <p>Here, we are going to use the Lotka-Volterra model with logistic prey growth to demonstrate the time-scale separation technique:</p>
 <p><span class="math display">\[\begin{align*}
 \frac {dN}{dt} &amp;= rN(1-\frac{N}{K})-aNP\\
@@ -254,6 +256,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb62-6"><a href="week-10---lotka-volterra-model-of-predator-prey-interactions-and-time-scale-separation.html#cb62-6"></a><span class="kw">abline</span>(<span class="dt">v =</span> parms[<span class="dv">5</span>]<span class="op">/</span>(parms[<span class="dv">4</span>]<span class="op">*</span>parms[<span class="dv">3</span>]), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) <span class="co"># ZNGI of P</span></span>
 <span id="cb62-7"><a href="week-10---lotka-volterra-model-of-predator-prey-interactions-and-time-scale-separation.html#cb62-7"></a><span class="kw">points</span>(P <span class="op">~</span><span class="st"> </span>N, <span class="dt">data =</span> pop_size, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>Play with the growth rate <span class="math inline">\(r\)</span> from small to large values and see how the trajectory of prey and predator moves along the state-space.</p>
+<iframe src="https://genchanghsu0115.shinyapps.io/Time_scale_sep_shinyapp/?showcase=0" width="800px" height="700px" data-external="1">
+</iframe>
+<p>Shiny app is credit to <a href="https://genchanghsu.github.io/index.html">Gen-Chang Hsu</a></p>
 
 </div>
             </section>

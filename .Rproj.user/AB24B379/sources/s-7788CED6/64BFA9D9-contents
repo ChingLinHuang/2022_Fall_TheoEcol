@@ -31,6 +31,14 @@ abline(h = parms[4]/(parms[3] * parms[2]), col = "blue", lty = 2) # equilibrium 
 abline(h = parms[1] / parms[2], col = "red", lty = 2) # equilibrium of P
 legend("topright", legend = c("N", "P"), col = c("blue", "red"), lty = 1)
 
+# comparing long-term average and equlibrium
+# N's equilibrium
+as.numeric(parms[1] / parms[2])
+# P's equilibrum
+as.numeric(parms[4]/(parms[3] * parms[2]))
+
+# Long-term average
+
 
 #####  Part 2  ############
 
