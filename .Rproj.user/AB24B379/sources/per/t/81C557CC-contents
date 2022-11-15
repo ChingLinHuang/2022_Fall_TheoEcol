@@ -1,0 +1,173 @@
+--- 
+title: "Introduction to Theoretical Ecology"
+author: "Instructor: Po-Ju Ke $~~~~~$ Teaching Assistant: Ching-Lin Huang (Andy)"
+date: "2022 Fall at National Taiwan Univeristy ![](./bifurcation.gif)"
+
+url: "https://ChingLinHuang.github.io/2022_Fall_TheoEcol/"
+github-repo: "ChingLinHuang/2022_Fall_TheoEcol"
+cover-image: "bifurcation.gif"
+
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+
+description: "This is the course website for **_Introduction to Theoretical Ecology_** 2022 Fall at National Taiwan University."
+---
+# Course information{-}
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Description** </p> The development of theory plays an important role in advancing ecology as a scientific field. This three-unit course is for students at the graduate or advanced undergraduate level. The course will cover classic theoretical topics in ecology, starting from single-species dynamics and gradually build up to multi-species models. The course will primarily focus on population and community ecology, but we will also briefly discuss models in epidemiology and ecosystem ecology. Emphasis will be on theoretical concepts and corresponding mathematical approaches.
+
+This course is designed as a two-hour lecture followed by a one-hour hands-on practice module. In the lecture, we will analyze dynamical models and derive general theories in ecology. In the hands-on practice section, we will use a combination of analytical problem sets, interactive applications, and numerical simulations to gain a general understanding of the dynamics and behavior of different models. 
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Objective** </p>
+By the end of the course, students are expected to be familiar with the basic building blocks of ecological models and would be able to formulate and analyze simple models of their own. The hands-on practice component should allow students to link their ecological intuition with the underlying mathematical model, helping them to better understand the primary literature of theoretical ecology. 
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Requirement** </p>
+Students are expected to have a basic understanding of **Calculus** (e.g., freshman introductory course) and **Ecology**.
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Format** </p>
+Tuesday 6,7,8 (1:20 pm ~ 4:20 pm) at 共207
+
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Grading** </p>
+The final grade consists of:
+
+(1) Assignment problem sets (60%)
+(2) Midterm exam (15%)
+(3) Final exam (15%)
+(4) Course participation (10%)
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Course materials** </p>
+We will be using a combination of textbooks and literature articles on theoretical ecology in this course. Textbook chapters and additional reading materials will be provided (see [**Syllabus**](https://chinglinhuang.github.io/2022_Fall_TheoEcol/syllabus.html) for more details).
+
+Below are the textbook references:
+
+(1) *A Primer of Ecology 4^th^ edition. Nicholas Gotelli*, 2008. 
+(2) *An Illustrated Guide to Theoretical Ecology*. Ted Case, 2000. 
+(3) *A Biologist's Guide to Mathematical Modeling in Ecology and Evolution*. Sarah Otto & Troy Day, 2011. 
+(4) *Mathematical Ecology of Populations and Ecosystems*. John Pastor, 2008. 
+
+
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Contacts** </p>
+**Instructor**: Po-Ju Ke
+
+- Office: Life Science Building R635
+- Email: pojuke@ntu.edu.tw
+- Office hours: by appointment
+
+**Teaching assistant**: Ching-Lin Huang (Andy)
+
+- Office: Life Science Building R635
+- Email: r09b44010@ntu.edu.tw
+- Office hours: 14:00 ~ 15:00 on Thursday
+
+
+# Syllabus {-}
+```{r, echo = FALSE, message = F, warning = F, error = F}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+syllabus <- tibble(
+  Date = c("**Week 1** <span style='vertical-align:-30%'> </span>
+           <br> 9/6",
+           "**Week 2** <span style='vertical-align:-30%'> </span>
+           <br> 9/13",
+           "**Week 3** <span style='vertical-align:-30%'> </span>
+           <br> 9/20",
+           "**Week 4** <span style='vertical-align:-30%'> </span>
+           <br> 9/27",
+           "**Week 5** <span style='vertical-align:-30%'> </span>
+           <br> 10/4",
+           "**Week 6** <span style='vertical-align:-30%'> </span>
+           <br> 10/11",
+           "**Week 7** <span style='vertical-align:-30%'> </span>
+           <br> 10/18",
+           "**Week 8** <span style='vertical-align:-30%'> </span>
+           <br> 10/25",
+           "**Week 9** <span style='vertical-align:-30%'> </span>
+           <br> 11/1",
+           "**Week 10** <span style='vertical-align:-30%'> </span>
+           <br> 11/8",
+           "**Week 11** <span style='vertical-align:-30%'> </span>
+           <br> 11/15",
+           "**Week 12** <span style='vertical-align:-30%'> </span>
+           <br> 11/22",
+           "**Week 13** <span style='vertical-align:-30%'> </span>
+           <br> 11/29",
+           "**Week 14** <span style='vertical-align:-30%'> </span>
+           <br> 12/6",
+           "**Week 15** <span style='vertical-align:-30%'> </span>
+           <br> 12/13",
+           "**Week 16** <span style='vertical-align:-30%'> </span>
+           <br> 12/20"),
+  
+  `Lecture topic` = c("Introduction: what is theoretical ecology?",
+                      "Exponential population growth",
+                      "Logistic population growth and stability analysis",
+                      "Discrete population models",
+                      "Age-structured population models",
+                      "Metapopulations and patch occupancy models",
+                      "Lotka-Volterra model of competition: graphical analysis",
+                      "Midterm exam",
+                      "Lotka-Volterra model of competition: invasion analysis and linear stability analysis",
+                      "Predator-prey interactions (I) and time scale separation",
+                      "No class due to NTU anniversary",
+                      "Predator-prey interactions (II) and complexity-stability relationship",
+                      "Multispecies models of competition: consumer-resource dynamics",
+                      "Multispecies models of predation: apparent competition",
+                      "Research applcations: plant-soil feedback as an example",
+                      "Final exam"),
+    
+  Lab = c(" \\- ",
+          'Solving exponential growth equation using "deSolve" & Visualization',
+          "Shinny App for logistic population growth",
+          "Discrete logistic population growth model and bifurcation",
+          "Age-structured population model",
+          "Metapopulations and patch occupancy models",
+          "Lotka-Volterra competition model - Population dynamics",
+          " \\- ",
+          "Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues",
+          " Lotka-Volterra model of predator-prey interactions and time-scale separation",
+          " \\- ",
+          " Rosenzweig-MacArthur predator-prey model and May's complexity-stability relationship",
+          " \\- ",
+          " \\- ",
+          " \\- ",
+          " \\- "),
+    
+    
+  Readings = c("Grainger et al., 2021",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ",
+               " \\- ")  
+  
+)
+
+kbl(syllabus, align = "cccl", escape = F) %>%  
+  kable_paper(full_width = T, 
+              html_font = "Arial",
+              font_size = 17) %>%
+  kable_styling(bootstrap_options = c("bordered")) %>%
+  row_spec(0, bold = T, color = "black", font_size = 20) %>%
+  column_spec(1, width = "10em", border_right = T) %>%
+  column_spec(2, width = "17em") %>%
+  column_spec(3, width = "17em") %>%
+  column_spec(4, width = "13em")
+
+```
+
+

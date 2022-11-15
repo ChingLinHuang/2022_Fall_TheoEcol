@@ -86,3 +86,34 @@ plot(N ~ times, data = pop_size)
 curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T, col = "red") # correct curve
 plot(N ~ times, data = pop_size, log = "y")
 curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T, col = "red") # correct curve
+
+
+
+########### A2
+library(deSolve)
+
+exponential_model <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dN_dt = r*N + I
+    return(list(c(dN_dt)))})
+}
+times <- seq(0, 7, by = 0.1)
+state <- c(N = 10)
+parms <- c(r = 1.2, I = 3) # parameters
+parms_no_I <- c(r = 1.2, I = 0)
+
+pop_size <- ode(func = exponential_model, times = times,
+                y = state, parms = parms)
+pop_size_no_I <- ode(func = exponential_model, times = times,
+                     y = state, parms = parms_no_I)
+
+# plot population dynamics
+plot(N ~ time, data = pop_size, type = "l", col = "red")
+lines(N ~ time, data = pop_size_no_I, type = "l", col = "blue")
+legend("topleft",
+       legend = c("with immigration", "without immigration"),
+       col = c("red", "blue"),
+       lty = 1)
+
+dif <- pop_size[ ,"N"] - pop_size_no_I[ ,"N"]
+plot(times, dif, type = "l")
