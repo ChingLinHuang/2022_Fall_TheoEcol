@@ -1,0 +1,27 @@
+#install.packages("ggplot2")
+library(ggplot2)
+# pseudo-code for building May's random matrix
+BuildMay = function(S, C, d, sigma){
+  # fill the whole matrix
+  entry <- rnorm(S * S, mean = 0, sd = sigma)
+  M <- matrix(entry, nrow = S, ncol = S)
+  # remove connections
+  m0 = sample(0:(S*S)-1, round(S*S*(1-C)), replace = F)
+  for (i in 1:length(m0)) {
+    M[(floor(m0[i]/S) + 1), (m0[i]-S*floor(m0[i]/S)+1)] = 0
+  }
+  sum(M != 0) / (S*S)
+  M[1:10, 1:10]
+  
+  # set diagonals
+  diag(M) <- diag(M) - d
+  return(M)
+}
+#create eigen value data
+M <- BuildMay(S = 500, C = 0.5, d = 10,
+              sigma = 1)
+e_val = data.frame(REpart = Re(eigen(M)$value), 
+                   IMpart = Im(eigen(M)$value))
+#visualizing
+ggplot(data = e_val, aes(x = REpart, y = IMpart)) + geom_point() + labs(x = "Real
+part", y = "Imaginary part") + geom_vline(xintercept = 0, color = "red")
