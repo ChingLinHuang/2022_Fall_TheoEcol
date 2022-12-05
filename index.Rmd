@@ -133,7 +133,7 @@ syllabus <- tibble(
           " \\- ",
           "Rosenzweig-MacArthur predator-prey model and May's complexity-stability relationship",
           "Parameter space for apparent competition model",
-          " \\- ",
+          "Resource competition",
           " \\- ",
           " \\- "),
     

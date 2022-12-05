@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Week 14 - Resource competition | Introduction to Theoretical Ecology</title>
+  <meta name="description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Week 14 - Resource competition | Introduction to Theoretical Ecology" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://ChingLinHuang.github.io/2022_Fall_TheoEcol/bifurcation.gif" />
+  <meta property="og:description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
+  <meta name="github-repo" content="ChingLinHuang/2022_Fall_TheoEcol" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Week 14 - Resource competition | Introduction to Theoretical Ecology" />
+  
+  <meta name="twitter:description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
+  <meta name="twitter:image" content="https://ChingLinHuang.github.io/2022_Fall_TheoEcol/bifurcation.gif" />
+
+<meta name="author" content="Instructor: Po-Ju Ke ~~~~~ Teaching Assistant: Ching-Lin Huang (Andy)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-13---parameter-space-for-apparent-competition-model.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Theoretical Ecology</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a></li>
+<li class="chapter" data-level="" data-path="week-2---exponential-population-growth.html"><a href="week-2---exponential-population-growth.html"><i class="fa fa-check"></i>Week 2 - Exponential population growth</a></li>
+<li class="chapter" data-level="" data-path="week-3---logistic-population-growth-and-stability-analysis.html"><a href="week-3---logistic-population-growth-and-stability-analysis.html"><i class="fa fa-check"></i>Week 3 - Logistic population growth and stability analysis</a></li>
+<li class="chapter" data-level="" data-path="week-4---discrete-exponential-and-logistic-models.html"><a href="week-4---discrete-exponential-and-logistic-models.html"><i class="fa fa-check"></i>Week 4 - Discrete exponential and logistic models</a></li>
+<li class="chapter" data-level="" data-path="week-5---age-structure-population-model.html"><a href="week-5---age-structure-population-model.html"><i class="fa fa-check"></i>Week 5 - Age-structure population model</a></li>
+<li class="chapter" data-level="" data-path="week-6---metapopulations-and-patch-occupancy-models.html"><a href="week-6---metapopulations-and-patch-occupancy-models.html"><i class="fa fa-check"></i>Week 6 - Metapopulations and patch occupancy models</a></li>
+<li class="chapter" data-level="" data-path="week-7---lotka-volterra-competition-model---population-dynamics.html"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html"><i class="fa fa-check"></i>Week 7 - Lotka-Volterra competition model - Population dynamics</a></li>
+<li class="chapter" data-level="" data-path="week-8---midterm.html"><a href="week-8---midterm.html"><i class="fa fa-check"></i>Week 8 - Midterm</a></li>
+<li class="chapter" data-level="" data-path="week-9---lotka-volterra-competition-model---visualization-of-dynamics-with-complex-eigenvalues.html"><a href="week-9---lotka-volterra-competition-model---visualization-of-dynamics-with-complex-eigenvalues.html"><i class="fa fa-check"></i>Week 9 - Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues</a></li>
+<li class="chapter" data-level="" data-path="week-10---lotka-volterra-model-of-predator-prey-interactions-and-time-scale-separation.html"><a href="week-10---lotka-volterra-model-of-predator-prey-interactions-and-time-scale-separation.html"><i class="fa fa-check"></i>Week 10 - Lotka-Volterra model of predator-prey interactions and time-scale separation</a></li>
+<li class="chapter" data-level="" data-path="week-11---no-class-due-to-ntu-anniversary.html"><a href="week-11---no-class-due-to-ntu-anniversary.html"><i class="fa fa-check"></i>Week 11 - No class due to NTU anniversary</a></li>
+<li class="chapter" data-level="" data-path="week-12---rosenzweig-macarthur-predator-prey-model-and-mays-complexity-stability-relationship.html"><a href="week-12---rosenzweig-macarthur-predator-prey-model-and-mays-complexity-stability-relationship.html"><i class="fa fa-check"></i>Week 12 - Rosenzweig-MacArthur predator-prey model and May’s complexity-stability relationship</a></li>
+<li class="chapter" data-level="" data-path="week-13---parameter-space-for-apparent-competition-model.html"><a href="week-13---parameter-space-for-apparent-competition-model.html"><i class="fa fa-check"></i>Week 13 - Parameter space for apparent competition model</a></li>
+<li class="chapter" data-level="" data-path="week-14---resource-competition.html"><a href="week-14---resource-competition.html"><i class="fa fa-check"></i>Week 14 - Resource competition</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Theoretical Ecology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week-14---resource-competition" class="section level1 unnumbered hasAnchor">
+<h1>Week 14 - Resource competition<a href="week-14---resource-competition.html#week-14---resource-competition" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Part 1 - R* rule</strong></p>
+<p>In this part of the lab section, we are going to analyze the consumer-resource dynamics with two consumers and one resource:
+<span class="math display">\[\begin{align*}
+\frac {dN_{1}}{dt} &amp;= e_{1}a_{1}RN_{1}-dN_{1}\\
+\frac {dN_{2}}{dt} &amp;= e_{2}a_{2}RN_{2}-dN_{2}\\
+\frac {dR}{dt} &amp;= d(S_{0}-R)-a_{1}RN_{1}-a_{2}RN_{2}\\
+\end{align*}\]</span></p>
+<p>Please simulate the model using the parameter set (<span class="math inline">\(N_{1(0)}\)</span> = 2, <span class="math inline">\(N_{2(0)}\)</span> = 2, <span class="math inline">\(R\)</span> = 0.1, <span class="math inline">\(a_1\)</span> = 0.4, <span class="math inline">\(a_2\)</span> = 0.6, <span class="math inline">\(e_1\)</span> = 1, <span class="math inline">\(e_2\)</span> = 1, <span class="math inline">\(d\)</span> = 0.01, <span class="math inline">\(S_0\)</span> = 0.1) and visualize the population trajectories of the two consumers as well as the resource.</p>
+<p>Below is a plot of resource level vs. consumers’ per capita growth rate. What would you predict about the system dynamics?</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="week-14---resource-competition.html#cb86-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb86-2"><a href="week-14---resource-competition.html#cb86-2"></a><span class="kw">library</span>(deSolve)</span>
+<span id="cb86-3"><a href="week-14---resource-competition.html#cb86-3"></a></span>
+<span id="cb86-4"><a href="week-14---resource-competition.html#cb86-4"></a><span class="co">### Parameters</span></span>
+<span id="cb86-5"><a href="week-14---resource-competition.html#cb86-5"></a>a1 &lt;-<span class="st"> </span><span class="fl">0.4</span> </span>
+<span id="cb86-6"><a href="week-14---resource-competition.html#cb86-6"></a>a2 &lt;-<span class="st"> </span><span class="fl">0.6</span></span>
+<span id="cb86-7"><a href="week-14---resource-competition.html#cb86-7"></a>e1 &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb86-8"><a href="week-14---resource-competition.html#cb86-8"></a>e2 &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb86-9"><a href="week-14---resource-competition.html#cb86-9"></a>d &lt;-<span class="st"> </span><span class="fl">0.01</span> </span>
+<span id="cb86-10"><a href="week-14---resource-competition.html#cb86-10"></a>S0 &lt;-<span class="st"> </span><span class="fl">0.1</span></span>
+<span id="cb86-11"><a href="week-14---resource-competition.html#cb86-11"></a></span>
+<span id="cb86-12"><a href="week-14---resource-competition.html#cb86-12"></a><span class="co">### Resource level vs. consumers&#39; per capita population growth</span></span>
+<span id="cb86-13"><a href="week-14---resource-competition.html#cb86-13"></a><span class="kw">data.frame</span>(<span class="dt">R =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.001</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb86-14"><a href="week-14---resource-competition.html#cb86-14"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">N1 =</span> e1<span class="op">*</span>a1<span class="op">*</span>R<span class="op">-</span>d,</span>
+<span id="cb86-15"><a href="week-14---resource-competition.html#cb86-15"></a>         <span class="dt">N2 =</span> e2<span class="op">*</span>a2<span class="op">*</span>R<span class="op">-</span>d) <span class="op">%&gt;%</span></span>
+<span id="cb86-16"><a href="week-14---resource-competition.html#cb86-16"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Species&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;Growth&quot;</span>, N1<span class="op">:</span>N2) <span class="op">%&gt;%</span></span>
+<span id="cb86-17"><a href="week-14---resource-competition.html#cb86-17"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> R, <span class="dt">y =</span> Growth, <span class="dt">color =</span> Species)) <span class="op">+</span></span>
+<span id="cb86-18"><a href="week-14---resource-competition.html#cb86-18"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb86-19"><a href="week-14---resource-competition.html#cb86-19"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb86-20"><a href="week-14---resource-competition.html#cb86-20"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Resource level&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Per capita growth rate&quot;</span>) <span class="op">+</span></span>
+<span id="cb86-21"><a href="week-14---resource-competition.html#cb86-21"></a><span class="st">  </span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">14</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-41-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="week-14---resource-competition.html#cb87-1"></a><span class="co">### Model specification</span></span>
+<span id="cb87-2"><a href="week-14---resource-competition.html#cb87-2"></a>CR_model_2C_1R &lt;-<span class="st"> </span><span class="cf">function</span>(times, state, parms){</span>
+<span id="cb87-3"><a href="week-14---resource-competition.html#cb87-3"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(<span class="kw">c</span>(state, parms)), {</span>
+<span id="cb87-4"><a href="week-14---resource-competition.html#cb87-4"></a>    dN1_dt =<span class="st"> </span>e1<span class="op">*</span>a1<span class="op">*</span>R<span class="op">*</span>N1 <span class="op">-</span><span class="st"> </span>d<span class="op">*</span>N1</span>
+<span id="cb87-5"><a href="week-14---resource-competition.html#cb87-5"></a>    dN2_dt =<span class="st"> </span>e2<span class="op">*</span>a2<span class="op">*</span>R<span class="op">*</span>N2 <span class="op">-</span><span class="st"> </span>d<span class="op">*</span>N2</span>
+<span id="cb87-6"><a href="week-14---resource-competition.html#cb87-6"></a>    dR_dt =<span class="st">  </span>d<span class="op">*</span>(S0<span class="op">-</span>R) <span class="op">-</span><span class="st"> </span>a1<span class="op">*</span>R<span class="op">*</span>N1 <span class="op">-</span><span class="st"> </span>a2<span class="op">*</span>R<span class="op">*</span>N2</span>
+<span id="cb87-7"><a href="week-14---resource-competition.html#cb87-7"></a>    <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(dN1_dt, dN2_dt, dR_dt)))</span>
+<span id="cb87-8"><a href="week-14---resource-competition.html#cb87-8"></a>  })</span>
+<span id="cb87-9"><a href="week-14---resource-competition.html#cb87-9"></a>}</span>
+<span id="cb87-10"><a href="week-14---resource-competition.html#cb87-10"></a></span>
+<span id="cb87-11"><a href="week-14---resource-competition.html#cb87-11"></a><span class="co">### Model parameters</span></span>
+<span id="cb87-12"><a href="week-14---resource-competition.html#cb87-12"></a>times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="dv">1000</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)  </span>
+<span id="cb87-13"><a href="week-14---resource-competition.html#cb87-13"></a>state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">N1 =</span> <span class="dv">2</span>, <span class="dt">N2 =</span> <span class="dv">2</span>, <span class="dt">R =</span> <span class="fl">0.1</span>)  </span>
+<span id="cb87-14"><a href="week-14---resource-competition.html#cb87-14"></a>parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">a1 =</span> <span class="fl">0.4</span>, <span class="dt">a2 =</span> <span class="fl">0.6</span>, <span class="dt">e1 =</span> <span class="dv">1</span>, <span class="dt">e2 =</span> <span class="dv">1</span>, <span class="dt">d =</span> <span class="fl">0.01</span>, <span class="dt">S0 =</span> <span class="fl">0.1</span>)</span>
+<span id="cb87-15"><a href="week-14---resource-competition.html#cb87-15"></a></span>
+<span id="cb87-16"><a href="week-14---resource-competition.html#cb87-16"></a><span class="co">### Model application</span></span>
+<span id="cb87-17"><a href="week-14---resource-competition.html#cb87-17"></a>pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> CR_model_2C_1R, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb87-18"><a href="week-14---resource-competition.html#cb87-18"></a></span>
+<span id="cb87-19"><a href="week-14---resource-competition.html#cb87-19"></a><span class="co">### Visualize the population dynamics</span></span>
+<span id="cb87-20"><a href="week-14---resource-competition.html#cb87-20"></a>pop_size <span class="op">%&gt;%</span></span>
+<span id="cb87-21"><a href="week-14---resource-competition.html#cb87-21"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></span>
+<span id="cb87-22"><a href="week-14---resource-competition.html#cb87-22"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Species&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;N&quot;</span>, N1<span class="op">:</span>R)  <span class="op">%&gt;%</span></span>
+<span id="cb87-23"><a href="week-14---resource-competition.html#cb87-23"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">trophic =</span> <span class="kw">case_when</span>(Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;N1&quot;</span>, <span class="st">&quot;N2&quot;</span>) <span class="op">~</span><span class="st"> &quot;Consumer&quot;</span>,</span>
+<span id="cb87-24"><a href="week-14---resource-competition.html#cb87-24"></a>                             <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Resource&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb87-25"><a href="week-14---resource-competition.html#cb87-25"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> N, <span class="dt">color =</span> Species)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb87-26"><a href="week-14---resource-competition.html#cb87-26"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span></span>
+<span id="cb87-27"><a href="week-14---resource-competition.html#cb87-27"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>trophic, </span>
+<span id="cb87-28"><a href="week-14---resource-competition.html#cb87-28"></a>             <span class="dt">ncol =</span> <span class="dv">2</span>, </span>
+<span id="cb87-29"><a href="week-14---resource-competition.html#cb87-29"></a>             <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>,</span>
+<span id="cb87-30"><a href="week-14---resource-competition.html#cb87-30"></a>             <span class="dt">strip.position =</span> <span class="st">&quot;left&quot;</span>) <span class="op">+</span></span>
+<span id="cb87-31"><a href="week-14---resource-competition.html#cb87-31"></a><span class="st">  </span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">14</span>) <span class="op">+</span></span>
+<span id="cb87-32"><a href="week-14---resource-competition.html#cb87-32"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.background =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb87-33"><a href="week-14---resource-competition.html#cb87-33"></a>        <span class="dt">strip.placement =</span> <span class="st">&quot;outside&quot;</span>,</span>
+<span id="cb87-34"><a href="week-14---resource-competition.html#cb87-34"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb87-35"><a href="week-14---resource-competition.html#cb87-35"></a>        <span class="dt">legend.title =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb87-36"><a href="week-14---resource-competition.html#cb87-36"></a>        <span class="dt">plot.margin =</span> <span class="kw">margin</span>(<span class="dt">r =</span> <span class="dv">5</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb87-37"><a href="week-14---resource-competition.html#cb87-37"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Time&quot;</span>, <span class="dt">y =</span> <span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb87-38"><a href="week-14---resource-competition.html#cb87-38"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="ot">NULL</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-42-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>We can see that <span class="math inline">\(N_1\)</span> goes extinct, as predicted by the R* rule; the remaining consumer <span class="math inline">\(N_2\)</span> and the resource <span class="math inline">\(R\)</span> exhibit stable coexistence.</p>
+<p><br></p>
+<p><strong>Part 2 - Tilman’s resource ratio hypothesis</strong></p>
+<p>Now we will extend the model in Part 1. into two consumers and two resources:
+<span class="math display">\[\begin{align*}
+\frac {dN_{1}}{dt} &amp;= e_{1}a_{1a}R_{a}N_{1}+e_{1}a_{1b}R_{b}N_{1}-dN_{1}\\
+\frac {dN_{2}}{dt} &amp;= e_{2}a_{2a}R_{a}N_{2}+e_{2}a_{2b}R_{b}N_{2}-dN_{2}\\
+\frac {dR_{a}}{dt} &amp;= d(S_{a}-R_{a})-a_{1a}R_{a}N_{1}-a_{2a}R_{a}N_{2}\\
+\frac {dR_{b}}{dt} &amp;= d(S_{b}-R_{b})-a_{1b}R_{b}N_{1}-a_{2b}R_{b}N_{2}\\
+\end{align*}\]</span></p>
+<p>Here, the two consumers <span class="math inline">\(N_1\)</span> and <span class="math inline">\(N_2\)</span> compete for two substitutable resources <span class="math inline">\(R_1\)</span> and <span class="math inline">\(R_2\)</span>. Under certain conditions, the two consumers are able to coexist:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="week-14---resource-competition.html#cb88-1"></a><span class="co">### Model specification</span></span>
+<span id="cb88-2"><a href="week-14---resource-competition.html#cb88-2"></a>CR_model_2C_2R &lt;-<span class="st"> </span><span class="cf">function</span>(time, state, parms){</span>
+<span id="cb88-3"><a href="week-14---resource-competition.html#cb88-3"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(<span class="kw">c</span>(state, parms)), {</span>
+<span id="cb88-4"><a href="week-14---resource-competition.html#cb88-4"></a>    dN1_dt =<span class="st"> </span>e1<span class="op">*</span>a1a<span class="op">*</span>Ra<span class="op">*</span>N1 <span class="op">+</span><span class="st"> </span>e1<span class="op">*</span>a1b<span class="op">*</span>Rb<span class="op">*</span>N1 <span class="op">-</span><span class="st"> </span>d<span class="op">*</span>N1</span>
+<span id="cb88-5"><a href="week-14---resource-competition.html#cb88-5"></a>    dN2_dt =<span class="st"> </span>e2<span class="op">*</span>a2a<span class="op">*</span>Ra<span class="op">*</span>N2 <span class="op">+</span><span class="st"> </span>e2<span class="op">*</span>a2b<span class="op">*</span>Rb<span class="op">*</span>N2 <span class="op">-</span><span class="st"> </span>d<span class="op">*</span>N2</span>
+<span id="cb88-6"><a href="week-14---resource-competition.html#cb88-6"></a>    dRa_dt =<span class="st"> </span>d<span class="op">*</span>(Sa<span class="op">-</span>Ra) <span class="op">-</span><span class="st"> </span>(a1a<span class="op">*</span>N1<span class="op">*</span>Ra) <span class="op">-</span><span class="st"> </span>(a2a<span class="op">*</span>N2<span class="op">*</span>Ra) </span>
+<span id="cb88-7"><a href="week-14---resource-competition.html#cb88-7"></a>    dRb_dt =<span class="st"> </span>d<span class="op">*</span>(Sb<span class="op">-</span>Rb) <span class="op">-</span><span class="st"> </span>(a1b<span class="op">*</span>N1<span class="op">*</span>Rb) <span class="op">-</span><span class="st"> </span>(a2b<span class="op">*</span>N2<span class="op">*</span>Rb)</span>
+<span id="cb88-8"><a href="week-14---resource-competition.html#cb88-8"></a>    <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(dN1_dt, dN2_dt, dRa_dt, dRb_dt)))</span>
+<span id="cb88-9"><a href="week-14---resource-competition.html#cb88-9"></a>  })</span>
+<span id="cb88-10"><a href="week-14---resource-competition.html#cb88-10"></a>}</span>
+<span id="cb88-11"><a href="week-14---resource-competition.html#cb88-11"></a></span>
+<span id="cb88-12"><a href="week-14---resource-competition.html#cb88-12"></a><span class="co">### Model parameters</span></span>
+<span id="cb88-13"><a href="week-14---resource-competition.html#cb88-13"></a>times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="dv">2000</span>, <span class="dt">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb88-14"><a href="week-14---resource-competition.html#cb88-14"></a>state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">N1 =</span> <span class="fl">0.05</span>, <span class="dt">N2 =</span> <span class="fl">0.05</span>, <span class="dt">Ra =</span> <span class="fl">0.3</span>, <span class="dt">Rb =</span> <span class="fl">0.3</span>)</span>
+<span id="cb88-15"><a href="week-14---resource-competition.html#cb88-15"></a>parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">a1a =</span> <span class="fl">0.4</span>, <span class="dt">a1b =</span> <span class="fl">0.8</span>, <span class="dt">a2a =</span> <span class="fl">0.6</span>, <span class="dt">a2b =</span> <span class="fl">0.5</span>, <span class="dt">e1 =</span> <span class="dv">1</span>, <span class="dt">e2 =</span> <span class="dv">1</span>, <span class="dt">d =</span> <span class="fl">0.1</span>, <span class="dt">Sa =</span> <span class="fl">0.3</span>, <span class="dt">Sb =</span> <span class="fl">0.3</span>)  <span class="co"># Ra/Rb and S0a/S0b should be the same in the chemostat</span></span>
+<span id="cb88-16"><a href="week-14---resource-competition.html#cb88-16"></a></span>
+<span id="cb88-17"><a href="week-14---resource-competition.html#cb88-17"></a><span class="co">### Model application</span></span>
+<span id="cb88-18"><a href="week-14---resource-competition.html#cb88-18"></a>pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> CR_model_2C_2R, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb88-19"><a href="week-14---resource-competition.html#cb88-19"></a></span>
+<span id="cb88-20"><a href="week-14---resource-competition.html#cb88-20"></a></span>
+<span id="cb88-21"><a href="week-14---resource-competition.html#cb88-21"></a><span class="co">### Visualize the population dynamics</span></span>
+<span id="cb88-22"><a href="week-14---resource-competition.html#cb88-22"></a>pop_size <span class="op">%&gt;%</span></span>
+<span id="cb88-23"><a href="week-14---resource-competition.html#cb88-23"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></span>
+<span id="cb88-24"><a href="week-14---resource-competition.html#cb88-24"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Species&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;N&quot;</span>, N1<span class="op">:</span>Rb) <span class="op">%&gt;%</span></span>
+<span id="cb88-25"><a href="week-14---resource-competition.html#cb88-25"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">trophic =</span> <span class="kw">case_when</span>(Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;N1&quot;</span>, <span class="st">&quot;N2&quot;</span>) <span class="op">~</span><span class="st"> &quot;Consumer&quot;</span>,</span>
+<span id="cb88-26"><a href="week-14---resource-competition.html#cb88-26"></a>                             <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Resource&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb88-27"><a href="week-14---resource-competition.html#cb88-27"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> N, <span class="dt">color =</span> Species)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb88-28"><a href="week-14---resource-competition.html#cb88-28"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span></span>
+<span id="cb88-29"><a href="week-14---resource-competition.html#cb88-29"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>trophic, </span>
+<span id="cb88-30"><a href="week-14---resource-competition.html#cb88-30"></a>             <span class="dt">ncol =</span> <span class="dv">2</span>, </span>
+<span id="cb88-31"><a href="week-14---resource-competition.html#cb88-31"></a>             <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>,</span>
+<span id="cb88-32"><a href="week-14---resource-competition.html#cb88-32"></a>             <span class="dt">strip.position =</span> <span class="st">&quot;left&quot;</span>) <span class="op">+</span></span>
+<span id="cb88-33"><a href="week-14---resource-competition.html#cb88-33"></a><span class="st">  </span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">14</span>) <span class="op">+</span></span>
+<span id="cb88-34"><a href="week-14---resource-competition.html#cb88-34"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.background =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb88-35"><a href="week-14---resource-competition.html#cb88-35"></a>        <span class="dt">strip.placement =</span> <span class="st">&quot;outside&quot;</span>,</span>
+<span id="cb88-36"><a href="week-14---resource-competition.html#cb88-36"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb88-37"><a href="week-14---resource-competition.html#cb88-37"></a>        <span class="dt">legend.title =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb88-38"><a href="week-14---resource-competition.html#cb88-38"></a>        <span class="dt">plot.margin =</span> <span class="kw">margin</span>(<span class="dt">r =</span> <span class="dv">8</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb88-39"><a href="week-14---resource-competition.html#cb88-39"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Time&quot;</span>, <span class="dt">y =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb88-40"><a href="week-14---resource-competition.html#cb88-40"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2050</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb88-41"><a href="week-14---resource-competition.html#cb88-41"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="ot">NA</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb88-42"><a href="week-14---resource-competition.html#cb88-42"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="ot">NULL</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-43-1.png" width="90%" style="display: block; margin: auto;" />
+<br></p>
+<p>The phase diagram also illustrates stable coexistence of the two consumers:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="week-14---resource-competition.html#cb89-1"></a><span class="co">### Parameters</span></span>
+<span id="cb89-2"><a href="week-14---resource-competition.html#cb89-2"></a>a1a &lt;-<span class="st"> </span><span class="fl">0.4</span></span>
+<span id="cb89-3"><a href="week-14---resource-competition.html#cb89-3"></a>a1b &lt;-<span class="st"> </span><span class="fl">0.8</span></span>
+<span id="cb89-4"><a href="week-14---resource-competition.html#cb89-4"></a>a2a &lt;-<span class="st"> </span><span class="fl">0.6</span></span>
+<span id="cb89-5"><a href="week-14---resource-competition.html#cb89-5"></a>a2b &lt;-<span class="st"> </span><span class="fl">0.5</span></span>
+<span id="cb89-6"><a href="week-14---resource-competition.html#cb89-6"></a>e1 &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb89-7"><a href="week-14---resource-competition.html#cb89-7"></a>e2 &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb89-8"><a href="week-14---resource-competition.html#cb89-8"></a>d &lt;-<span class="st"> </span><span class="fl">0.1</span></span>
+<span id="cb89-9"><a href="week-14---resource-competition.html#cb89-9"></a></span>
+<span id="cb89-10"><a href="week-14---resource-competition.html#cb89-10"></a><span class="co">### Slopes and intercepts of the ZNGI&#39;s</span></span>
+<span id="cb89-11"><a href="week-14---resource-competition.html#cb89-11"></a>ZNGI_slope_N1 &lt;-<span class="st"> </span><span class="op">-</span>a1a<span class="op">/</span>a1b</span>
+<span id="cb89-12"><a href="week-14---resource-competition.html#cb89-12"></a>ZNGI_intercept_N1 &lt;-<span class="st"> </span>d<span class="op">/</span>(e1<span class="op">*</span>a1b)  </span>
+<span id="cb89-13"><a href="week-14---resource-competition.html#cb89-13"></a>ZNGI_slope_N2 &lt;-<span class="st"> </span><span class="op">-</span>a2a<span class="op">/</span>a2b</span>
+<span id="cb89-14"><a href="week-14---resource-competition.html#cb89-14"></a>ZNGI_intercept_N2 &lt;-<span class="st"> </span>d<span class="op">/</span>(e2<span class="op">*</span>a2b)</span>
+<span id="cb89-15"><a href="week-14---resource-competition.html#cb89-15"></a></span>
+<span id="cb89-16"><a href="week-14---resource-competition.html#cb89-16"></a><span class="co">### Consumption vectors</span></span>
+<span id="cb89-17"><a href="week-14---resource-competition.html#cb89-17"></a>eqilibrium_Ra &lt;-<span class="st"> </span>(d<span class="op">/</span>e1)<span class="op">*</span>((a1b<span class="op">-</span>a2b)<span class="op">/</span>(a2a<span class="op">*</span>a1b<span class="op">-</span>a2b<span class="op">*</span>a1a))</span>
+<span id="cb89-18"><a href="week-14---resource-competition.html#cb89-18"></a>eqilibrium_Rb &lt;-<span class="st"> </span>(d<span class="op">/</span>e2)<span class="op">*</span>((a1a<span class="op">-</span>a2a)<span class="op">/</span>(a2b<span class="op">*</span>a1a<span class="op">-</span>a2a<span class="op">*</span>a1b))</span>
+<span id="cb89-19"><a href="week-14---resource-competition.html#cb89-19"></a></span>
+<span id="cb89-20"><a href="week-14---resource-competition.html#cb89-20"></a>convec_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(eqilibrium_Ra <span class="op">+</span><span class="st"> </span><span class="dv">6</span><span class="op">*</span>a1a<span class="op">*</span>eqilibrium_Ra, </span>
+<span id="cb89-21"><a href="week-14---resource-competition.html#cb89-21"></a>                              eqilibrium_Ra <span class="op">+</span><span class="st"> </span><span class="dv">6</span><span class="op">*</span>a2a<span class="op">*</span>eqilibrium_Ra),</span>
+<span id="cb89-22"><a href="week-14---resource-competition.html#cb89-22"></a>                        <span class="dt">y =</span> <span class="kw">c</span>(eqilibrium_Rb <span class="op">+</span><span class="st"> </span><span class="dv">6</span><span class="op">*</span>a1b<span class="op">*</span>eqilibrium_Rb, </span>
+<span id="cb89-23"><a href="week-14---resource-competition.html#cb89-23"></a>                              eqilibrium_Rb <span class="op">+</span><span class="st"> </span><span class="dv">6</span><span class="op">*</span>a2b<span class="op">*</span>eqilibrium_Rb),</span>
+<span id="cb89-24"><a href="week-14---resource-competition.html#cb89-24"></a>                        <span class="dt">xend =</span> <span class="kw">c</span>(eqilibrium_Ra <span class="op">-</span><span class="st"> </span>a1a<span class="op">*</span>eqilibrium_Ra, </span>
+<span id="cb89-25"><a href="week-14---resource-competition.html#cb89-25"></a>                              eqilibrium_Ra <span class="op">-</span><span class="st"> </span>a2a<span class="op">*</span>eqilibrium_Ra),</span>
+<span id="cb89-26"><a href="week-14---resource-competition.html#cb89-26"></a>                        <span class="dt">yend =</span> <span class="kw">c</span>(eqilibrium_Rb <span class="op">-</span><span class="st"> </span>a1b<span class="op">*</span>eqilibrium_Rb, </span>
+<span id="cb89-27"><a href="week-14---resource-competition.html#cb89-27"></a>                              eqilibrium_Rb <span class="op">-</span><span class="st"> </span>a2b<span class="op">*</span>eqilibrium_Rb),</span>
+<span id="cb89-28"><a href="week-14---resource-competition.html#cb89-28"></a>                        <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;N1&quot;</span>, <span class="st">&quot;N2&quot;</span>))</span>
+<span id="cb89-29"><a href="week-14---resource-competition.html#cb89-29"></a></span>
+<span id="cb89-30"><a href="week-14---resource-competition.html#cb89-30"></a><span class="co">### Phase diagram</span></span>
+<span id="cb89-31"><a href="week-14---resource-competition.html#cb89-31"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb89-32"><a href="week-14---resource-competition.html#cb89-32"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> ZNGI_slope_N1, <span class="dt">intercept =</span> ZNGI_intercept_N1, <span class="dt">color =</span> <span class="st">&quot;#377EB8&quot;</span>, <span class="dt">size =</span> <span class="fl">1.2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb89-33"><a href="week-14---resource-competition.html#cb89-33"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> ZNGI_slope_N2, <span class="dt">intercept =</span> ZNGI_intercept_N2, <span class="dt">color =</span> <span class="st">&quot;#E41A1C&quot;</span>, <span class="dt">size =</span> <span class="fl">1.2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb89-34"><a href="week-14---resource-competition.html#cb89-34"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data =</span> convec_df, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">xend =</span> xend, <span class="dt">yend =</span> yend, <span class="dt">color =</span> species), <span class="dt">linetype =</span> <span class="st">&quot;blank&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb89-35"><a href="week-14---resource-competition.html#cb89-35"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data =</span> convec_df, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">xend =</span> xend, <span class="dt">yend =</span> yend, <span class="dt">color =</span> species), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">type =</span> <span class="st">&quot;closed&quot;</span>, <span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;inches&quot;</span>)), <span class="dt">show.legend =</span> F) <span class="op">+</span></span>
+<span id="cb89-36"><a href="week-14---resource-competition.html#cb89-36"></a><span class="st">  </span><span class="kw">geom_path</span>(<span class="dt">data =</span> <span class="kw">as.data.frame</span>(pop_size), <span class="kw">aes</span>(<span class="dt">x =</span> Ra, <span class="dt">y =</span> Rb), <span class="dt">size =</span> <span class="fl">1.2</span>) <span class="op">+</span></span>
+<span id="cb89-37"><a href="week-14---resource-competition.html#cb89-37"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> <span class="kw">as.data.frame</span>(pop_size), <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">last</span>(Ra), <span class="dt">y =</span> <span class="kw">last</span>(Rb)), <span class="dt">size =</span> <span class="fl">2.5</span>) <span class="op">+</span></span>
+<span id="cb89-38"><a href="week-14---resource-competition.html#cb89-38"></a><span class="st">  </span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">14</span>) <span class="op">+</span></span>
+<span id="cb89-39"><a href="week-14---resource-competition.html#cb89-39"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="kw">expression</span>(<span class="kw">italic</span>(R[a])), <span class="dt">y =</span> <span class="kw">expression</span>(<span class="kw">italic</span>(R[b]))) <span class="op">+</span></span>
+<span id="cb89-40"><a href="week-14---resource-competition.html#cb89-40"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb89-41"><a href="week-14---resource-competition.html#cb89-41"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb89-42"><a href="week-14---resource-competition.html#cb89-42"></a><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">name =</span> <span class="ot">NULL</span>, <span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>, <span class="dt">direction =</span> <span class="dv">-1</span>,</span>
+<span id="cb89-43"><a href="week-14---resource-competition.html#cb89-43"></a>                     <span class="dt">guide =</span> <span class="kw">guide_legend</span>(<span class="dt">override.aes =</span> <span class="kw">list</span>(</span>
+<span id="cb89-44"><a href="week-14---resource-competition.html#cb89-44"></a>                       <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>, <span class="dt">size =</span> <span class="fl">1.2</span>))) <span class="op">+</span></span>
+<span id="cb89-45"><a href="week-14---resource-competition.html#cb89-45"></a><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-44-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>In this particular case, if the initial resource levels <span class="math inline">\(R_{a(0)}\)</span> and <span class="math inline">\(R_{b(0)}\)</span> fall within the upper area bounded by the two consumption vectors, then the two species will coexist.</p>
+<p><br></p>
+<p><strong>Part 3 - Relative nonlinearity</strong></p>
+<p>We have seen in Part 1. that two species cannot coexist on one resource if the consumers consume it in a linear fashion. What if the consumers consume the resource in a non-linear fashion? Could that generate stable coexistence?</p>
+<p>In this part of the lab section, we will introduce non-linear (type II) functional response into the consumer-resource model in Part 1. for one of the consumers. We also change the resource equation to logistic growth and allow the two consumers to have different conversion efficiencies and mortality rates:
+<span class="math display">\[\begin{align*}
+\frac {dN_{1}}{dt} &amp;= e_{1}a_{1}RN_{1}-d_{1}N_{1}\\
+\frac {dN_{2}}{dt} &amp;= e_{2}\frac{a_{2}R}{k_{2}+R}N_{2}-d_{2}N_{2}\\
+\frac {dR}{dt} &amp;= rR(1-\frac{R}{K})-a_{1}RN_{1}-\frac{a_{2}R}{k_{2}+R}N_{2}\\
+\end{align*}\]</span></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="week-14---resource-competition.html#cb90-1"></a><span class="co">### Model specification</span></span>
+<span id="cb90-2"><a href="week-14---resource-competition.html#cb90-2"></a>CR_model_nonlinear &lt;-<span class="st"> </span><span class="cf">function</span>(times, state, parms){</span>
+<span id="cb90-3"><a href="week-14---resource-competition.html#cb90-3"></a>  <span class="kw">with</span>(<span class="kw">as.list</span>(<span class="kw">c</span>(state, parms)), {</span>
+<span id="cb90-4"><a href="week-14---resource-competition.html#cb90-4"></a>         dN1_dt =<span class="st"> </span>e1<span class="op">*</span>a1<span class="op">*</span>R<span class="op">*</span>N1 <span class="op">-</span><span class="st"> </span>d1<span class="op">*</span>N1</span>
+<span id="cb90-5"><a href="week-14---resource-competition.html#cb90-5"></a>         dN2_dt =<span class="st"> </span>e2<span class="op">*</span>(a2<span class="op">*</span>R<span class="op">/</span>(k2<span class="op">+</span>R))<span class="op">*</span>N2 <span class="op">-</span><span class="st"> </span>d2<span class="op">*</span>N2</span>
+<span id="cb90-6"><a href="week-14---resource-competition.html#cb90-6"></a>         dR_dt =<span class="st">  </span>r<span class="op">*</span>R<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>(R<span class="op">/</span>K)) <span class="op">-</span><span class="st"> </span>a1<span class="op">*</span>R<span class="op">*</span>N1 <span class="op">-</span><span class="st"> </span>((a2<span class="op">*</span>R)<span class="op">/</span>(k2<span class="op">+</span>R))<span class="op">*</span>N2</span>
+<span id="cb90-7"><a href="week-14---resource-competition.html#cb90-7"></a>         <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(dN1_dt, dN2_dt, dR_dt)))</span>
+<span id="cb90-8"><a href="week-14---resource-competition.html#cb90-8"></a>       })</span>
+<span id="cb90-9"><a href="week-14---resource-competition.html#cb90-9"></a>}</span>
+<span id="cb90-10"><a href="week-14---resource-competition.html#cb90-10"></a></span>
+<span id="cb90-11"><a href="week-14---resource-competition.html#cb90-11"></a><span class="co">### Model parameters</span></span>
+<span id="cb90-12"><a href="week-14---resource-competition.html#cb90-12"></a>times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">5000</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)  </span>
+<span id="cb90-13"><a href="week-14---resource-competition.html#cb90-13"></a>state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">N1 =</span> <span class="fl">0.3</span>, <span class="dt">N2 =</span> <span class="dv">19</span>, <span class="dt">R =</span> <span class="dv">106</span>) </span>
+<span id="cb90-14"><a href="week-14---resource-competition.html#cb90-14"></a>parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">a1 =</span> <span class="fl">0.003</span>, <span class="dt">a2 =</span> <span class="fl">0.5</span>, <span class="dt">k2 =</span> <span class="dv">50</span>, <span class="dt">e1 =</span> <span class="fl">0.33</span>, <span class="dt">e2 =</span> <span class="fl">0.3</span>, <span class="dt">d1 =</span> <span class="fl">0.11</span>, <span class="dt">d2 =</span> <span class="fl">0.1</span>, <span class="dt">r =</span> <span class="fl">0.1</span>, <span class="dt">K =</span> <span class="dv">300</span>)</span>
+<span id="cb90-15"><a href="week-14---resource-competition.html#cb90-15"></a></span>
+<span id="cb90-16"><a href="week-14---resource-competition.html#cb90-16"></a><span class="co">### Model application</span></span>
+<span id="cb90-17"><a href="week-14---resource-competition.html#cb90-17"></a>pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> CR_model_nonlinear, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb90-18"><a href="week-14---resource-competition.html#cb90-18"></a></span>
+<span id="cb90-19"><a href="week-14---resource-competition.html#cb90-19"></a><span class="co">### Visualize the population dynamics</span></span>
+<span id="cb90-20"><a href="week-14---resource-competition.html#cb90-20"></a>pop_size <span class="op">%&gt;%</span></span>
+<span id="cb90-21"><a href="week-14---resource-competition.html#cb90-21"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></span>
+<span id="cb90-22"><a href="week-14---resource-competition.html#cb90-22"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Species&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;N&quot;</span>, N1<span class="op">:</span>R) <span class="op">%&gt;%</span></span>
+<span id="cb90-23"><a href="week-14---resource-competition.html#cb90-23"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">trophic =</span> <span class="kw">case_when</span>(Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;N1&quot;</span>, <span class="st">&quot;N2&quot;</span>) <span class="op">~</span><span class="st"> &quot;Consumer&quot;</span>,</span>
+<span id="cb90-24"><a href="week-14---resource-competition.html#cb90-24"></a>                             <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Resource&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb90-25"><a href="week-14---resource-competition.html#cb90-25"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> N, <span class="dt">color =</span> Species)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb90-26"><a href="week-14---resource-competition.html#cb90-26"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb90-27"><a href="week-14---resource-competition.html#cb90-27"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>trophic, </span>
+<span id="cb90-28"><a href="week-14---resource-competition.html#cb90-28"></a>             <span class="dt">ncol =</span> <span class="dv">2</span>, </span>
+<span id="cb90-29"><a href="week-14---resource-competition.html#cb90-29"></a>             <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>,</span>
+<span id="cb90-30"><a href="week-14---resource-competition.html#cb90-30"></a>             <span class="dt">strip.position =</span> <span class="st">&quot;left&quot;</span>) <span class="op">+</span></span>
+<span id="cb90-31"><a href="week-14---resource-competition.html#cb90-31"></a><span class="st">  </span><span class="kw">theme_classic</span>(<span class="dt">base_size =</span> <span class="dv">14</span>) <span class="op">+</span></span>
+<span id="cb90-32"><a href="week-14---resource-competition.html#cb90-32"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.background =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb90-33"><a href="week-14---resource-competition.html#cb90-33"></a>        <span class="dt">strip.placement =</span> <span class="st">&quot;outside&quot;</span>,</span>
+<span id="cb90-34"><a href="week-14---resource-competition.html#cb90-34"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb90-35"><a href="week-14---resource-competition.html#cb90-35"></a>        <span class="dt">legend.title =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb90-36"><a href="week-14---resource-competition.html#cb90-36"></a>        <span class="dt">plot.margin =</span> <span class="kw">margin</span>(<span class="dt">r =</span> <span class="dv">5</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb90-37"><a href="week-14---resource-competition.html#cb90-37"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Time&quot;</span>, <span class="dt">y =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb90-38"><a href="week-14---resource-competition.html#cb90-38"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">name =</span> <span class="ot">NULL</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-45-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>As shown in the figure, the two consumers coexist in a fluctuating manner. In fact, the fluctuating properties generated by the combination of logistically growing resources and different nonlinear functions are critical for the coexistence of <span class="math inline">\(n\)</span> species on <span class="math inline">\(k&lt;n\)</span> resources in certain parameter spaces.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-13---parameter-space-for-apparent-competition-model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ChingLinHuang/2022_Fall_TheoEcol/14_Week_14.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

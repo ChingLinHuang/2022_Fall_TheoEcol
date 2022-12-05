@@ -147,7 +147,7 @@ Chain <- function(times, state, parms) {
 
 
 #### Set up simulation parameter
-times <- seq(0, 1000, by = 1)
+times <- seq(0, 1000, by = 5)
 state <- c(R = 1.0, H = 1.0, C = 1.0)
 parms <- c(r = 10.0, a = 0.5, e = 0.5, d = 1.0, K = 0.1)
 
@@ -166,7 +166,7 @@ for(i in 1:length(K.vec)){
 }
 
 
-#### Visualize the bifurcation
+#### Visualize the bifurcation -- ggplot
 Result %>%
   as.data.frame() %>%
   gather(key = "Species", value = "Density", -Productivity) %>%
@@ -174,15 +174,26 @@ Result %>%
   geom_line() +
   geom_vline(xintercept = parms[4] / (parms[2] * parms[3]),
              linetype = 5) +
-  geom_vline(xintercept = (parms[4] / (parms[2] * parms[3])) * (1 / (1 - ( parms[4] / (parms[1] * parms[3])))),
+  geom_vline(xintercept = (parms[4] / (parms[2] * parms[3])) *
+               (1 / (1 - ( parms[4] / (parms[1] * parms[3])))),
              linetype = 5) +
   scale_fill_brewer(palette = "Set1") +
   theme_bw(base_size = 14) +
   theme(panel.grid = element_blank()) +
   coord_fixed(ratio = 1)
 
-
-
+#### Visualize the bifurcation -- base R
+windows()
+plot(Resource ~ Productivity, data = Result, type = "n", ann = F)
+lines(Resource ~ Productivity, data = Result, col = "blue")
+lines(Herbivore ~ Productivity, data = Result, col = "green")
+lines(Carnivore ~ Productivity, data = Result, col = "red")
+title(xlab = "Productivity", ylab = "Density")
+legend("topleft", legend = c("Resource", "Herbivores", "Carnivores"),
+       col = c("blue", "green", "red"), lty = 1)
+abline(v = parms[4] / (parms[2] * parms[3]), lty = 2)
+abline(v = (parms[4] / (parms[2] * parms[3])) *
+         (1 / (1 - ( parms[4] / (parms[1] * parms[3])))), lty = 2)
 
 
 
