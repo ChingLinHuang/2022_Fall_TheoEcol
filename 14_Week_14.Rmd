@@ -112,7 +112,7 @@ CR_model_2C_2R <- function(time, state, parms){
 ### Model parameters
 times <- seq(0.1, 2000, by = 0.01)
 state <- c(N1 = 0.05, N2 = 0.05, Ra = 0.3, Rb = 0.3)
-parms <- c(a1a = 0.4, a1b = 0.8, a2a = 0.6, a2b = 0.5, e1 = 1, e2 = 1, d = 0.1, Sa = 0.3, Sb = 0.3)  # Ra/Rb and S0a/S0b should be the same in the chemostat
+parms <- c(a1a = 0.4, a1b = 0.8, a2a = 0.6, a2b = 0.5, e1 = 1, e2 = 1, d = 0.1, Sa = 0.3, Sb = 0.3)  
 
 ### Model application
 pop_size <- ode(func = CR_model_2C_2R, times = times, y = state, parms = parms)
