@@ -1,0 +1,69 @@
+# install.packages("deSolve")
+library(deSolve)
+
+### (1) Model specification ----
+# if(){}
+mimicry <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    Pm = Pc^(1/k)
+     dP_dt = P * (((S * (x * n * Vn + C * Pc * Vc + (1 - sigma) * m * Pm * Vm)) / (1 + S * (x * n * Hn + C * Pc * Hc + m * Pm * (sigma * Hms + (1 - sigma) * Hme)))) - Up - f * P) # Predator
+    dC_dt = rc * C * ((Kc - C - ALcm * m) / Km) - (S * P * C * Pc) / (1 + S * (x * n * Hn + C * Pc * Hc + m * Pm * (sigma * Hms + (1 - sigma) * Hme))) # ALcm = alpha_cm, mimic
+    dM_dt = rm * m * ((Km - m - ALmc * C) / Kc) - (1 - sigma) * (S * P * m * Pm) / (1 + S * (x * n * Hn + C * Pc * Hc + m * Pm * (sigma * Hms + (1 - sigma) * Hme))) # ALmc = alpha_mc, model
+    dN_dt = (D * (n0 - n)) - (S * P * x * n) / (1 + S * (x * n * Hn + C * Pc * Hc + m * Pm * (sigma * Hms + (1 - sigma) * Hme))) # Alternative prey
+    dPc_dt = 0
+    dx_dt = 0L
+    return(list(c(dP_dt, dC_dt, dM_dt, dN_dt, dPc_dt, dx_dt)))  # return the results  
+  })
+}
+
+eventfun_pop <- function(times, state, parms){
+  with (as.list(c(state, parms)),{
+    Pc <- rep(seq(0, 1, 0.01))
+    Pm <- Pc^(1/k)
+    Va <- rep(NA, length(Pc))
+    probability0 <- cbind(Pc, Pm, Va)
+    probability1 <- cbind(Pc, Pm, Va)
+    probability0[,3] <- (S * (C * probability0[,1] * Vc + (1 - sigma) * m * probability0[,2] * Vm)) / (1 + S * (C * probability0[,1] * Hc + m * probability0[,2] * (sigma * Hms +(1 - sigma) * Hme))) 
+    probability1[,3] <- (S * (1 * n *Vn + C * probability1[,1] * Vc + (1 - sigma) * m * probability1[,2] * Vm)) / (1 + S *(1 * n * Hn + C * probability1[,1] * Hc + m * probability1[,2] * (sigma * Hms + (1 - sigma) * Hme)))
+    a <- which(probability0[,3] == max(probability0[,3]), arr.ind = TRUE)
+    b <- which(probability1[,3] == max(probability1[,3]), arr.ind = TRUE)
+    P = P
+    C = C
+    m = m
+    n = n
+    Pc = ifelse(probability0[a,3] > probability1[b,3], probability0[a,1], probability1[b,1])
+    x = ifelse(probability0[a,3] > probability1[b,3], 0L, 1L)
+    return(as.numeric(c(P, C, m, n, Pc, x)))
+  }) 
+  }
+
+# use max to find maximum p()
+### (2) Model application ----
+times <- seq(0, 100, by = 0.01)  # time steps to integrate over
+state <- c(P = 20, C = 100, m = 200, n = 200, Pc = 0.5, x = 0)  # initial population size
+parms <- c(n0 = 4, S = 1, Vn = 0.7, Vc = 1, sigma = 0, Vm = 0, Hc = 1, Hn = 0.84, Hme = 0.2, Hms = 0, Up = 0.2, f = 0, rc = 0.2, rm = 0.2, Kc = 1000, Km = 1000, ALcm = 0.1, ALmc = 0.1, D = 1, k = 0.75)  
+#growth rate # function of time or function of state var
+
+# run the ode solver
+pop_size <- ode(func = mimicry, times = times, y = state, parms = parms, events = list(func = eventfun_pop, times = times), method = "lsoda")
+unique(pop_size[, 7])
+View(pop_size)
+plot(x ~ times, pop_size, type = "l")
+
+
+#PJK test
+parms.2 <- c(n0 = 4, S = 1, x = 1, Vn = 0.7, Vc = 1, sigma = 0, Vm = 0, Hc = 1, Hn = 0.84, Hme = 0.2, Hms = 0, Up = 0.2, f = 0, rc = 0.2, rm = 0.2, Kc = 1000, Km = 1000, ALcm = 0.1, ALmc = 0.1, D = 1, k = 0.75)  
+pop_size <- ode(func = mimicry, times = times, y = state, parms = parms.2, events = list(func = eventfun_pop, times = times), method = "rk4")
+View(pop_size)
+
+
+# take a look at the results
+par(mfrow = c(3, 2))
+plot(Pc ~ times, pop_size, type = "l")
+plot(C ~ times, pop_size, type = "l")
+plot(m ~ times, pop_size, type = "l")
+plot(n ~ times, pop_size, type = "l")
+plot(Pc^(1/parms[21]) ~ times, pop_size, type = "l")
+plot(P ~ times, pop_size, type = "l")
+
+plot(x ~ time, pop_size, type = "l")
