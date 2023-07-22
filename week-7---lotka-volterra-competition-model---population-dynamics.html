@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Week 7 - Lotka-Volterra competition model - Population dynamics | Introduction to Theoretical Ecology</title>
+  <meta name="description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Week 7 - Lotka-Volterra competition model - Population dynamics | Introduction to Theoretical Ecology" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://ChingLinHuang.github.io/2022_Fall_TheoEcol/bifurcation.gif" />
+  <meta property="og:description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
+  <meta name="github-repo" content="ChingLinHuang/2022_Fall_TheoEcol" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Week 7 - Lotka-Volterra competition model - Population dynamics | Introduction to Theoretical Ecology" />
+  
+  <meta name="twitter:description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
+  <meta name="twitter:image" content="https://ChingLinHuang.github.io/2022_Fall_TheoEcol/bifurcation.gif" />
+
+<meta name="author" content="Instructor: Po-Ju Ke ~~~~~ Teaching Assistant: Ching-Lin Huang (Andy)" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-6---metapopulations-and-patch-occupancy-models.html"/>
+<link rel="next" href="week-8---midterm.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to Theoretical Ecology</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Course information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a></li>
+<li class="chapter" data-level="" data-path="week-2---exponential-population-growth.html"><a href="week-2---exponential-population-growth.html"><i class="fa fa-check"></i>Week 2 - Exponential population growth</a></li>
+<li class="chapter" data-level="" data-path="week-3---logistic-population-growth-and-stability-analysis.html"><a href="week-3---logistic-population-growth-and-stability-analysis.html"><i class="fa fa-check"></i>Week 3 - Logistic population growth and stability analysis</a></li>
+<li class="chapter" data-level="" data-path="week-4---discrete-exponential-and-logistic-models.html"><a href="week-4---discrete-exponential-and-logistic-models.html"><i class="fa fa-check"></i>Week 4 - Discrete exponential and logistic models</a></li>
+<li class="chapter" data-level="" data-path="week-5---age-structure-population-model.html"><a href="week-5---age-structure-population-model.html"><i class="fa fa-check"></i>Week 5 - Age-structure population model</a></li>
+<li class="chapter" data-level="" data-path="week-6---metapopulations-and-patch-occupancy-models.html"><a href="week-6---metapopulations-and-patch-occupancy-models.html"><i class="fa fa-check"></i>Week 6 - Metapopulations and patch occupancy models</a></li>
+<li class="chapter" data-level="" data-path="week-7---lotka-volterra-competition-model---population-dynamics.html"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html"><i class="fa fa-check"></i>Week 7 - Lotka-Volterra competition model - Population dynamics</a></li>
+<li class="chapter" data-level="" data-path="week-8---midterm.html"><a href="week-8---midterm.html"><i class="fa fa-check"></i>Week 8 - Midterm</a></li>
+<li class="chapter" data-level="" data-path="week-9---lotka-volterra-competition-model---visualization-of-dynamics-with-complex-eigenvalues.html"><a href="week-9---lotka-volterra-competition-model---visualization-of-dynamics-with-complex-eigenvalues.html"><i class="fa fa-check"></i>Week 9 - Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues</a></li>
+<li class="chapter" data-level="" data-path="week-10---lotka-volterra-model-of-predator-prey-interactions-and-time-scale-separation.html"><a href="week-10---lotka-volterra-model-of-predator-prey-interactions-and-time-scale-separation.html"><i class="fa fa-check"></i>Week 10 - Lotka-Volterra model of predator-prey interactions and time-scale separation</a></li>
+<li class="chapter" data-level="" data-path="week-11---no-class-due-to-ntu-anniversary.html"><a href="week-11---no-class-due-to-ntu-anniversary.html"><i class="fa fa-check"></i>Week 11 - No class due to NTU anniversary</a></li>
+<li class="chapter" data-level="" data-path="week-12---rosenzweig-macarthur-predator-prey-model-and-mays-complexity-stability-relationship.html"><a href="week-12---rosenzweig-macarthur-predator-prey-model-and-mays-complexity-stability-relationship.html"><i class="fa fa-check"></i>Week 12 - Rosenzweig-MacArthur predator-prey model and May’s complexity-stability relationship</a></li>
+<li class="chapter" data-level="" data-path="week-13---parameter-space-for-apparent-competition-model.html"><a href="week-13---parameter-space-for-apparent-competition-model.html"><i class="fa fa-check"></i>Week 13 - Parameter space for apparent competition model</a></li>
+<li class="chapter" data-level="" data-path="week-14---resource-competition.html"><a href="week-14---resource-competition.html"><i class="fa fa-check"></i>Week 14 - Resource competition</a></li>
+<li class="chapter" data-level="" data-path="week-15---research-applications-modern-coexistence-theory-and-plant-soil-feedback.html"><a href="week-15---research-applications-modern-coexistence-theory-and-plant-soil-feedback.html"><i class="fa fa-check"></i>Week 15 - Research applications: modern coexistence theory and plant-soil feedback</a></li>
+<li class="chapter" data-level="" data-path="week-16---final-exam.html"><a href="week-16---final-exam.html"><i class="fa fa-check"></i>Week 16 - Final exam</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Theoretical Ecology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week-7---lotka-volterra-competition-model---population-dynamics" class="section level1 unnumbered hasAnchor">
+<h1>Week 7 - Lotka-Volterra competition model - Population dynamics<a href="week-7---lotka-volterra-competition-model---population-dynamics.html#week-7---lotka-volterra-competition-model---population-dynamics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this lab, we are going to analyze the two-species Lotka-Volterra competition model numerically and visualize the population dynamics under different parameter settings.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb47-2"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb47-3"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-3"></a><span class="kw">library</span>(deSolve)</span>
+<span id="cb47-4"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-4"></a></span>
+<span id="cb47-5"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-5"></a>LV_model &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">r1 =</span> <span class="fl">1.4</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">400</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">300</span>, <span class="dt">N1_0 =</span> <span class="dv">10</span>, <span class="dt">N2_0 =</span> <span class="dv">10</span>) {</span>
+<span id="cb47-6"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-6"></a></span>
+<span id="cb47-7"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-7"></a>  <span class="co">### Model specification</span></span>
+<span id="cb47-8"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-8"></a>  LV &lt;-<span class="st"> </span><span class="cf">function</span>(times, state, parms) {</span>
+<span id="cb47-9"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-9"></a>    <span class="kw">with</span>(<span class="kw">as.list</span>(<span class="kw">c</span>(state, parms)), {</span>
+<span id="cb47-10"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-10"></a>      dN1_dt =<span class="st"> </span>N1 <span class="op">*</span><span class="st"> </span>(r1 <span class="op">-</span><span class="st"> </span>a11<span class="op">*</span>N1 <span class="op">-</span><span class="st"> </span>a12<span class="op">*</span>N2)</span>
+<span id="cb47-11"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-11"></a>      dN2_dt =<span class="st"> </span>N2 <span class="op">*</span><span class="st"> </span>(r2 <span class="op">-</span><span class="st"> </span>a22<span class="op">*</span>N2 <span class="op">-</span><span class="st"> </span>a21<span class="op">*</span>N1)</span>
+<span id="cb47-12"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-12"></a>      <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(dN1_dt, dN2_dt)))</span>
+<span id="cb47-13"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-13"></a>    })</span>
+<span id="cb47-14"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-14"></a>  }</span>
+<span id="cb47-15"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-15"></a></span>
+<span id="cb47-16"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-16"></a>  <span class="co">### Model parameters</span></span>
+<span id="cb47-17"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-17"></a>  times &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb47-18"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-18"></a>  state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">N1 =</span> N1_<span class="dv">0</span>, <span class="dt">N2 =</span> N2_<span class="dv">0</span>)</span>
+<span id="cb47-19"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-19"></a>  parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">r1 =</span> r1, <span class="dt">r2 =</span> r2, <span class="dt">a11 =</span> a11, <span class="dt">a21 =</span> a21, <span class="dt">a22 =</span> a22, <span class="dt">a12 =</span> a12)</span>
+<span id="cb47-20"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-20"></a></span>
+<span id="cb47-21"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-21"></a>  <span class="co">### Model application</span></span>
+<span id="cb47-22"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-22"></a>  pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> LV, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb47-23"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-23"></a></span>
+<span id="cb47-24"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-24"></a>  <span class="co">### Visualize the population dynamics</span></span>
+<span id="cb47-25"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-25"></a>  pop_size <span class="op">%&gt;%</span></span>
+<span id="cb47-26"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-26"></a><span class="st">    </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></span>
+<span id="cb47-27"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-27"></a><span class="st">    </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Species&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;pop_size&quot;</span>, <span class="op">-</span>time) <span class="op">%&gt;%</span></span>
+<span id="cb47-28"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-28"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> pop_size, <span class="dt">color =</span> Species)) <span class="op">+</span></span>
+<span id="cb47-29"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-29"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="fl">1.5</span>)</span>
+<span id="cb47-30"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-30"></a></span>
+<span id="cb47-31"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-31"></a>}</span>
+<span id="cb47-32"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-32"></a></span>
+<span id="cb47-33"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-33"></a>  <span class="co">### Different parameter settings</span></span>
+<span id="cb47-34"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-34"></a>  <span class="co">## N1_0 = 200 and N2_0 = 5</span></span>
+<span id="cb47-35"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb47-35"></a>  <span class="kw">LV_model</span>(<span class="dt">r1 =</span> <span class="fl">1.2</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">N1_0 =</span> <span class="dv">200</span>, <span class="dt">N2_0 =</span> <span class="dv">5</span>)  <span class="co"># N1 wins</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb48-1"></a>  <span class="co">## N1_0 = 5 and N2_0 = 200</span></span>
+<span id="cb48-2"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb48-2"></a>  <span class="kw">LV_model</span>(<span class="dt">r1 =</span> <span class="fl">1.2</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">N1_0 =</span> <span class="dv">10</span>, <span class="dt">N2_0 =</span> <span class="dv">200</span>)  <span class="co"># N1 wins</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb49-1"></a>  <span class="co">## N1_0 = 200 and N2_0 = 5</span></span>
+<span id="cb49-2"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb49-2"></a>  <span class="kw">LV_model</span>(<span class="dt">r1 =</span> <span class="fl">1.2</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">N1_0 =</span> <span class="dv">200</span>, <span class="dt">N2_0 =</span> <span class="dv">5</span>)  <span class="co"># N2 wins</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-3.png" width="672" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb50-1"></a>  <span class="co">## N1_0 = 5 and N2_0 = 200</span></span>
+<span id="cb50-2"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb50-2"></a>  <span class="kw">LV_model</span>(<span class="dt">r1 =</span> <span class="fl">1.2</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">N1_0 =</span> <span class="dv">5</span>, <span class="dt">N2_0 =</span> <span class="dv">200</span>)  <span class="co"># N2 wins</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-4.png" width="672" /></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb51-1"></a>  <span class="co">## N1_0 = 200 and N2_0 = 5</span></span>
+<span id="cb51-2"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb51-2"></a>  <span class="kw">LV_model</span>(<span class="dt">r1 =</span> <span class="fl">1.2</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">300</span>, <span class="dt">N1_0 =</span> <span class="dv">200</span>, <span class="dt">N2_0 =</span> <span class="dv">5</span>)  <span class="co"># stable coexistence</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-5.png" width="672" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb52-1"></a>  <span class="co">## N1_0 = 5 and N2_0 = 200</span></span>
+<span id="cb52-2"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb52-2"></a>  <span class="kw">LV_model</span>(<span class="dt">r1 =</span> <span class="fl">1.2</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">300</span>, <span class="dt">N1_0 =</span> <span class="dv">5</span>, <span class="dt">N2_0 =</span> <span class="dv">200</span>)  <span class="co"># stable coexistence</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-6.png" width="672" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb53-1"></a>  <span class="co">## N1_0 = 200 and N2_0 = 150</span></span>
+<span id="cb53-2"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb53-2"></a>  <span class="kw">LV_model</span>(<span class="dt">r1 =</span> <span class="fl">1.2</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">N1_0 =</span> <span class="dv">200</span>, <span class="dt">N2_0 =</span> <span class="dv">150</span>)  <span class="co"># priority effect (N1 wins)</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-7.png" width="672" /></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb54-1"></a>  <span class="co">## N1_0 = 150 and N2_0 = 200</span></span>
+<span id="cb54-2"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb54-2"></a>  <span class="kw">LV_model</span>(<span class="dt">r1 =</span> <span class="fl">1.2</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">N1_0 =</span> <span class="dv">150</span>, <span class="dt">N2_0 =</span> <span class="dv">200</span>)  <span class="co"># priority effect (N2 wins)</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-8.png" width="672" /></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-1"></a><span class="co">#### phase diagram</span></span>
+<span id="cb55-2"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-2"></a>phase_plane &lt;-<span class="st"> </span><span class="cf">function</span>(r1, r2, a11, a21, a22, a12, title, t){</span>
+<span id="cb55-3"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-3"></a>    <span class="co">### Vectors</span></span>
+<span id="cb55-4"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-4"></a>  LV &lt;-<span class="st"> </span><span class="cf">function</span>(times, state, parms) {</span>
+<span id="cb55-5"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-5"></a>    <span class="kw">with</span>(<span class="kw">as.list</span>(<span class="kw">c</span>(state, parms)), {</span>
+<span id="cb55-6"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-6"></a>      dN1_dt =<span class="st"> </span>N1 <span class="op">*</span><span class="st"> </span>(r1 <span class="op">-</span><span class="st"> </span>a11<span class="op">*</span>N1 <span class="op">-</span><span class="st"> </span>a12<span class="op">*</span>N2)</span>
+<span id="cb55-7"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-7"></a>      dN2_dt =<span class="st"> </span>N2 <span class="op">*</span><span class="st"> </span>(r2 <span class="op">-</span><span class="st"> </span>a22<span class="op">*</span>N2 <span class="op">-</span><span class="st"> </span>a21<span class="op">*</span>N1)</span>
+<span id="cb55-8"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-8"></a>      <span class="kw">return</span>(<span class="kw">list</span>(<span class="kw">c</span>(dN1_dt, dN2_dt)))</span>
+<span id="cb55-9"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-9"></a>    })</span>
+<span id="cb55-10"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-10"></a>  }</span>
+<span id="cb55-11"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-11"></a></span>
+<span id="cb55-12"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-12"></a>  times &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, t)</span>
+<span id="cb55-13"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-13"></a>  parms &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">r1 =</span> r1, <span class="dt">r2 =</span> r2, <span class="dt">a11 =</span> a11, <span class="dt">a21 =</span> a21, <span class="dt">a22 =</span> a22, <span class="dt">a12 =</span> a12)</span>
+<span id="cb55-14"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-14"></a></span>
+<span id="cb55-15"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-15"></a>  x_inter&lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">c</span>(r1<span class="op">/</span>a11, r2<span class="op">/</span>a21))</span>
+<span id="cb55-16"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-16"></a>  y_inter &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">c</span>(r2<span class="op">/</span>a22, r1<span class="op">/</span>a12))</span>
+<span id="cb55-17"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-17"></a></span>
+<span id="cb55-18"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-18"></a>  <span class="co"># create position of arrows</span></span>
+<span id="cb55-19"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-19"></a>  vector_grid &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="kw">seq</span>(<span class="dv">5</span>, x_inter, <span class="dt">length.out =</span> <span class="dv">10</span>),</span>
+<span id="cb55-20"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-20"></a>                             <span class="kw">seq</span>(<span class="dv">5</span>, y_inter, <span class="dt">length.out =</span> <span class="dv">10</span>))</span>
+<span id="cb55-21"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-21"></a></span>
+<span id="cb55-22"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-22"></a>  vector_data &lt;-<span class="st"> </span>vector_grid <span class="op">%&gt;%</span></span>
+<span id="cb55-23"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-23"></a><span class="st">    </span><span class="kw">pmap</span>(., <span class="cf">function</span>(Var1, Var2){</span>
+<span id="cb55-24"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-24"></a>      state &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">N1 =</span> Var1, <span class="dt">N2 =</span> Var2)</span>
+<span id="cb55-25"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-25"></a>      pop_size &lt;-<span class="st"> </span><span class="kw">ode</span>(<span class="dt">func =</span> LV, <span class="dt">times =</span> times, <span class="dt">y =</span> state, <span class="dt">parms =</span> parms)</span>
+<span id="cb55-26"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-26"></a>      pop_size[<span class="dv">2</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</span>
+<span id="cb55-27"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-27"></a>    }) <span class="op">%&gt;%</span></span>
+<span id="cb55-28"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-28"></a><span class="st">    </span><span class="kw">bind_rows</span>() <span class="op">%&gt;%</span></span>
+<span id="cb55-29"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-29"></a><span class="st">    </span><span class="kw">rename</span>(<span class="dt">xend =</span> N1, <span class="dt">yend =</span> N2) <span class="op">%&gt;%</span></span>
+<span id="cb55-30"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-30"></a><span class="st">    </span><span class="kw">bind_cols</span>(vector_grid) <span class="op">%&gt;%</span></span>
+<span id="cb55-31"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-31"></a><span class="st">    </span><span class="kw">rename</span>(<span class="dt">x =</span> Var1, <span class="dt">y =</span> Var2)</span>
+<span id="cb55-32"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-32"></a></span>
+<span id="cb55-33"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-33"></a>    <span class="co">### Phase plane</span></span>
+<span id="cb55-34"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-34"></a>    <span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb55-35"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-35"></a><span class="st">      </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="op">-</span>a11<span class="op">/</span>a12, <span class="dt">intercept =</span> r1<span class="op">/</span>a12, <span class="dt">color =</span> <span class="st">&quot;#E41A1C&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span></span>
+<span id="cb55-36"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-36"></a><span class="st">      </span><span class="kw">geom_abline</span>(<span class="dt">slope =</span> <span class="op">-</span>a21<span class="op">/</span>a22, <span class="dt">intercept =</span> r2<span class="op">/</span>a22, <span class="dt">color =</span> <span class="st">&quot;#377EB8&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span></span>
+<span id="cb55-37"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-37"></a><span class="st">      </span><span class="kw">geom_segment</span>(<span class="dt">data =</span> vector_data,</span>
+<span id="cb55-38"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-38"></a>                   <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">xend =</span> xend, <span class="dt">yend =</span> yend),</span>
+<span id="cb55-39"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-39"></a>                   <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;cm&quot;</span>))) <span class="op">+</span><span class="st">    </span></span>
+<span id="cb55-40"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-40"></a><span class="st">      </span><span class="kw">scale_x_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;N1&quot;</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, x_inter), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb55-41"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-41"></a><span class="st">      </span><span class="kw">scale_y_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;N2&quot;</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, y_inter), <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb55-42"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-42"></a><span class="st">      </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">13</span>) <span class="op">+</span></span>
+<span id="cb55-43"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-43"></a><span class="st">      </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb55-44"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-44"></a>            <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>)) <span class="op">+</span></span>
+<span id="cb55-45"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-45"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">title =</span> title)</span>
+<span id="cb55-46"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-46"></a>  }</span>
+<span id="cb55-47"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-47"></a></span>
+<span id="cb55-48"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb55-48"></a>  <span class="kw">phase_plane</span>(<span class="dt">r1 =</span> <span class="fl">1.2</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">300</span>, <span class="dt">t =</span> <span class="fl">0.3</span>, <span class="dt">title =</span> <span class="st">&quot;Stable coexistence&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="week-7---lotka-volterra-competition-model---population-dynamics.html#cb56-1"></a>  <span class="kw">phase_plane</span>(<span class="dt">r1 =</span> <span class="fl">1.2</span>, <span class="dt">r2 =</span> <span class="fl">1.2</span>, <span class="dt">a11 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a21 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">a22 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">200</span>, <span class="dt">a12 =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>, <span class="dt">t =</span> <span class="fl">0.3</span>, <span class="dt">title =</span> <span class="st">&quot;Unstable coexistence (saddle)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-22-2.png" width="672" /></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-6---metapopulations-and-patch-occupancy-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="week-8---midterm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ChingLinHuang/2022_Fall_TheoEcol/07_Week_7.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
