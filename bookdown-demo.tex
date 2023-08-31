@@ -1,0 +1,2077 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Introduction to Theoretical Ecology},
+  pdfauthor={Instructor: Po-Ju Ke \textasciitilde\textasciitilde\textasciitilde\textasciitilde\textasciitilde{} Teaching Assistant: Sun Yi},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Introduction to Theoretical Ecology}
+\author{Instructor: Po-Ju Ke \(~~~~~\) Teaching Assistant: Sun Yi}
+\date{2023 Fall at National Taiwan Univeristy \includegraphics{./bifurcation.gif}}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{course-information}{%
+\chapter*{Course information}\label{course-information}}
+\addcontentsline{toc}{chapter}{Course information}
+
+\textbf{Description}
+
+The development of theory plays an important role in advancing ecology as a scientific field. This three-unit course is for students at the graduate or advanced undergraduate level. The course will cover classic theoretical topics in population and community ecology, staring from single-species dynamics and gradually build up to multispecies models. Emphasis will be on theoretical concepts and corresponding mathematical approaches.
+
+This course is designed as a two-hour lecture (written on black board) followed by a one-hour complementary hands-on practice module. In the lecture, we will analyze dynamical models and discuss their theoretical implications. In the practice section, we will use a combination interactive applications and numerical simulations to gain more intuition of the dynamics and behavior of different models.
+
+\textbf{Objective}
+
+By the end of the course, students are expected to be familiar with the basic building blocks of ecological models, and would be able to formulate and analyze simple models of their own. The hands-on practice component should allow students to link their ecological intuition with the underlying mathematical model, helping them to better understand the primary literature of theoretical ecology.
+
+\textbf{Requirement}
+
+Students are only expected to have a basic understanding of \textbf{Calculus} (e.g., freshman introductory course) and \textbf{Ecology}. It's OK if you're not familiar with calculus as we will provide relevant material for you to review during the first week.
+
+\textbf{Format}
+
+Tuesday 6,7,8 (1:20 pm \textasciitilde{} 4:20 pm) at 共207
+
+\textbf{Grading}
+
+The final grade consists of:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  Assignment problem sets (60\%)
+\item
+  Midterm exam (15\%)
+\item
+  Final exam (15\%)
+\item
+  Course participation (10\%)
+\end{enumerate}
+
+\textbf{Course materials}
+
+We will use a combination of textbooks of theoretical ecology. Textbook chapters and additional reading materials (listed in the course outline) will be provided. (see \href{https://pojuke.github.io/TheoreticalEcologyPJK/syllabus.html}{\textbf{Syllabus}} for more details).
+
+Below are the textbook references:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  \emph{A Primer of Ecology} (4\textsuperscript{th} edition). Nicholas Gotelli, 2008.
+\item
+  \emph{An Illustrated Guide to Theoretical Ecology}. Ted Case, 2000.
+\item
+  \emph{A Biologist's Guide to Mathematical Modeling in Ecology and Evolution}. Sarah Otto \& Troy Day, 2011.
+\item
+  \emph{Mathematical Ecology of Populations and Ecosystems}. John Pastor, 2008.
+\item
+  \emph{Nonlinear Dynamics and Choas}. Steven Strogatz, 2000.
+\end{enumerate}
+
+\textbf{Contacts}
+
+\textbf{Instructor}: Po-Ju Ke
+
+\begin{itemize}
+\tightlist
+\item
+  Office: Life Science Building R635
+\item
+  Email: \href{mailto:pojuke@ntu.edu.tw}{\nolinkurl{pojuke@ntu.edu.tw}}
+\item
+  Office hours: by appointment
+\end{itemize}
+
+\textbf{Teaching assistant}: Sun Yi
+
+\begin{itemize}
+\tightlist
+\item
+  Office: Life Science Building R635
+\item
+  Email: \href{mailto:r11b44014@ntu.edu.tw}{\nolinkurl{r11b44014@ntu.edu.tw}}
+\item
+  Office hours: 14:00 \textasciitilde{} 15:00 on Thursday or by appointment
+\end{itemize}
+
+\hypertarget{syllabus}{%
+\chapter*{Syllabus}\label{syllabus}}
+\addcontentsline{toc}{chapter}{Syllabus}
+
+\begingroup\fontsize{17}{19}\selectfont
+
+\begin{tabu} to \linewidth {>{\centering}X>{\centering}X>{\centering}X>{\raggedright}X}
+\hline
+\begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Date}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Lecture topic}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Lab}}\endgroup & \begingroup\fontsize{20}{22}\selectfont \textcolor{black}{\textbf{Readings}}\endgroup\\
+\hline
+**Week 1** <span style='vertical-align:-30%'> </span>
+           <br> 9/5 & Introduction: what is theoretical ecology? & \- & Grainger et al. (2021) An empiricist's guide to using ecological theroy. The American Naturalist, 199: 1-20\\
+\hline
+**Week 2** <span style='vertical-align:-30%'> </span>
+           <br> 9/12 & Exponential population growth & Solving exponential growth equation using "deSolve" & Visualization & Gotelli [Ch.1], Case[Ch.1]\\
+\hline
+**Week 3** <span style='vertical-align:-30%'> </span>
+           <br> 9/19 & Logistic population growth and stability analysis & Shinny App for logistic population growth & Gotelli [Ch.2], Case[Ch.5], Otto & Day[Ch.5]\\
+\hline
+**Week 4** <span style='vertical-align:-30%'> </span>
+           <br> 9/26 & Harvesting and bifurcation & Alternative stable state diagram & Pastor [Ch. 7], Strogatz [Ch. 3]\\
+\hline
+**Week 5** <span style='vertical-align:-30%'> </span>
+           <br> 10/3 & Metapopulations and patch occupancy models & Metapopulations and patch occupancy models & Gotelli [Ch.4], Case[Ch.16]\\
+\hline
+**Week 6** <span style='vertical-align:-30%'> </span>
+           <br> 10/10 & No class (National holiday) & \- & \-\\
+\hline
+**Week 7** <span style='vertical-align:-30%'> </span>
+           <br> 10/17 & Age-structured population models & Age-structured population model & Gotelli [Ch.3], Case[Ch.3]\\
+\hline
+**Week 8** <span style='vertical-align:-30%'> </span>
+           <br> 10/24 & Lotka-Volterra model of competition: graphical analysis & Lotka-Volterra competition model - Population dynamics & Gotelli [Ch.5], Case[Ch.14]\\
+\hline
+**Week 9** <span style='vertical-align:-30%'> </span>
+           <br> 10/31 & Midterm exam & \- & \-\\
+\hline
+**Week 10** <span style='vertical-align:-30%'> </span>
+           <br> 11/7 & Lotka-Volterra model of competition: invasion analysis and linear stability analysis & Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues & Otto & Day [Ch.8] 
+Broekman et al. (2019) Signs of stabilization and stable coexistence. Ecology Letters, 22: 1957-1975\\
+\hline
+**Week 11** <span style='vertical-align:-30%'> </span>
+           <br> 11/14 & Predator-prey interactions (I) & Lotka-Volterra model of predator-prey interactions and time-scale separation & \-\\
+\hline
+**Week 12** <span style='vertical-align:-30%'> </span>
+           <br> 11/21 & Predator-prey interactions (II) + Discussion on May (1972) & Rosenzweig-MacArthur predator-prey model and May's complexity-stability relationship & \-\\
+\hline
+**Week 13** <span style='vertical-align:-30%'> </span>
+           <br> 11/28 & Mechanistic models for consumer-resource dynamics & Parameter space for apparent competition model & \-\\
+\hline
+**Week 14** <span style='vertical-align:-30%'> </span>
+           <br> 12/5 & Multispecies models of predation: apparent competition & Resource competition & \-\\
+\hline
+**Week 15** <span style='vertical-align:-30%'> </span>
+           <br> 12/12 & Research applcations: plant-soil feedback as an example & \- & \-\\
+\hline
+**Week 16** <span style='vertical-align:-30%'> </span>
+           <br> 12/19 & Final exam & \- & \-\\
+\hline
+\end{tabu}
+\endgroup{}
+
+\hypertarget{week-2---exponential-population-growth}{%
+\chapter*{Week 2 - Exponential population growth}\label{week-2---exponential-population-growth}}
+\addcontentsline{toc}{chapter}{Week 2 - Exponential population growth}
+
+In part 1, we will solve the differential equation for exponential population growth and visualize how the population sizes change over time.
+
+\textbf{Part 1 - Numerical solution using the package ``deSolve''}
+
+Two main phases:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  Model specification: specify the structure of differential equation model
+\item
+  Model application: set the time steps, initial population size and model parameters (e.g., intrinsic population growth rate \emph{r}), and then solve the equation model
+\end{enumerate}
+
+Consider the model
+\[
+\frac{dN}{dt} = rN
+\]
+where \(N\) is population size and \(r\) is the intrinsic growth rate.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\# part 1 \#\#\#\#\#\#}
+\CommentTok{\# install.packages("deSolve")}
+\FunctionTok{library}\NormalTok{(deSolve)}
+
+\DocumentationTok{\#\#\# (1) Model specification}
+\NormalTok{exponential\_model }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms) \{}
+  \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{    dN\_dt }\OtherTok{=}\NormalTok{ r}\SpecialCharTok{*}\NormalTok{N  }\CommentTok{\# exponential growth equation}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN\_dt)))  }\CommentTok{\# return the results}
+\NormalTok{  \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Set the time steps, initial population size and model parameters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# (2) Model application}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)  }\CommentTok{\# time steps to integrate over}
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N =} \DecValTok{10}\NormalTok{)  }\CommentTok{\# initial population size}
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r =} \FloatTok{1.5}\NormalTok{)  }\CommentTok{\# intrinsic growth rate}
+\end{Highlighting}
+\end{Shaded}
+
+Solve the equation by \texttt{ode()} numerically.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# run the ode solver}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ exponential\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\CommentTok{\# take a look at the results}
+\FunctionTok{head}\NormalTok{(pop\_size)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      time        N
+## [1,]  0.0 10.00000
+## [2,]  0.1 11.61834
+## [3,]  0.2 13.49860
+## [4,]  0.3 15.68313
+## [5,]  0.4 18.22120
+## [6,]  0.5 21.17002
+\end{verbatim}
+
+Visualization
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{log =} \StringTok{"y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-5-2.pdf}
+
+\textbf{Part 2 - Comparing different ode solvers}
+In default of \texttt{ode()}, the equations are solved by LSODA method. We can change the method by modifying the argument \texttt{method} in \texttt{ode()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\# part 2 \#\#\#\#\#\#}
+\CommentTok{\# original setting}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)  }\CommentTok{\# time steps to integrate over}
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N =} \DecValTok{10}\NormalTok{)  }\CommentTok{\# initial population size}
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r =} \FloatTok{1.5}\NormalTok{)  }\CommentTok{\# intrinsic growth rate}
+\CommentTok{\# default: LSODA}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ exponential\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\CommentTok{\# Euler\textquotesingle{}s method}
+\NormalTok{pop\_size\_1 }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ exponential\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms, }\AttributeTok{method =} \StringTok{"euler"}\NormalTok{)}
+
+\CommentTok{\# compare different method}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{main =} \StringTok{"LSODA"}\NormalTok{)}
+\FunctionTok{curve}\NormalTok{(state[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\FunctionTok{exp}\NormalTok{(parms[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\NormalTok{x), times[}\DecValTok{1}\NormalTok{], times[}\FunctionTok{length}\NormalTok{(times)], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{add =}\NormalTok{ T) }\CommentTok{\# correct curve}
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size\_1, }\AttributeTok{main =} \StringTok{"Euler"}\NormalTok{)}
+\FunctionTok{curve}\NormalTok{(state[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\FunctionTok{exp}\NormalTok{(parms[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\NormalTok{x), times[}\DecValTok{1}\NormalTok{], times[}\FunctionTok{length}\NormalTok{(times)], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{add =}\NormalTok{ T) }\CommentTok{\# correct curve}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# minimize the time step}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.01}\NormalTok{)  }\CommentTok{\# time steps to integrate over}
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N =} \DecValTok{10}\NormalTok{)  }\CommentTok{\# initial population size}
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r =} \FloatTok{1.5}\NormalTok{)  }\CommentTok{\# intrinsic growth rate}
+\CommentTok{\# default: LSODA}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ exponential\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\CommentTok{\# Euler\textquotesingle{}s method}
+\NormalTok{pop\_size\_1 }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ exponential\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms, }\AttributeTok{method =} \StringTok{"euler"}\NormalTok{)}
+
+\CommentTok{\# compare different method}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{main =} \StringTok{"LSODA"}\NormalTok{)}
+\FunctionTok{curve}\NormalTok{(state[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\FunctionTok{exp}\NormalTok{(parms[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\NormalTok{x), times[}\DecValTok{1}\NormalTok{], times[}\FunctionTok{length}\NormalTok{(times)], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{add =}\NormalTok{ T) }\CommentTok{\# correct curve}
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size\_1, }\AttributeTok{main =} \StringTok{"Euler"}\NormalTok{)}
+\FunctionTok{curve}\NormalTok{(state[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\FunctionTok{exp}\NormalTok{(parms[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\NormalTok{x), times[}\DecValTok{1}\NormalTok{], times[}\FunctionTok{length}\NormalTok{(times)], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{add =}\NormalTok{ T) }\CommentTok{\# correct curve}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\textbf{Part 3 - Solving exponential growth model with fluctuating growth rate}
+Consider the model
+\[
+\frac{dN}{dt} = r(t)N \ \text{, } r(t) = \overline{r} + \sigma\sin(\omega t)
+\]
+where \(\overline{r}\) and \(\omega\) are constants.
+The analytical solution of the ode model is
+\[
+N(t) = N_0\exp\{\overline{r}t - \frac{\sigma}{\omega}[\cos(\omega t) - 1]\}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\# part 3 \#\#\#\#\#\#}
+\DocumentationTok{\#\#\# Model specification}
+\NormalTok{exponential\_model\_fluc }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms) \{}
+  \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{    dN\_dt }\OtherTok{=}\NormalTok{ (r\_bar }\SpecialCharTok{+}\NormalTok{ sigma}\SpecialCharTok{*}\FunctionTok{sin}\NormalTok{(omega}\SpecialCharTok{*}\NormalTok{times))}\SpecialCharTok{*}\NormalTok{N  }\CommentTok{\# exponential growth equation}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN\_dt)))  }\CommentTok{\# return the results}
+\NormalTok{  \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Parameters}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)  }\CommentTok{\# time steps to integrate over}
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N =} \DecValTok{10}\NormalTok{)  }\CommentTok{\# initial population size}
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r\_bar =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{sigma =} \DecValTok{5}\NormalTok{, }\AttributeTok{omega =} \DecValTok{2}\SpecialCharTok{*}\NormalTok{pi)  }\CommentTok{\# intrinsic growth rate}
+\end{Highlighting}
+\end{Shaded}
+
+Plot \(r(t)\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Fluctuating growth rate}
+\NormalTok{r }\OtherTok{=}\NormalTok{ parms[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ parms[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{*}\FunctionTok{sin}\NormalTok{(parms[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{*}\NormalTok{times)}
+\FunctionTok{plot}\NormalTok{(r }\SpecialCharTok{\textasciitilde{}}\NormalTok{ times, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Solving model}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ exponential\_model\_fluc, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\DocumentationTok{\#\#\# Plotting}
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ times, }\AttributeTok{data =}\NormalTok{ pop\_size)}
+\FunctionTok{curve}\NormalTok{(state[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\FunctionTok{exp}\NormalTok{(parms[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\NormalTok{x }\SpecialCharTok{{-}}\NormalTok{ parms[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{/}\NormalTok{parms[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{cos}\NormalTok{(parms[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{*}\NormalTok{x) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)), }\AttributeTok{add =}\NormalTok{ T, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{) }\CommentTok{\# correct curve}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ times, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{log =} \StringTok{"y"}\NormalTok{)}
+\FunctionTok{curve}\NormalTok{(state[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\FunctionTok{exp}\NormalTok{(parms[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\NormalTok{x }\SpecialCharTok{{-}}\NormalTok{ parms[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{/}\NormalTok{parms[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{cos}\NormalTok{(parms[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{*}\NormalTok{x) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)), }\AttributeTok{add =}\NormalTok{ T, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{) }\CommentTok{\# correct curve}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-10-2.pdf}
+
+Adjust \(\overline{r}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Parameters}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)  }\CommentTok{\# time steps to integrate over}
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N =} \DecValTok{10}\NormalTok{)  }\CommentTok{\# initial population size}
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r\_bar =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{sigma =} \DecValTok{5}\NormalTok{, }\AttributeTok{omega =} \DecValTok{2}\SpecialCharTok{*}\NormalTok{pi)  }\CommentTok{\# intrinsic growth rate}
+
+\DocumentationTok{\#\#\# Fluctuating growth rate}
+\NormalTok{r }\OtherTok{=}\NormalTok{ parms[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ parms[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{*}\FunctionTok{sin}\NormalTok{(parms[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{*}\NormalTok{times)}
+\FunctionTok{plot}\NormalTok{(r }\SpecialCharTok{\textasciitilde{}}\NormalTok{ times, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Solving model}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ exponential\_model\_fluc, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\DocumentationTok{\#\#\# Plotting}
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ times, }\AttributeTok{data =}\NormalTok{ pop\_size)}
+\FunctionTok{curve}\NormalTok{(state[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\FunctionTok{exp}\NormalTok{(parms[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{*}\NormalTok{x }\SpecialCharTok{{-}}\NormalTok{ parms[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{/}\NormalTok{parms[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{cos}\NormalTok{(parms[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{*}\NormalTok{x) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)), }\AttributeTok{add =}\NormalTok{ T, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{) }\CommentTok{\# correct curve}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-11-2.pdf}
+
+\hypertarget{week-3---logistic-population-growth-and-stability-analysis}{%
+\chapter*{Week 3 - Logistic population growth and stability analysis}\label{week-3---logistic-population-growth-and-stability-analysis}}
+\addcontentsline{toc}{chapter}{Week 3 - Logistic population growth and stability analysis}
+
+Credit to \href{https://genchanghsu.github.io/index.html}{Gen-Chang Hsu}
+
+\hypertarget{week-4---discrete-exponential-and-logistic-models}{%
+\chapter*{Week 4 - Discrete exponential and logistic models}\label{week-4---discrete-exponential-and-logistic-models}}
+\addcontentsline{toc}{chapter}{Week 4 - Discrete exponential and logistic models}
+
+\textbf{Part 1 - Model the discrete logistic population growth using for loops}
+Model:
+\[
+N_{t+1} = N_t(1+r(1-\frac{N_t}{K}))
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# (1) Define the discrete logistic growth equation}
+\NormalTok{log\_fun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(r, N, K)\{N }\SpecialCharTok{+}\NormalTok{ r}\SpecialCharTok{*}\NormalTok{N}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{N}\SpecialCharTok{/}\NormalTok{K)\}}
+\end{Highlighting}
+\end{Shaded}
+
+You may modify \(r\) to see the change in stability of equilibrium \(K\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# (2) Set the parameters}
+\NormalTok{r }\OtherTok{\textless{}{-}} \FloatTok{1.8}
+\NormalTok{K }\OtherTok{\textless{}{-}} \DecValTok{500}
+\NormalTok{N0 }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{time }\OtherTok{\textless{}{-}} \DecValTok{100}
+
+\DocumentationTok{\#\#\# (3) Use for loop to iterate over the time sequence}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{times =} \DecValTok{1}\SpecialCharTok{:}\NormalTok{time)}
+\NormalTok{pop\_size}\SpecialCharTok{$}\NormalTok{N[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ N0}
+\FunctionTok{head}\NormalTok{(pop\_size)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   times  N
+## 1     1 10
+## 2     2 10
+## 3     3 10
+## 4     4 10
+## 5     5 10
+## 6     6 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{time)\{}
+\NormalTok{  pop\_size}\SpecialCharTok{$}\NormalTok{N[i] }\OtherTok{\textless{}{-}} \FunctionTok{log\_fun}\NormalTok{(}\AttributeTok{r =}\NormalTok{ r, }\AttributeTok{N =}\NormalTok{ pop\_size}\SpecialCharTok{$}\NormalTok{N[i }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{], }\AttributeTok{K =}\NormalTok{ K)}
+\NormalTok{\}}
+
+\FunctionTok{head}\NormalTok{(pop\_size)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   times         N
+## 1     1  10.00000
+## 2     2  27.64000
+## 3     3  74.64171
+## 4     4 188.93980
+## 5     5 400.51775
+## 6     6 543.95762
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# (4) Population trajectory}
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ times, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =}\NormalTok{ K, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ times, }\AttributeTok{data =}\NormalTok{ pop\_size)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+Here is a shiny app for the discrete logistic growth model.
+
+Credit to \href{https://genchanghsu.github.io/index.html}{Gen-Chang Hsu}
+
+\textbf{Part 2 - Bifurcation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\# Part 2: Bifurcation curve}
+\DocumentationTok{\#\#\# (1) data setting}
+\CommentTok{\# intrinsic growth rate sequence}
+\NormalTok{r\_seq }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from =} \FloatTok{1.8}\NormalTok{, }\AttributeTok{to =} \DecValTok{3}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.01}\NormalTok{)}
+\CommentTok{\# number of sampling}
+\NormalTok{N\_rep }\OtherTok{\textless{}{-}} \DecValTok{200}
+
+\CommentTok{\# data }
+\NormalTok{dat\_plot }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{r =} \FunctionTok{rep}\NormalTok{(r\_seq, }\AttributeTok{each =}\NormalTok{ N\_rep), }\AttributeTok{N =} \DecValTok{0}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(dat\_plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     r N
+## 1 1.8 0
+## 2 1.8 0
+## 3 1.8 0
+## 4 1.8 0
+## 5 1.8 0
+## 6 1.8 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# (2) Run the discrete logistic model}
+\ControlFlowTok{for}\NormalTok{ (lo }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(r\_seq))\{}
+\NormalTok{  log\_fun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(r, N, K)\{N }\SpecialCharTok{+}\NormalTok{ r}\SpecialCharTok{*}\NormalTok{N}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{N}\SpecialCharTok{/}\NormalTok{K)\}}
+
+\NormalTok{  r }\OtherTok{\textless{}{-}}\NormalTok{ r\_seq[lo]}
+\NormalTok{  K }\OtherTok{\textless{}{-}} \DecValTok{500}
+\NormalTok{  N0 }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{  time }\OtherTok{\textless{}{-}} \DecValTok{1000}
+
+\NormalTok{  pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{times =} \DecValTok{1}\SpecialCharTok{:}\NormalTok{time)}
+\NormalTok{  pop\_size}\SpecialCharTok{$}\NormalTok{N[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ N0}
+
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{time)\{}
+\NormalTok{    pop\_size}\SpecialCharTok{$}\NormalTok{N[i] }\OtherTok{\textless{}{-}} \FunctionTok{log\_fun}\NormalTok{(}\AttributeTok{r =}\NormalTok{ r, }\AttributeTok{N =}\NormalTok{ pop\_size}\SpecialCharTok{$}\NormalTok{N[i }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{], }\AttributeTok{K =}\NormalTok{ K)}
+\NormalTok{  \}}
+
+  \CommentTok{\# save the data}
+\NormalTok{  dat\_plot}\SpecialCharTok{$}\NormalTok{N[(}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ (lo }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{N\_rep)}\SpecialCharTok{:}\NormalTok{(lo}\SpecialCharTok{*}\NormalTok{N\_rep)] }\OtherTok{\textless{}{-}}\NormalTok{ pop\_size}\SpecialCharTok{$}\NormalTok{N[(}\FunctionTok{nrow}\NormalTok{(pop\_size) }\SpecialCharTok{{-}}\NormalTok{ N\_rep }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(pop\_size)]}
+\NormalTok{\}}
+
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ r, }\AttributeTok{data =}\NormalTok{ dat\_plot, }\AttributeTok{cex =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{pch =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\hypertarget{week-5---age-structure-population-model}{%
+\chapter*{Week 5 - Age-structure population model}\label{week-5---age-structure-population-model}}
+\addcontentsline{toc}{chapter}{Week 5 - Age-structure population model}
+
+In this lab section, we will analyze a Leslie matrix using for loops and matrix algebra, compare the results with those obtained via eigen-analysis, and visualize the population dynamics and age distribution.
+
+\textbf{Part 1 - Visualizing stable age distribution}
+
+For any diagonalizable n-by-n matrix \(M\) with only one dominant eigenvalue, and for any n-by-1 vector \(v\), \(M^tv\) will shift to the same direction with the eigenvector of \(M\) corresponding to the dominant eigenvalue when \(t\) is large. Here, we visualize this fact numerically.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1234}\NormalTok{)}
+\NormalTok{MAT }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{25}\NormalTok{), }\AttributeTok{ncol =} \DecValTok{5}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{5}\NormalTok{)}
+\FunctionTok{abs}\NormalTok{(}\FunctionTok{eigen}\NormalTok{(MAT)}\SpecialCharTok{$}\NormalTok{values) }\CommentTok{\# check only one dominant eigenvalue}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.2734833 1.6266143 0.6187862 0.6187862 0.3970850
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eig\_vec1 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{eigen}\NormalTok{(MAT)}\SpecialCharTok{$}\NormalTok{vector[, }\DecValTok{1}\NormalTok{])}
+\NormalTok{v }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\NormalTok{time }\OtherTok{\textless{}{-}} \DecValTok{15}
+
+\NormalTok{dat\_v }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{ncol =} \DecValTok{5}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ time))}
+\NormalTok{dat\_v[}\DecValTok{1}\NormalTok{, ] }\OtherTok{\textless{}{-}}\NormalTok{ v}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{time)\{}
+\NormalTok{  dat\_v[i, ] }\OtherTok{\textless{}{-}}\NormalTok{ MAT }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(dat\_v[i}\DecValTok{{-}1}\NormalTok{, ])}
+\NormalTok{\}}
+
+\CommentTok{\# Remake data for gganimate}
+\NormalTok{dat }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{X1 =} \DecValTok{0}\NormalTok{, }\AttributeTok{X2 =} \DecValTok{0}\NormalTok{, }\AttributeTok{Time =} \DecValTok{1}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{time)\{}
+\NormalTok{  dat }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(dat, }\FunctionTok{data.frame}\NormalTok{(dat\_v[i,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{sum}\NormalTok{(dat\_v[i,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{*}\NormalTok{ i, }\AttributeTok{Time =}\NormalTok{ i))}
+\NormalTok{  dat }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(dat, }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{, i}\SpecialCharTok{+}\DecValTok{1}\NormalTok{))}
+\NormalTok{\}}
+\NormalTok{dat }\OtherTok{\textless{}{-}}\NormalTok{ dat[}\SpecialCharTok{{-}}\FunctionTok{nrow}\NormalTok{(dat), ]}
+
+
+\FunctionTok{ggplot}\NormalTok{(dat, }\FunctionTok{aes}\NormalTok{(X1, X2, }\AttributeTok{color =}\NormalTok{ Time)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_path}\NormalTok{(}\AttributeTok{arrow =} \FunctionTok{arrow}\NormalTok{(}\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.55}\NormalTok{, }\StringTok{"cm"}\NormalTok{))) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_abline}\NormalTok{(}\AttributeTok{intercept =} \DecValTok{0}\NormalTok{, }
+              \AttributeTok{slope =}\NormalTok{ eig\_vec1[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{/}\NormalTok{eig\_vec1[}\DecValTok{1}\NormalTok{], }
+              \AttributeTok{color =} \StringTok{"red"}\NormalTok{, }
+              \AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\CommentTok{\# red dashed eigenvector}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\textbf{Part 2 - Analyzing Leslie matrix}
+
+Consider an age-strutured population model
+\[
+n_{t} = L^tn_0
+\]
+where \(L\) is a Leslie matrix and \(n_t = (n_{1,t}, n_{2,t}, n_{3,t})\) is the population sizes with three different ages in time \(t\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Leslie matrix and initial age classes}
+\NormalTok{leslie }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{data =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{,}
+                          \FloatTok{0.5}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{,}
+                          \DecValTok{0}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                      \AttributeTok{nrow =} \DecValTok{3}\NormalTok{,}
+                      \AttributeTok{ncol =} \DecValTok{3}\NormalTok{,}
+                      \AttributeTok{byrow =}\NormalTok{ T)}
+
+\NormalTok{N0 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\DocumentationTok{\#\#\# for loop and matrix algebra}
+\NormalTok{time }\OtherTok{\textless{}{-}} \DecValTok{50}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Age1 =} \DecValTok{0}\NormalTok{,}
+                       \AttributeTok{Age2 =} \DecValTok{0}\NormalTok{,}
+                       \AttributeTok{Age3 =} \DecValTok{0}\NormalTok{)}
+\NormalTok{pop\_size[}\DecValTok{1}\NormalTok{, ] }\OtherTok{\textless{}{-}}\NormalTok{ N0}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{time) \{}
+  \CommentTok{\# Matrix multiplication}
+\NormalTok{  pop\_size[i, ] }\OtherTok{\textless{}{-}}\NormalTok{ leslie }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(pop\_size[i}\DecValTok{{-}1}\NormalTok{, ])}
+\NormalTok{\}}
+
+\CommentTok{\# Total abundance}
+\NormalTok{pop\_size}\SpecialCharTok{$}\NormalTok{N }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(pop\_size)}
+
+\FunctionTok{head}\NormalTok{(pop\_size)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Age1 Age2  Age3      N
+## 1 10.0 0.00 0.000 10.000
+## 2  0.0 5.00 0.000  5.000
+## 3  5.0 0.00 1.500  6.500
+## 4  7.5 2.50 0.000 10.000
+## 5  2.5 3.75 0.750  7.000
+## 6  7.5 1.25 1.125  9.875
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,time), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{265}\NormalTok{), }\AttributeTok{type =} \StringTok{"n"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"time"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"pop\_size"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{time , pop\_size}\SpecialCharTok{$}\NormalTok{Age1, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{time , pop\_size}\SpecialCharTok{$}\NormalTok{Age2, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{time , pop\_size}\SpecialCharTok{$}\NormalTok{Age3, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{,}
+       \AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"Age1"}\NormalTok{, }\StringTok{"Age2"}\NormalTok{, }\StringTok{"Age3"}\NormalTok{),}
+       \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"green"}\NormalTok{),}
+       \AttributeTok{lty =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+By the derivation in the class, the asymptotic population sizes can be approximated by
+\[
+n_t \approx c\cdot \lambda_1^t\cdot u_1
+\]
+where \(c\) is a constant, \(\lambda_1\) is the dominant eigenvalue and \(u_1\) is the corresponding eigenvector. Hence, with the long-term dynamics, the population grows at a rate \(\lambda_1\) and with the age distribution \(u_1\). Here, we check this fact numerically.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Asymptotic growth rate and stable age distribution}
+
+\NormalTok{asymptotic\_growth }\OtherTok{\textless{}{-}}\NormalTok{ pop\_size}\SpecialCharTok{$}\NormalTok{N[time]}\SpecialCharTok{/}\NormalTok{pop\_size}\SpecialCharTok{$}\NormalTok{N[time}\DecValTok{{-}1}\NormalTok{]}
+\NormalTok{asymptotic\_growth}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.089992
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{age\_distribution }\OtherTok{\textless{}{-}}\NormalTok{ pop\_size[time, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(pop\_size[time, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
+\NormalTok{age\_distribution}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         Age1      Age2       Age3
+## 50 0.6309262 0.2894167 0.07965713
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Eigen{-}analysis of the Leslie matrix}
+\NormalTok{EIGEN }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(leslie)}
+\NormalTok{EIGEN}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## eigen() decomposition
+## $values
+## [1]  1.0899905+0.0000000i -0.5449953+0.6253475i -0.5449953-0.6253475i
+## 
+## $vectors
+##              [,1]                  [,2]                  [,3]
+## [1,] 0.9030054+0i  0.8418972+0.0000000i  0.8418972+0.0000000i
+## [2,] 0.4142263+0i -0.3334136-0.3825709i -0.3334136+0.3825709i
+## [3,] 0.1140082+0i -0.0250833+0.1818099i -0.0250833-0.1818099i
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{abs}\NormalTok{(EIGEN}\SpecialCharTok{$}\NormalTok{values[}\DecValTok{1}\NormalTok{]) }\CommentTok{\# dominant eigenvalue}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.089991
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{as.numeric}\NormalTok{(EIGEN}\SpecialCharTok{$}\NormalTok{vectors[, }\DecValTok{1}\NormalTok{] }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(EIGEN}\SpecialCharTok{$}\NormalTok{vectors[, }\DecValTok{1}\NormalTok{])) }\CommentTok{\# corresponding eigenvector}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.63092527 0.28941777 0.07965696
+\end{verbatim}
+
+The asymptotic growth rate and stable age distribution obtained from for loops and eigen-analysis are similar.
+
+\textbf{Part 3 - In-class exercise: Analyzing population matrix of common teasel}
+
+\href{https://en.wikipedia.org/wiki/Dipsacus_fullonum}{Common teasel (\emph{Dipsacus sylvestris})} is a herbaceous plant commonly found in abandoned fields and meadows in North America. It has a complex life cycle consisting of various stages. The seeds may lie dormant for one or two years. Seeds that germinate form small rosettes, which will gradually transit into medium and eventually large rosettes. These rosettes (all three sizes) may remain in the same stage for years before entering the next stage. After undergoing vernalization, large (and a few medium) rosettes will form stalks and flower in the upcoming summer, set seeds once, and die. Occasionally, the flowering plants will produce seeds that directly germinate into small/medium/large rosettes without entering dormancy.
+
+Here is a transition diagram for the teasel. Please convert this diagram into a stage-based transition matrix (Lefkovitch matrix) and derive the asymptotic growth rate \(\lambda\) in R.
+
+\textbf{Part 4 - COM(P)ADRE: A global database of population matrices}
+
+\href{https://compadre-db.org/ExploreDatabase}{COM(P)ADRE} is an online repository containing matrix population models on hundreds of plants, animals, algae, fungi, bacteria, and viruses around the world, as well as their associated metadata. Take a look at the website: You will be exploring the population dynamics of a species (of your choice) in your assignment!
+
+\hypertarget{week-6---metapopulations-and-patch-occupancy-models}{%
+\chapter*{Week 6 - Metapopulations and patch occupancy models}\label{week-6---metapopulations-and-patch-occupancy-models}}
+\addcontentsline{toc}{chapter}{Week 6 - Metapopulations and patch occupancy models}
+
+Plants can condition nearby soil microbial communities, which will in turn influence the performance of subsequent colonizing plants. The soil beneath plant communities are therefore a mosaic with different cultivation histories. Po-Ju wants to understand how plant demographic rates (i.e., colonization and mortality rate) and microbial dynamics (i.e., the conditioning and decay rate of microbial communities) affect the percentage of different soil types in natural forests. As a starting point, Po-Ju builds a one-species patch occupancy model to track the dynamics of different types of plant-soil combination.
+
+In this model, he characterizes sites by their plant-soil microbe state, using the notation \(P_{ij}\) to indicate sites that are now occupied by plant species \(i\) but have soil microbes state \(j\). Here, as a single species model, \(i\) can be 0 or \(A\), representing uncolonized sites or sites colonized by plant \(A\), respectively. Similarly, \(j\) can be 0 or \(A\), indicating sites without recent plant conditioning history or sites conditioned by plant \(A\), respectively. In summary:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(P_{00}\) represents uncolonized and unconditioned sites
+\item
+  \(P_{A0}\) represents cites colonized by plant \(A\) but the soil is yet to be conditioned
+\item
+  \(P_{AA}\) represents plant \(A\) colonizing a site with plant-\(A\)-specific microbial community
+\item
+  \(P_{0A}\) represents sites that are currently unoccupied but have soil microbes that were associated with plant \(A\)
+\end{enumerate}
+
+At the landscape scale, \(P_{ij}\) represents the proportion of sites belonging to a particular plant-soil microbe state, and its dynamics, \(\frac {dP_{ij}}{dt}\), summarizes the processes of plant colonization and death. The transitions between different plant-soil microbe states can be described by the following figure.
+
+Here, \(P_{00}\) can be colonized by plant \(A\) when propagules arrive (per capita rate \(r_{A}\)), transitioning the state from \(P_{00}\) to \(P_{A0}\). Plants may die, with rate \(m_{A}\), before conditioning the soil (i.e., transition from \(P_{A0}\) back to \(P_{00}\)), or may successfully condition the soil with rate \(c_{A}\) (i.e., transition from \(P_{A0}\) to \(P_{AA}\)). After plants within the state \(P_{AA}\) die, a site with microbial legacy is left behind, denoted as \(P_{0A}\). These empty sites can be recolonized (i.e., transition from \(P_{0A}\) back to \(P_{AA}\)) with rates affected by the microbial legacy effect, \(\alpha\). Finally, the microbial community within the soil may decay to unconditioned state with rate \(d_{A}\), transitioning the state from \(P_{0A}\) to \(P_{00}\).
+
+In this lab, we are going to model the dynamics of this plant-soil system. We will start by converting the flow diagram into a set of differential equations and then solve them numerically using the package \texttt{deSolve}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(deSolve)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(tidyr)}
+
+
+\DocumentationTok{\#\#\# Model specification}
+\NormalTok{PSF }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms) \{}
+  \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{    dP00\_dt }\OtherTok{=}\NormalTok{ P0A}\SpecialCharTok{*}\NormalTok{dA }\SpecialCharTok{+}\NormalTok{ PA0}\SpecialCharTok{*}\NormalTok{mA }\SpecialCharTok{{-}}\NormalTok{ P00}\SpecialCharTok{*}\NormalTok{(PA0 }\SpecialCharTok{+}\NormalTok{ PAA)}\SpecialCharTok{*}\NormalTok{rA}
+\NormalTok{    dPA0\_dt }\OtherTok{=}\NormalTok{ P00}\SpecialCharTok{*}\NormalTok{(PA0 }\SpecialCharTok{+}\NormalTok{ PAA)}\SpecialCharTok{*}\NormalTok{rA }\SpecialCharTok{{-}}\NormalTok{ PA0}\SpecialCharTok{*}\NormalTok{mA }\SpecialCharTok{{-}}\NormalTok{ PA0}\SpecialCharTok{*}\NormalTok{cA}
+\NormalTok{    dPAA\_dt }\OtherTok{=}\NormalTok{ PA0}\SpecialCharTok{*}\NormalTok{cA }\SpecialCharTok{{-}}\NormalTok{ PAA}\SpecialCharTok{*}\NormalTok{mA }\SpecialCharTok{+}\NormalTok{ P0A}\SpecialCharTok{*}\NormalTok{(PA0 }\SpecialCharTok{+}\NormalTok{ PAA)}\SpecialCharTok{*}\NormalTok{rA}\SpecialCharTok{*}\NormalTok{alpha}
+\NormalTok{    dP0A\_dt }\OtherTok{=}\NormalTok{ PAA}\SpecialCharTok{*}\NormalTok{mA }\SpecialCharTok{{-}}\NormalTok{ P0A}\SpecialCharTok{*}\NormalTok{(PA0 }\SpecialCharTok{+}\NormalTok{ PAA)}\SpecialCharTok{*}\NormalTok{rA}\SpecialCharTok{*}\NormalTok{alpha }\SpecialCharTok{{-}}\NormalTok{ P0A}\SpecialCharTok{*}\NormalTok{dA}
+
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dP00\_dt, dPA0\_dt, dPAA\_dt, dP0A\_dt)))}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\DocumentationTok{\#\#\# Model parameters}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{20}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{P00 =} \FloatTok{0.25}\NormalTok{, }\AttributeTok{PA0 =} \FloatTok{0.25}\NormalTok{, }\AttributeTok{PAA =} \FloatTok{0.25}\NormalTok{, }\AttributeTok{P0A =} \FloatTok{0.25}\NormalTok{)}
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{rA =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{mA =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{cA =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{dA =} \FloatTok{0.4}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{)}
+
+\DocumentationTok{\#\#\# ODE solver}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ PSF, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\CommentTok{\# take a look at the results}
+\FunctionTok{head}\NormalTok{(pop\_size)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      time       P00       PA0       PAA       P0A
+## [1,]  0.0 0.2500000 0.2500000 0.2500000 0.2500000
+## [2,]  0.1 0.2558649 0.2416153 0.2640144 0.2385055
+## [3,]  0.2 0.2609930 0.2339241 0.2773399 0.2277430
+## [4,]  0.3 0.2654349 0.2268709 0.2900255 0.2176687
+## [5,]  0.4 0.2692386 0.2204039 0.3021162 0.2082413
+## [6,]  0.5 0.2724484 0.2144756 0.3136533 0.1994227
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tail}\NormalTok{(pop\_size)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        time       P00        PA0       PAA       P0A
+## [196,] 19.5 0.1283001 0.08252532 0.6866677 0.1025070
+## [197,] 19.6 0.1282914 0.08250852 0.6866865 0.1025136
+## [198,] 19.7 0.1282832 0.08249240 0.6867045 0.1025199
+## [199,] 19.8 0.1282754 0.08247693 0.6867217 0.1025260
+## [200,] 19.9 0.1282679 0.08246208 0.6867382 0.1025319
+## [201,] 20.0 0.1282608 0.08244784 0.6867539 0.1025375
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Visualization I}
+\NormalTok{pop\_size }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"patch"}\NormalTok{, }\AttributeTok{value =} \StringTok{"proportion"}\NormalTok{, }\SpecialCharTok{{-}}\NormalTok{time) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ time, }\AttributeTok{y =}\NormalTok{ proportion, }\AttributeTok{color =}\NormalTok{ patch)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{size =} \FloatTok{1.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Visualization II}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{range}\NormalTok{(times), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{type =} \StringTok{"n"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"time"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"proportion"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(P00 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"tomato"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(P0A }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"navy"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(PA0 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"gray"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(PAA }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"orange"}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"P00"}\NormalTok{, }\StringTok{"P0A"}\NormalTok{, }\StringTok{"PA0"}\NormalTok{, }\StringTok{"PAA"}\NormalTok{), }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"tomato"}\NormalTok{, }\StringTok{"navy"}\NormalTok{, }\StringTok{"gray"}\NormalTok{, }\StringTok{"orange"}\NormalTok{), }\AttributeTok{lty =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-20-2.pdf}
+
+\hypertarget{week-7---lotka-volterra-competition-model---population-dynamics}{%
+\chapter*{Week 7 - Lotka-Volterra competition model - Population dynamics}\label{week-7---lotka-volterra-competition-model---population-dynamics}}
+\addcontentsline{toc}{chapter}{Week 7 - Lotka-Volterra competition model - Population dynamics}
+
+In this lab, we are going to analyze the two-species Lotka-Volterra competition model numerically and visualize the population dynamics under different parameter settings.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(deSolve)}
+
+\NormalTok{LV\_model }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.4}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{400}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{300}\NormalTok{, }\AttributeTok{N1\_0 =} \DecValTok{10}\NormalTok{, }\AttributeTok{N2\_0 =} \DecValTok{10}\NormalTok{) \{}
+
+  \DocumentationTok{\#\#\# Model specification}
+\NormalTok{  LV }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms) \{}
+    \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{      dN1\_dt }\OtherTok{=}\NormalTok{ N1 }\SpecialCharTok{*}\NormalTok{ (r1 }\SpecialCharTok{{-}}\NormalTok{ a11}\SpecialCharTok{*}\NormalTok{N1 }\SpecialCharTok{{-}}\NormalTok{ a12}\SpecialCharTok{*}\NormalTok{N2)}
+\NormalTok{      dN2\_dt }\OtherTok{=}\NormalTok{ N2 }\SpecialCharTok{*}\NormalTok{ (r2 }\SpecialCharTok{{-}}\NormalTok{ a22}\SpecialCharTok{*}\NormalTok{N2 }\SpecialCharTok{{-}}\NormalTok{ a21}\SpecialCharTok{*}\NormalTok{N1)}
+      \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN1\_dt, dN2\_dt)))}
+\NormalTok{    \})}
+\NormalTok{  \}}
+
+  \DocumentationTok{\#\#\# Model parameters}
+\NormalTok{  times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{  state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N1 =}\NormalTok{ N1\_0, }\AttributeTok{N2 =}\NormalTok{ N2\_0)}
+\NormalTok{  parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r1 =}\NormalTok{ r1, }\AttributeTok{r2 =}\NormalTok{ r2, }\AttributeTok{a11 =}\NormalTok{ a11, }\AttributeTok{a21 =}\NormalTok{ a21, }\AttributeTok{a22 =}\NormalTok{ a22, }\AttributeTok{a12 =}\NormalTok{ a12)}
+
+  \DocumentationTok{\#\#\# Model application}
+\NormalTok{  pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ LV, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+  \DocumentationTok{\#\#\# Visualize the population dynamics}
+\NormalTok{  pop\_size }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"Species"}\NormalTok{, }\AttributeTok{value =} \StringTok{"pop\_size"}\NormalTok{, }\SpecialCharTok{{-}}\NormalTok{time) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ time, }\AttributeTok{y =}\NormalTok{ pop\_size, }\AttributeTok{color =}\NormalTok{ Species)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{size =} \FloatTok{1.5}\NormalTok{)}
+
+\NormalTok{\}}
+
+  \DocumentationTok{\#\#\# Different parameter settings}
+  \DocumentationTok{\#\# N1\_0 = 200 and N2\_0 = 5}
+  \FunctionTok{LV\_model}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{N1\_0 =} \DecValTok{200}\NormalTok{, }\AttributeTok{N2\_0 =} \DecValTok{5}\NormalTok{)  }\CommentTok{\# N1 wins}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \DocumentationTok{\#\# N1\_0 = 5 and N2\_0 = 200}
+  \FunctionTok{LV\_model}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{N1\_0 =} \DecValTok{10}\NormalTok{, }\AttributeTok{N2\_0 =} \DecValTok{200}\NormalTok{)  }\CommentTok{\# N1 wins}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-21-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \DocumentationTok{\#\# N1\_0 = 200 and N2\_0 = 5}
+  \FunctionTok{LV\_model}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{N1\_0 =} \DecValTok{200}\NormalTok{, }\AttributeTok{N2\_0 =} \DecValTok{5}\NormalTok{)  }\CommentTok{\# N2 wins}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-21-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \DocumentationTok{\#\# N1\_0 = 5 and N2\_0 = 200}
+  \FunctionTok{LV\_model}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{N1\_0 =} \DecValTok{5}\NormalTok{, }\AttributeTok{N2\_0 =} \DecValTok{200}\NormalTok{)  }\CommentTok{\# N2 wins}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-21-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \DocumentationTok{\#\# N1\_0 = 200 and N2\_0 = 5}
+  \FunctionTok{LV\_model}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{300}\NormalTok{, }\AttributeTok{N1\_0 =} \DecValTok{200}\NormalTok{, }\AttributeTok{N2\_0 =} \DecValTok{5}\NormalTok{)  }\CommentTok{\# stable coexistence}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-21-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \DocumentationTok{\#\# N1\_0 = 5 and N2\_0 = 200}
+  \FunctionTok{LV\_model}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{300}\NormalTok{, }\AttributeTok{N1\_0 =} \DecValTok{5}\NormalTok{, }\AttributeTok{N2\_0 =} \DecValTok{200}\NormalTok{)  }\CommentTok{\# stable coexistence}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-21-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \DocumentationTok{\#\# N1\_0 = 200 and N2\_0 = 150}
+  \FunctionTok{LV\_model}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{N1\_0 =} \DecValTok{200}\NormalTok{, }\AttributeTok{N2\_0 =} \DecValTok{150}\NormalTok{)  }\CommentTok{\# priority effect (N1 wins)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-21-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \DocumentationTok{\#\# N1\_0 = 150 and N2\_0 = 200}
+  \FunctionTok{LV\_model}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{N1\_0 =} \DecValTok{150}\NormalTok{, }\AttributeTok{N2\_0 =} \DecValTok{200}\NormalTok{)  }\CommentTok{\# priority effect (N2 wins)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-21-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\# phase diagram}
+\NormalTok{phase\_plane }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(r1, r2, a11, a21, a22, a12, title, t)\{}
+    \DocumentationTok{\#\#\# Vectors}
+\NormalTok{  LV }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms) \{}
+    \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{      dN1\_dt }\OtherTok{=}\NormalTok{ N1 }\SpecialCharTok{*}\NormalTok{ (r1 }\SpecialCharTok{{-}}\NormalTok{ a11}\SpecialCharTok{*}\NormalTok{N1 }\SpecialCharTok{{-}}\NormalTok{ a12}\SpecialCharTok{*}\NormalTok{N2)}
+\NormalTok{      dN2\_dt }\OtherTok{=}\NormalTok{ N2 }\SpecialCharTok{*}\NormalTok{ (r2 }\SpecialCharTok{{-}}\NormalTok{ a22}\SpecialCharTok{*}\NormalTok{N2 }\SpecialCharTok{{-}}\NormalTok{ a21}\SpecialCharTok{*}\NormalTok{N1)}
+      \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN1\_dt, dN2\_dt)))}
+\NormalTok{    \})}
+\NormalTok{  \}}
+
+\NormalTok{  times }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, t)}
+\NormalTok{  parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r1 =}\NormalTok{ r1, }\AttributeTok{r2 =}\NormalTok{ r2, }\AttributeTok{a11 =}\NormalTok{ a11, }\AttributeTok{a21 =}\NormalTok{ a21, }\AttributeTok{a22 =}\NormalTok{ a22, }\AttributeTok{a12 =}\NormalTok{ a12)}
+
+\NormalTok{  x\_inter}\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{c}\NormalTok{(r1}\SpecialCharTok{/}\NormalTok{a11, r2}\SpecialCharTok{/}\NormalTok{a21))}
+\NormalTok{  y\_inter }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{c}\NormalTok{(r2}\SpecialCharTok{/}\NormalTok{a22, r1}\SpecialCharTok{/}\NormalTok{a12))}
+
+  \CommentTok{\# create position of arrows}
+\NormalTok{  vector\_grid }\OtherTok{\textless{}{-}} \FunctionTok{expand.grid}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{5}\NormalTok{, x\_inter, }\AttributeTok{length.out =} \DecValTok{10}\NormalTok{),}
+                             \FunctionTok{seq}\NormalTok{(}\DecValTok{5}\NormalTok{, y\_inter, }\AttributeTok{length.out =} \DecValTok{10}\NormalTok{))}
+
+\NormalTok{  vector\_data }\OtherTok{\textless{}{-}}\NormalTok{ vector\_grid }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{pmap}\NormalTok{(., }\ControlFlowTok{function}\NormalTok{(Var1, Var2)\{}
+\NormalTok{      state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N1 =}\NormalTok{ Var1, }\AttributeTok{N2 =}\NormalTok{ Var2)}
+\NormalTok{      pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ LV, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+\NormalTok{      pop\_size[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{    \}) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{bind\_rows}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{rename}\NormalTok{(}\AttributeTok{xend =}\NormalTok{ N1, }\AttributeTok{yend =}\NormalTok{ N2) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{bind\_cols}\NormalTok{(vector\_grid) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{rename}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Var1, }\AttributeTok{y =}\NormalTok{ Var2)}
+
+    \DocumentationTok{\#\#\# Phase plane}
+    \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+      \FunctionTok{geom\_abline}\NormalTok{(}\AttributeTok{slope =} \SpecialCharTok{{-}}\NormalTok{a11}\SpecialCharTok{/}\NormalTok{a12, }\AttributeTok{intercept =}\NormalTok{ r1}\SpecialCharTok{/}\NormalTok{a12, }\AttributeTok{color =} \StringTok{"\#E41A1C"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+      \FunctionTok{geom\_abline}\NormalTok{(}\AttributeTok{slope =} \SpecialCharTok{{-}}\NormalTok{a21}\SpecialCharTok{/}\NormalTok{a22, }\AttributeTok{intercept =}\NormalTok{ r2}\SpecialCharTok{/}\NormalTok{a22, }\AttributeTok{color =} \StringTok{"\#377EB8"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+      \FunctionTok{geom\_segment}\NormalTok{(}\AttributeTok{data =}\NormalTok{ vector\_data,}
+                   \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y, }\AttributeTok{xend =}\NormalTok{ xend, }\AttributeTok{yend =}\NormalTok{ yend),}
+                   \AttributeTok{arrow =} \FunctionTok{arrow}\NormalTok{(}\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\StringTok{"cm"}\NormalTok{))) }\SpecialCharTok{+}    
+      \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"N1"}\NormalTok{, }\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, x\_inter), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+      \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"N2"}\NormalTok{, }\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, y\_inter), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+      \FunctionTok{theme\_bw}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{13}\NormalTok{) }\SpecialCharTok{+}
+      \FunctionTok{theme}\NormalTok{(}\AttributeTok{panel.grid =} \FunctionTok{element\_blank}\NormalTok{(),}
+            \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
+      \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =}\NormalTok{ title)}
+\NormalTok{  \}}
+
+  \FunctionTok{phase\_plane}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{300}\NormalTok{, }\AttributeTok{t =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{title =} \StringTok{"Stable coexistence"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \FunctionTok{phase\_plane}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{a11 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a21 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{a22 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{200}\NormalTok{, }\AttributeTok{a12 =} \DecValTok{1}\SpecialCharTok{/}\DecValTok{100}\NormalTok{, }\AttributeTok{t =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{title =} \StringTok{"Unstable coexistence (saddle)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-22-2.pdf}
+
+\hypertarget{week-8---midterm}{%
+\chapter*{Week 8 - Midterm}\label{week-8---midterm}}
+\addcontentsline{toc}{chapter}{Week 8 - Midterm}
+
+\hypertarget{week-9---lotka-volterra-competition-model---visualization-of-dynamics-with-complex-eigenvalues}{%
+\chapter*{Week 9 - Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues}\label{week-9---lotka-volterra-competition-model---visualization-of-dynamics-with-complex-eigenvalues}}
+\addcontentsline{toc}{chapter}{Week 9 - Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues}
+
+Consider a linear system
+\[
+\dfrac{d \vec{\pmb\varepsilon}}{d t} = \mathcal{J}\vec{\pmb\varepsilon}
+\]
+where \(\vec{\pmb\varepsilon} = (\varepsilon_1, \varepsilon_2)^T\) and \(\mathcal{J} = \begin{pmatrix} -1 & 1\\ -2 & -1 \end{pmatrix}\).
+Or, we can write the linear system by two ODEs:
+\begin{align*}
+  \dfrac{d \varepsilon_1}{d t} &= (-1)\times \varepsilon_1 + (1)\times\varepsilon_2\\
+  \dfrac{d \varepsilon_2}{d t} &= (-2)\times \varepsilon_1 + (-1)\times\varepsilon_2\\
+\end{align*}
+
+Note that the element in the first row and second column is positive.
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{verbatim}
+##              time           e1            e2
+##  [99996,]  9.9995 3.192479e-05 -6.443030e-05
+##  [99997,]  9.9996 3.191516e-05 -6.443024e-05
+##  [99998,]  9.9997 3.190552e-05 -6.443018e-05
+##  [99999,]  9.9998 3.189589e-05 -6.443011e-05
+## [100000,]  9.9999 3.188626e-05 -6.443005e-05
+## [100001,] 10.0000 3.187663e-05 -6.442998e-05
+\end{verbatim}
+
+\includegraphics{W9_dynamics_error.gif}
+
+\hypertarget{week-10---lotka-volterra-model-of-predator-prey-interactions-and-time-scale-separation}{%
+\chapter*{Week 10 - Lotka-Volterra model of predator-prey interactions and time-scale separation}\label{week-10---lotka-volterra-model-of-predator-prey-interactions-and-time-scale-separation}}
+\addcontentsline{toc}{chapter}{Week 10 - Lotka-Volterra model of predator-prey interactions and time-scale separation}
+
+\textbf{Part 1: analyzing the classic Lotka-Volterra predator-prey model}
+
+In this lab, we are going to analyze the classic Lotka-Volterra predator-prey model:
+
+\begin{align*}
+\frac {dN}{dt} &= rN-aNP\\
+\frac {dP}{dt} &= eaNP-dP
+\end{align*}
+
+The non-trivial equilibrium of this system is \(E_c = (N = \frac{d}{ea}, P = \frac{r}{a})\).
+
+We simulate the model using the following parameter set (\(N_0\) = 10, \(P_0\) = 2, \(r\) = 1.0, \(a\) = 0.1, \(e\) = 0.8, \(d\) = 0.5) and plot the population trajectories of predator and prey over time. We also show their population dynamics in the state-space diagram.
+
+What will happen if you add a perturbation to the system (i.e., change the initial conditions)? Try out different values of \(N\) and \(P\) and visualize the differences in the state-space diagram by yourselve.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(deSolve)}
+\DocumentationTok{\#\#\# Model specification}
+\NormalTok{LV\_predation\_model }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms) \{}
+  \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{    dN\_dt }\OtherTok{=}\NormalTok{ r}\SpecialCharTok{*}\NormalTok{N }\SpecialCharTok{{-}}\NormalTok{ a}\SpecialCharTok{*}\NormalTok{N}\SpecialCharTok{*}\NormalTok{P}
+\NormalTok{    dP\_dt }\OtherTok{=}\NormalTok{ e}\SpecialCharTok{*}\NormalTok{a}\SpecialCharTok{*}\NormalTok{N}\SpecialCharTok{*}\NormalTok{P }\SpecialCharTok{{-}}\NormalTok{ d}\SpecialCharTok{*}\NormalTok{P}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN\_dt, dP\_dt)))}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\DocumentationTok{\#\#\# Model parameters}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.01}\NormalTok{)}
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N =} \DecValTok{10}\NormalTok{, }\AttributeTok{P =} \DecValTok{2}\NormalTok{)}
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r =} \FloatTok{1.0}\NormalTok{, }\AttributeTok{a =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{e =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{d =} \FloatTok{0.5}\NormalTok{)}
+
+\DocumentationTok{\#\#\# Model application}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ LV\_predation\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\DocumentationTok{\#\#\# Visualization {-}{-} population dynamics}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(times)), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(pop\_size[, }\FunctionTok{c}\NormalTok{(}\StringTok{"N"}\NormalTok{, }\StringTok{"P"}\NormalTok{)] }\SpecialCharTok{+} \DecValTok{10}\NormalTok{)), }\AttributeTok{type =} \StringTok{"n"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"time"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"population size"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{) }\CommentTok{\# dynamics of N}
+\FunctionTok{lines}\NormalTok{(P }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{) }\CommentTok{\# dynamics of P}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =}\NormalTok{ parms[}\DecValTok{4}\NormalTok{]}\SpecialCharTok{/}\NormalTok{(parms[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ parms[}\DecValTok{2}\NormalTok{]), }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{) }\CommentTok{\# equilibrium of N}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =}\NormalTok{ parms[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/}\NormalTok{ parms[}\DecValTok{2}\NormalTok{], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{) }\CommentTok{\# equilibrium of P}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"N"}\NormalTok{, }\StringTok{"P"}\NormalTok{), }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }\AttributeTok{lty =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Visualization {-}{-} state{-}space diagram}
+\FunctionTok{plot}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ P, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(parms[}\DecValTok{4}\NormalTok{]}\SpecialCharTok{/}\NormalTok{(parms[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ parms[}\DecValTok{2}\NormalTok{]), parms[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/}\NormalTok{ parms[}\DecValTok{2}\NormalTok{]) }\CommentTok{\# equilibrium}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-24-2.pdf}
+
+What is the relationship between the \textbf{long-term average} of the cycle and the originally-expected equilibrium? To calculate long-term average, we need to find out the period of the cycle and then calculate the average population size within a period. The period of the cycle may be derived from the distance between peaks in the dynamics shown above, or by some algorithms, e.g.~\texttt{pracma::findpeaks}.
+
+\textbf{Part 2: Time-scale separation}
+
+Time-scale separation is a useful technique to reduce the dimension of the model system, where some state variables are assumed to operate at a much shorter time scale (i.e., fast variables) compared with the others (i.e., slow variables). The fast variables will be attracted rapidly to their new equilibrium in response to a slight change in the slow variables, such that the slow variables can be viewed as ``constants'' from the perspective of fast variables (and the fast variable will always be at its quasi-equilibrium from the perspective of the slow variable).
+
+Here, we are going to use the Lotka-Volterra model with logistic prey growth to demonstrate the time-scale separation technique:
+
+\begin{align*}
+\frac {dN}{dt} &= rN(1-\frac{N}{K})-aNP\\
+\frac {dP}{dt} &= eaNP-dP
+\end{align*}
+
+The ZNGIs of \(N\) are \(N = 0\) and \(r(1-\frac{N}{K}) - aP = 0\) and the ZNGIs of \(P\) are \(P = 0\) and \(eaN = d\) in this model.
+
+We treat \textbf{prey as a fast variable and predator as a slow variable}. First, we find the quasi-equilibrium \(\widehat{N}\) of prey by setting the prey equation to zero:
+
+\[\widehat{N} = K(1-\frac{aP}{r})\]
+
+And then we plug \(\widehat{N}\) into predator equation:
+
+\[\frac {dP}{dt} = (eaK-d)P(1-\frac{eaK(\frac{a}{r})}{eaK-d}P)\]
+
+One simple way to achieve time-scale separation in this model is to increase the prey growth rate so that prey will grow much faster than predator, mimicking the shorter generation time of prey relative to that of predator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(deSolve)}
+
+\NormalTok{Prey\_logistic\_model }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms) \{}
+  \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{    dN\_dt }\OtherTok{=}\NormalTok{ r}\SpecialCharTok{*}\NormalTok{N}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(N}\SpecialCharTok{/}\NormalTok{K))}\SpecialCharTok{{-}}\NormalTok{a}\SpecialCharTok{*}\NormalTok{N}\SpecialCharTok{*}\NormalTok{P}
+\NormalTok{    dP\_dt }\OtherTok{=}\NormalTok{ e}\SpecialCharTok{*}\NormalTok{a}\SpecialCharTok{*}\NormalTok{N}\SpecialCharTok{*}\NormalTok{P}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{*}\NormalTok{P}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN\_dt, dP\_dt)))}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.01}\NormalTok{)}
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N =} \DecValTok{40}\NormalTok{, }\AttributeTok{P =} \DecValTok{20}\NormalTok{)}
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r =} \DecValTok{40}\NormalTok{, }\AttributeTok{K =} \DecValTok{60}\NormalTok{, }\AttributeTok{a =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{e =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{d =} \FloatTok{0.5}\NormalTok{)  }\CommentTok{\# r is chosen to be sufficiently large for time{-}scale separation}
+
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ Prey\_logistic\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+\end{Highlighting}
+\end{Shaded}
+
+Under time-scale separation, population of prey rapidly becomes stable and predator exhibits a logistic growth. We show these by the trajectories of \(P\) and \(N\) over time.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# population trajectories}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(times)), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(pop\_size[, }\FunctionTok{c}\NormalTok{(}\StringTok{"N"}\NormalTok{, }\StringTok{"P"}\NormalTok{)] }\SpecialCharTok{+} \DecValTok{10}\NormalTok{)), }\AttributeTok{type =} \StringTok{"n"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"time"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"population size"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{) }\CommentTok{\# dynamics of N}
+\FunctionTok{lines}\NormalTok{(P }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{) }\CommentTok{\# dynamics of P}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"N"}\NormalTok{, }\StringTok{"P"}\NormalTok{), }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }\AttributeTok{lty =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+Since \(N\) is a fast variable, it will immediately achieve the its ZNGI on the state-space diagram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# state{-}space diagram}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(pop\_size[, }\StringTok{"N"}\NormalTok{])), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(pop\_size[, }\StringTok{"P"}\NormalTok{])), }\AttributeTok{type =} \StringTok{"n"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"N"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"P"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{) }\CommentTok{\# ZNGI of N}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{a =}\NormalTok{ parms[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{/}\NormalTok{parms[}\DecValTok{3}\NormalTok{], }\AttributeTok{b =} \SpecialCharTok{{-}}\NormalTok{parms[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{/}\NormalTok{(parms[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{*}\NormalTok{parms[}\DecValTok{2}\NormalTok{]), }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{) }\CommentTok{\# ZNGI of N}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{) }\CommentTok{\# ZNGI of P}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v =}\NormalTok{ parms[}\DecValTok{5}\NormalTok{]}\SpecialCharTok{/}\NormalTok{(parms[}\DecValTok{4}\NormalTok{]}\SpecialCharTok{*}\NormalTok{parms[}\DecValTok{3}\NormalTok{]), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{) }\CommentTok{\# ZNGI of P}
+\FunctionTok{points}\NormalTok{(P }\SpecialCharTok{\textasciitilde{}}\NormalTok{ N, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"gray"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+Play with the growth rate \(r\) from small to large values and see how the trajectory of prey and predator moves along the state-space.
+
+Shiny app is credit to \href{https://genchanghsu.github.io/index.html}{Gen-Chang Hsu}
+
+\hypertarget{week-11---no-class-due-to-ntu-anniversary}{%
+\chapter*{Week 11 - No class due to NTU anniversary}\label{week-11---no-class-due-to-ntu-anniversary}}
+\addcontentsline{toc}{chapter}{Week 11 - No class due to NTU anniversary}
+
+\hypertarget{week-12---rosenzweig-macarthur-predator-prey-model-and-mays-complexity-stability-relationship}{%
+\chapter*{Week 12 - Rosenzweig-MacArthur predator-prey model and May's complexity-stability relationship}\label{week-12---rosenzweig-macarthur-predator-prey-model-and-mays-complexity-stability-relationship}}
+\addcontentsline{toc}{chapter}{Week 12 - Rosenzweig-MacArthur predator-prey model and May's complexity-stability relationship}
+
+\textbf{Part 1: Rosenzweig--MacArthur predator--prey model}
+
+In this lab we are going to analyze the Rosenzweig--MacArthur predator--prey model:
+
+\begin{align*}
+\frac {dN}{dt} &= rN(1-\frac{N}{K})-a\frac{N}{1+ahN}P\\
+\frac {dP}{dt} &= ea\frac{N}{1+ahN}P-dP,\\
+\end{align*}
+where \(r\) is the intrinsic growth rate of prey, \(K\) is the carrying capacity of prey, \(a\) is the rate of prey being consumed by predator, \(h\) is the handling time of predator, \(e\) is the assimilation rate of predation and \(d\) is the mortality rate of predator. The ZNGIs of \(N\) are
+\[
+N = 0 \text{ and } P = \frac{r}{a}(1-\frac{N}{K})(1+ahN)
+\]
+and the ZNGIs of \(P\) are
+\[
+P = 0 \text{ and } N = \frac{d}{a(e-dh)}
+\]
+The coexistence equilibrium is \(E_{np} = \left(N^* = \frac{d}{a(e-dh)}, P^* = \frac{r}{a}(1-\frac{N^*}{K})(1+ahN^*)\right)\).
+
+Please simulate the model using the parameter set (\(N_0\) = 5, \(P_0\) = 2, \(r\) = 1.0, \(K\) = 5.0, \(a\) = 1.3, \(h\) = 0.9, \(e\) = 0.6, \(d\) = 0.5) and plot the population trajectories of predator and prey as well as show their population dynamics in the state-space diagram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(deSolve)}
+
+\DocumentationTok{\#\#\# Model specification}
+\NormalTok{RM\_predation\_model }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms) \{}
+  \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{    dN\_dt }\OtherTok{=}\NormalTok{ r}\SpecialCharTok{*}\NormalTok{N}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(N}\SpecialCharTok{/}\NormalTok{K))}\SpecialCharTok{{-}}\NormalTok{(a}\SpecialCharTok{*}\NormalTok{N}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{a}\SpecialCharTok{*}\NormalTok{h}\SpecialCharTok{*}\NormalTok{N))}\SpecialCharTok{*}\NormalTok{P}
+\NormalTok{    dP\_dt }\OtherTok{=}\NormalTok{ e}\SpecialCharTok{*}\NormalTok{(a}\SpecialCharTok{*}\NormalTok{N}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{a}\SpecialCharTok{*}\NormalTok{h}\SpecialCharTok{*}\NormalTok{N))}\SpecialCharTok{*}\NormalTok{P}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{*}\NormalTok{P}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN\_dt, dP\_dt)))  }
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\DocumentationTok{\#\#\# Model parameters}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.01}\NormalTok{)  }
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N =} \DecValTok{5}\NormalTok{, }\AttributeTok{P =} \DecValTok{2}\NormalTok{)  }
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r =} \FloatTok{1.0}\NormalTok{, }\AttributeTok{K =} \FloatTok{5.0}\NormalTok{, }\AttributeTok{a =} \FloatTok{1.3}\NormalTok{, }\AttributeTok{h =} \FloatTok{0.9}\NormalTok{, }\AttributeTok{e =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{d =} \FloatTok{0.5}\NormalTok{) }
+
+\DocumentationTok{\#\#\# Model application}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ RM\_predation\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\DocumentationTok{\#\#\# equilibrium}
+\NormalTok{E\_np }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(parms), }
+             \FunctionTok{c}\NormalTok{(}\AttributeTok{N =}\NormalTok{ d}\SpecialCharTok{/}\NormalTok{(a}\SpecialCharTok{*}\NormalTok{(e}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{*}\NormalTok{h)),}
+               \AttributeTok{P =}\NormalTok{ r}\SpecialCharTok{/}\NormalTok{a}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{/}\NormalTok{(a}\SpecialCharTok{*}\NormalTok{(e}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{*}\NormalTok{h))}\SpecialCharTok{/}\NormalTok{K)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{a}\SpecialCharTok{*}\NormalTok{h}\SpecialCharTok{*}\NormalTok{d}\SpecialCharTok{/}\NormalTok{(a}\SpecialCharTok{*}\NormalTok{(e}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{*}\NormalTok{h)))))}
+
+
+\DocumentationTok{\#\#\# Visualize the population dynamics}
+\CommentTok{\# population trajectories}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(times)), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(pop\_size[, }\FunctionTok{c}\NormalTok{(}\StringTok{"N"}\NormalTok{, }\StringTok{"P"}\NormalTok{)])), }\AttributeTok{type =} \StringTok{"n"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"time"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"population size"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{) }\CommentTok{\# dynamics of N}
+\FunctionTok{lines}\NormalTok{(P }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{) }\CommentTok{\# dynamics of P}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"N"}\NormalTok{, }\StringTok{"P"}\NormalTok{), }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }\AttributeTok{lty =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# state{-}space diagram}
+\NormalTok{max\_P }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(pop\_size[ ,}\StringTok{"P"}\NormalTok{])}
+\NormalTok{max\_N }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(pop\_size[ ,}\StringTok{"N"}\NormalTok{])}
+\FunctionTok{plot}\NormalTok{(P }\SpecialCharTok{\textasciitilde{}}\NormalTok{ N, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, max\_N}\SpecialCharTok{*}\FloatTok{1.2}\NormalTok{), }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, max\_P}\SpecialCharTok{*}\FloatTok{1.2}\NormalTok{))}
+\FunctionTok{points}\NormalTok{(E\_np[}\StringTok{"P"}\NormalTok{] }\SpecialCharTok{\textasciitilde{}}\NormalTok{ E\_np[}\StringTok{"N"}\NormalTok{], }\AttributeTok{pch =} \DecValTok{16}\NormalTok{) }\CommentTok{\# equilibrium }
+\FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(parms), \{}
+  \CommentTok{\# ZNGIs of N}
+  \FunctionTok{abline}\NormalTok{(}\AttributeTok{v =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+  \FunctionTok{curve}\NormalTok{(r}\SpecialCharTok{/}\NormalTok{a}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{x}\SpecialCharTok{/}\NormalTok{K)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{a}\SpecialCharTok{*}\NormalTok{h}\SpecialCharTok{*}\NormalTok{x), }\AttributeTok{from =} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }\AttributeTok{to =}\NormalTok{ K}\SpecialCharTok{+}\DecValTok{2}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{add =}\NormalTok{ T)}
+  \CommentTok{\# ZNGIs of P}
+  \FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+  \FunctionTok{abline}\NormalTok{(}\AttributeTok{v =}\NormalTok{ d}\SpecialCharTok{/}\NormalTok{(a}\SpecialCharTok{*}\NormalTok{(e}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{*}\NormalTok{h)), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\NormalTok{  \}) }
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"ZNGIs of N"}\NormalTok{, }\StringTok{"ZNGIs of P"}\NormalTok{), }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }\AttributeTok{lty =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-29-2.pdf}
+
+\emph{Remark: \texttt{with()} is a function that you can load the value in the object without subsetting.}
+
+Now we increase the carry capacity \(K\) to show the \textbf{paradox of enrichment}. Let's consider \(K = 7\) with other parameters fixed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Model parameters}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{200}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.01}\NormalTok{)  }
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N =} \DecValTok{5}\NormalTok{, }\AttributeTok{P =} \DecValTok{2}\NormalTok{)  }
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r =} \FloatTok{1.0}\NormalTok{, }\AttributeTok{K =} \FloatTok{7.0}\NormalTok{, }\AttributeTok{a =} \FloatTok{1.3}\NormalTok{, }\AttributeTok{h =} \FloatTok{0.9}\NormalTok{, }\AttributeTok{e =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{d =} \FloatTok{0.5}\NormalTok{) }
+
+\DocumentationTok{\#\#\# Model application}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ RM\_predation\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\DocumentationTok{\#\#\# equilibrium}
+\NormalTok{E\_np }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(parms), }
+             \FunctionTok{c}\NormalTok{(}\AttributeTok{N =}\NormalTok{ d}\SpecialCharTok{/}\NormalTok{(a}\SpecialCharTok{*}\NormalTok{(e}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{*}\NormalTok{h)),}
+               \AttributeTok{P =}\NormalTok{ r}\SpecialCharTok{/}\NormalTok{a}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{/}\NormalTok{(a}\SpecialCharTok{*}\NormalTok{(e}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{*}\NormalTok{h))}\SpecialCharTok{/}\NormalTok{K)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{a}\SpecialCharTok{*}\NormalTok{h}\SpecialCharTok{*}\NormalTok{d}\SpecialCharTok{/}\NormalTok{(a}\SpecialCharTok{*}\NormalTok{(e}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{*}\NormalTok{h)))))}
+\end{Highlighting}
+\end{Shaded}
+
+The population size of \(N\) and \(P\) do not stay at the equilibrium but cycle.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Visualize the population dynamics}
+\CommentTok{\# population trajectories}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(times)), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{max}\NormalTok{(pop\_size[, }\FunctionTok{c}\NormalTok{(}\StringTok{"N"}\NormalTok{, }\StringTok{"P"}\NormalTok{)])}\SpecialCharTok{*}\FloatTok{1.2}\NormalTok{), }\AttributeTok{type =} \StringTok{"n"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"time"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"population size"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{) }\CommentTok{\# dynamics of N}
+\FunctionTok{lines}\NormalTok{(P }\SpecialCharTok{\textasciitilde{}}\NormalTok{ time, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{) }\CommentTok{\# dynamics of P}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"N"}\NormalTok{, }\StringTok{"P"}\NormalTok{), }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }\AttributeTok{lty =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# state{-}space diagram}
+\NormalTok{max\_P }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(pop\_size[ ,}\StringTok{"P"}\NormalTok{])}
+\NormalTok{max\_N }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(pop\_size[ ,}\StringTok{"N"}\NormalTok{])}
+\FunctionTok{plot}\NormalTok{(P }\SpecialCharTok{\textasciitilde{}}\NormalTok{ N, }\AttributeTok{data =}\NormalTok{ pop\_size, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, max\_N}\SpecialCharTok{*}\FloatTok{1.2}\NormalTok{), }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, max\_P}\SpecialCharTok{*}\FloatTok{1.2}\NormalTok{))}
+\FunctionTok{points}\NormalTok{(E\_np[}\StringTok{"P"}\NormalTok{] }\SpecialCharTok{\textasciitilde{}}\NormalTok{ E\_np[}\StringTok{"N"}\NormalTok{], }\AttributeTok{pch =} \DecValTok{16}\NormalTok{) }\CommentTok{\# equilibrium }
+\FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(parms), \{}
+  \CommentTok{\# ZNGIs of N}
+  \FunctionTok{abline}\NormalTok{(}\AttributeTok{v =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+  \FunctionTok{curve}\NormalTok{(r}\SpecialCharTok{/}\NormalTok{a}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{x}\SpecialCharTok{/}\NormalTok{K)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{a}\SpecialCharTok{*}\NormalTok{h}\SpecialCharTok{*}\NormalTok{x), }\AttributeTok{from =} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }\AttributeTok{to =}\NormalTok{ K}\SpecialCharTok{+}\DecValTok{2}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{add =}\NormalTok{ T)}
+  \CommentTok{\# ZNGIs of P}
+  \FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+  \FunctionTok{abline}\NormalTok{(}\AttributeTok{v =}\NormalTok{ d}\SpecialCharTok{/}\NormalTok{(a}\SpecialCharTok{*}\NormalTok{(e}\SpecialCharTok{{-}}\NormalTok{d}\SpecialCharTok{*}\NormalTok{h)), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\NormalTok{  \}) }
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"ZNGIs of N"}\NormalTok{, }\StringTok{"ZNGIs of P"}\NormalTok{), }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{), }\AttributeTok{lty =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-31-2.pdf}
+
+Do the \textbf{long-term average} of the population size equal to the equilibrium? Let's calculate the long-term average of population size by function \texttt{pracma::findpeaks()}. It returns a matrix where each row represents one peak found. The first column gives the height, the second the position/index where the maximum is reached, the third and forth the indices of where the peak begins and ends --- in the sense of where the pattern starts and ends.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(pracma)}
+\CommentTok{\# find time points when local peaks occur}
+\NormalTok{peaks }\OtherTok{\textless{}{-}} \FunctionTok{findpeaks}\NormalTok{(pop\_size[, }\StringTok{"N"}\NormalTok{])[ ,}\DecValTok{2}\NormalTok{]}
+\NormalTok{peaks }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  2219  5694  8960 12225 15490 18755
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# get period as time between peaks }
+\NormalTok{periods }\OtherTok{\textless{}{-}}\NormalTok{ peaks[}\FunctionTok{length}\NormalTok{(peaks)] }\SpecialCharTok{{-}}\NormalTok{ peaks[}\FunctionTok{length}\NormalTok{(peaks) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{]}
+\CommentTok{\# long{-}term average of N}
+\NormalTok{avg\_N }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(pop\_size[(}\FunctionTok{length}\NormalTok{(times) }\SpecialCharTok{{-}}\NormalTok{ periods }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(times), }\StringTok{"N"}\NormalTok{])}
+\NormalTok{avg\_N}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.642661
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# long{-}term average of P}
+\NormalTok{avg\_P }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(pop\_size[(}\FunctionTok{length}\NormalTok{(times) }\SpecialCharTok{{-}}\NormalTok{ periods }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(times), }\StringTok{"P"}\NormalTok{])}
+\NormalTok{avg\_P}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.4757
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# equilibrium of N and P}
+\NormalTok{E\_np}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        N        P 
+## 2.564103 1.949845
+\end{verbatim}
+
+We show that the the long-term average of the population size of \(N\) and \(P\) are not identical to the equilibrium of \(N\) and \(P\). In fact, the long-term average of the resource \(N\) is larger than the original equilibrium due to the fact that the per capita growth rate of the \(P\) is a concave-downward function.
+
+What will happen if you add a perturbation to the system (i.e., change the initial conditions)? Try out different values of \(N_0\) and \(P_0\) and visualize the differences in the state-space diagram.
+
+Shiny app is credit to \href{https://genchanghsu.github.io/index.html}{Gen-Chang Hsu}
+
+\textbf{Part 2: May's complexity-stability relationship}
+
+May's insight was to skip the Jacobian calculation altogether and directly consider the Jacobian matrix as a large random matrix (\(\mathbf{M}\), with elements \(m_{ij}\)) resting at a feasible equilibrium, and then the eigenvalues of the Jacobian matrix could be derived based on random matrix theory.
+
+Let's try to recreate May's random matrix. In particular, May considered the following algorithm to build the random Jacobian matrix for \(S\) species (thereby a \(S \times S\) matrix):
+
+\begin{itemize}
+    \item For all the elements $m_{ij}$ in $\mathbf{M}$, let $m_{ij} = 0$ with probability $1-C$ and with probability $C$ be drawn from a distribution (here, let's assume a normal distribution) with mean 0 and variance $\sigma^{2}$. All $m_{ij}$ are generated independently.
+    \item The diagonal elements $m_{ii}$ are then subtracted by $d$. 
+\end{itemize}
+
+\noindent Here, \(C\) represents the connectedness of the system (chance of species interacting with each other), \(\sigma^{2}\) can be considered as the realized interaction strengths, and \(d\) is the strength of self-limitation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# code for building May\textquotesingle{}s random matrix}
+\NormalTok{BuildMay }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(S, C, d, sigma)\{}
+  \CommentTok{\# fill the whole matrix}
+\NormalTok{  entry }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(S }\SpecialCharTok{*}\NormalTok{ S, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =}\NormalTok{ sigma)}
+\NormalTok{  M }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(entry, }\AttributeTok{nrow =}\NormalTok{ S, }\AttributeTok{ncol =}\NormalTok{ S)}
+  \CommentTok{\# remove connections}
+\NormalTok{  remove }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{runif}\NormalTok{(S }\SpecialCharTok{*}\NormalTok{ S) }\SpecialCharTok{\textless{}=}\NormalTok{ C, }\AttributeTok{nrow =}\NormalTok{ S, }\AttributeTok{ncol =}\NormalTok{ S)}
+\NormalTok{  M }\OtherTok{\textless{}{-}}\NormalTok{ M }\SpecialCharTok{*}\NormalTok{ remove}
+
+  \FunctionTok{sum}\NormalTok{(M }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{) }\SpecialCharTok{/}\NormalTok{ (S}\SpecialCharTok{*}\NormalTok{S) }\CommentTok{\# should equal to C}
+
+  \CommentTok{\# substrate diagonal elements by d}
+  \FunctionTok{diag}\NormalTok{(M) }\OtherTok{\textless{}{-}} \FunctionTok{diag}\NormalTok{(M) }\SpecialCharTok{{-}}\NormalTok{ d}
+  \FunctionTok{return}\NormalTok{(M)}
+\NormalTok{\}}
+
+\NormalTok{May }\OtherTok{\textless{}{-}} \FunctionTok{BuildMay}\NormalTok{(}\AttributeTok{S =} \DecValTok{500}\NormalTok{, }\AttributeTok{C =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{d =} \DecValTok{10}\NormalTok{, }\AttributeTok{sigma =} \DecValTok{1}\NormalTok{)}
+\NormalTok{EVals }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(May)}\SpecialCharTok{$}\NormalTok{values}
+\NormalTok{Re.EVals }\OtherTok{\textless{}{-}} \FunctionTok{Re}\NormalTok{(EVals)}
+\NormalTok{Im.EVals }\OtherTok{\textless{}{-}} \FunctionTok{Im}\NormalTok{(EVals)}
+
+\FunctionTok{plot}\NormalTok{(Re.EVals, Im.EVals, }\AttributeTok{xlab =} \StringTok{"Real part"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Imaginary part"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-34-1.pdf}
+
+\textbf{Extra reading: Elliptic raw}
+
+In May's random matrix, the entries \(m_{ij}\), which represents the effect of species \(j\) on species \(i\)'s growth rate, are independently generated. However, in ecological networks, we usually model pairwise interaction such as consumer-resource, mutualism, and competition, in which cases, \(m_{ij}\) is not independent of \(m_{ji}\). For \textbf{consumer-resources interactions}, \(m_{ij}\) and \(m_{ji}\) are negatively correlated. For \textbf{mutualism or competition interaction}, \(m_{ij}\) and \(m_{ji}\) are positively correlated. Under the assumption that the pairwise interactions are correlated, we may show that the eigenvalues of the randomly generated Jacobian do not follow uniform distribution in a circle, but in an ellipse.
+
+We build a function \texttt{BuildElliptic} with argument \(S\) is the number of species (i.e.~the dimension of the Jacobian), \(C\) is the connectance, \(d\) is the strength of self-limitation, \(\sigma\) is the variance (i.e.~the realized interaction strength) and \(\rho\) is the correlation of the pairwise interaction.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\DocumentationTok{\#\#\#\# The function to build Elliptic law}
+\NormalTok{BuildElliptic }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(S, C, d, sigma, rho)\{}
+  
+  \CommentTok{\# sample coefficients in pairs}
+\NormalTok{  pairs }\OtherTok{\textless{}{-}}\NormalTok{ MASS}\SpecialCharTok{::}\FunctionTok{mvrnorm}\NormalTok{(}\AttributeTok{n =}\NormalTok{ S }\SpecialCharTok{*}\NormalTok{ (S}\DecValTok{{-}1}\NormalTok{) }\SpecialCharTok{/} \DecValTok{2}\NormalTok{,}
+                         \AttributeTok{mu =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                         \AttributeTok{Sigma =}\NormalTok{ sigma}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{*} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, rho, rho, }\DecValTok{1}\NormalTok{), }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+  
+  \CommentTok{\# build a completely filled matrix}
+\NormalTok{  M }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, S, S)}
+\NormalTok{  M[}\FunctionTok{upper.tri}\NormalTok{(M)] }\OtherTok{\textless{}{-}}\NormalTok{ pairs[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  M }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(M)}
+\NormalTok{  M[}\FunctionTok{upper.tri}\NormalTok{(M)] }\OtherTok{\textless{}{-}}\NormalTok{ pairs[,}\DecValTok{2}\NormalTok{]}
+  
+  \CommentTok{\# determine which connections to retain (in pairs)}
+\NormalTok{  Connections }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{runif}\NormalTok{(S }\SpecialCharTok{*}\NormalTok{ S), S, S) }\SpecialCharTok{\textless{}=}\NormalTok{ C) }\SpecialCharTok{*} \DecValTok{1} 
+\NormalTok{  Connections[}\FunctionTok{lower.tri}\NormalTok{(Connections)] }\OtherTok{\textless{}{-}} \DecValTok{0}
+  \FunctionTok{diag}\NormalTok{(Connections) }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{  Connections }\OtherTok{\textless{}{-}}\NormalTok{ Connections }\SpecialCharTok{+} \FunctionTok{t}\NormalTok{(Connections)}
+\NormalTok{  M }\OtherTok{\textless{}{-}}\NormalTok{ M }\SpecialCharTok{*}\NormalTok{ Connections}
+  
+  \CommentTok{\# set diagonals}
+  \FunctionTok{diag}\NormalTok{(M) }\OtherTok{\textless{}{-}} \FunctionTok{diag}\NormalTok{(M) }\SpecialCharTok{{-}}\NormalTok{ d}
+  \FunctionTok{return}\NormalTok{(M)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# consumer{-}resources interactions}
+\NormalTok{M\_CR }\OtherTok{\textless{}{-}} \FunctionTok{BuildElliptic}\NormalTok{(}\AttributeTok{S =} \DecValTok{500}\NormalTok{, }\AttributeTok{C =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{d =} \DecValTok{10}\NormalTok{, }\AttributeTok{sigma =} \DecValTok{1}\NormalTok{, }\AttributeTok{rho =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{)}
+\NormalTok{EVals\_CR }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(M\_CR)}\SpecialCharTok{$}\NormalTok{values}
+\NormalTok{Re.EVals\_CR }\OtherTok{\textless{}{-}} \FunctionTok{Re}\NormalTok{(EVals\_CR)}
+\NormalTok{Im.EVals\_CR }\OtherTok{\textless{}{-}} \FunctionTok{Im}\NormalTok{(EVals\_CR)}
+
+\CommentTok{\# mutualism or competition}
+\NormalTok{M\_MC }\OtherTok{\textless{}{-}} \FunctionTok{BuildElliptic}\NormalTok{(}\AttributeTok{S =} \DecValTok{500}\NormalTok{, }\AttributeTok{C =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{d =} \DecValTok{10}\NormalTok{, }\AttributeTok{sigma =} \DecValTok{1}\NormalTok{, }\AttributeTok{rho =} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{EVals\_MC }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(M\_MC)}\SpecialCharTok{$}\NormalTok{values}
+\NormalTok{Re.EVals\_MC }\OtherTok{\textless{}{-}} \FunctionTok{Re}\NormalTok{(EVals\_MC)}
+\NormalTok{Im.EVals\_MC }\OtherTok{\textless{}{-}} \FunctionTok{Im}\NormalTok{(EVals\_MC)}
+
+\CommentTok{\# combine data}
+\NormalTok{Re.EVals }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(Re.EVals\_CR, Re.EVals\_MC)}
+\NormalTok{Im.EVals }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(Im.EVals\_CR, Im.EVals\_MC)}
+
+\CommentTok{\# visualization}
+\FunctionTok{plot}\NormalTok{(Re.EVals, Im.EVals, }\AttributeTok{xlab =} \StringTok{"Real part"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Imaginary part"}\NormalTok{, }\AttributeTok{type =} \StringTok{"n"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(Re.EVals\_CR, Im.EVals\_CR, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(Re.EVals\_MC, Im.EVals\_MC, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"Resource{-}consumer"}\NormalTok{, }\StringTok{"Mutualism or Competition"}\NormalTok{), }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"green"}\NormalTok{, }\StringTok{"blue"}\NormalTok{), }\AttributeTok{pch =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+\hypertarget{week-13---parameter-space-for-apparent-competition-model}{%
+\chapter*{Week 13 - Parameter space for apparent competition model}\label{week-13---parameter-space-for-apparent-competition-model}}
+\addcontentsline{toc}{chapter}{Week 13 - Parameter space for apparent competition model}
+
+Here, we are going to visualize the outcomes of apparent competition in the \(r_1/a_1\) -- \(r_2/a_2\) space:
+\begin{align*}
+\frac{dN_1}{dt} &= r_1N_1(1-\frac{N_1}{K_1}) - a_1N_1P\\
+\frac{dN_2}{dt} &= r_2N_2(1-\frac{N_2}{K_2}) - a_2N_2P\\
+\frac{dP}{dt} &= e_1a_1N_1P + e_2a_2N_2P - mP.
+\end{align*}
+Two prey \(N_1\) and \(N_2\) grow logistically with intrinsic growth rate \(r_1\) and \(r_2\) and carrying capacity \(K_1\) and \(K_2\). Predator \(P\) consumes two prey following Holling type I functional response, with \(a_1\) and \(a_2\) representing the consumption rate of \(N_1\) and \(N_2\) by predator respectively. After consumption, the assimilation rate are \(e_1\) and \(e_2\). The death rate of predator is represented by \(m\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(deSolve)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\DocumentationTok{\#\#\#\# Create a function to evaluate the competition outcome}
+\NormalTok{Apparent\_logistic\_func }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(r1, r2, other.parameters)\{}
+
+  \CommentTok{\# specify the model}
+\NormalTok{  Apparent\_logistic\_model }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms) \{}
+    \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{      dN1\_dt }\OtherTok{=}\NormalTok{ r1 }\SpecialCharTok{*}\NormalTok{ N1 }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ N1 }\SpecialCharTok{/}\NormalTok{ K1) }\SpecialCharTok{{-}}\NormalTok{ a1 }\SpecialCharTok{*}\NormalTok{ N1 }\SpecialCharTok{*}\NormalTok{ P}
+\NormalTok{      dN2\_dt }\OtherTok{=}\NormalTok{ r2 }\SpecialCharTok{*}\NormalTok{ N2 }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ N2 }\SpecialCharTok{/}\NormalTok{ K2) }\SpecialCharTok{{-}}\NormalTok{ a2 }\SpecialCharTok{*}\NormalTok{ N2 }\SpecialCharTok{*}\NormalTok{ P}
+\NormalTok{      dP\_dt }\OtherTok{=}\NormalTok{ e1 }\SpecialCharTok{*}\NormalTok{ a1 }\SpecialCharTok{*}\NormalTok{ N1 }\SpecialCharTok{*}\NormalTok{ P }\SpecialCharTok{+}\NormalTok{ e2 }\SpecialCharTok{*}\NormalTok{ a2 }\SpecialCharTok{*}\NormalTok{ N2 }\SpecialCharTok{*}\NormalTok{ P }\SpecialCharTok{{-}}\NormalTok{ d }\SpecialCharTok{*}\NormalTok{ P}
+      \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN1\_dt, dN2\_dt, dP\_dt)))}
+\NormalTok{    \})}
+\NormalTok{  \}}
+
+  \CommentTok{\# model parameters}
+\NormalTok{  times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{3000}\NormalTok{, }\AttributeTok{by =} \DecValTok{10}\NormalTok{)}
+\NormalTok{  state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N1 =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{N2 =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{P =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r1 =}\NormalTok{ r1, }\AttributeTok{r2 =}\NormalTok{ r2, other.parameters)}
+
+  \CommentTok{\# run the ode}
+\NormalTok{  pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ Apparent\_logistic\_model, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+  \CommentTok{\# return final population size}
+\NormalTok{  N\_final }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(}\FunctionTok{na.omit}\NormalTok{(pop\_size))   }\CommentTok{\# remove NAN\textquotesingle{}s}
+  \FunctionTok{return}\NormalTok{(pop\_size[N\_final, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{])}
+
+\NormalTok{\}}
+
+
+\DocumentationTok{\#\#\#\# Set up parameter space of interest}
+\NormalTok{Parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{r1 =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{r2 =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{a1 =} \FloatTok{0.35}\NormalTok{, }\AttributeTok{a2 =} \FloatTok{0.35}\NormalTok{, }\AttributeTok{e1 =} \FloatTok{0.4}\NormalTok{, }\AttributeTok{e2 =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{d =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{K1 =} \DecValTok{15}\NormalTok{, }\AttributeTok{K2 =} \DecValTok{12}\NormalTok{)}
+\NormalTok{r\_min }\OtherTok{\textless{}{-}} \FloatTok{0.1}
+\NormalTok{r\_max }\OtherTok{\textless{}{-}} \FloatTok{0.7}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{100}
+\NormalTok{r1.vec }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(r\_min, r\_max, }\AttributeTok{length.out =}\NormalTok{ n)}
+\NormalTok{r2.vec }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(r\_min, r\_max, }\AttributeTok{length.out =}\NormalTok{ n)}
+
+
+\DocumentationTok{\#\#\#\# Create parameter space and saving space}
+\NormalTok{comp\_out }\OtherTok{\textless{}{-}} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{r1 =}\NormalTok{ r1.vec, }\AttributeTok{r2 =}\NormalTok{ r2.vec)}
+\NormalTok{comp\_out }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(comp\_out,}
+                                \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow =} \FunctionTok{dim}\NormalTok{(comp\_out)[}\DecValTok{1}\NormalTok{], }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)))}
+\FunctionTok{head}\NormalTok{(comp\_out)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          r1  r2 1 2 3
+## 1 0.1000000 0.1 0 0 0
+## 2 0.1060606 0.1 0 0 0
+## 3 0.1121212 0.1 0 0 0
+## 4 0.1181818 0.1 0 0 0
+## 5 0.1242424 0.1 0 0 0
+## 6 0.1303030 0.1 0 0 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\# Apply the function across the parameter space}
+\NormalTok{start\_time }\OtherTok{\textless{}{-}} \FunctionTok{Sys.time}\NormalTok{() }\CommentTok{\# starting time}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(comp\_out)[}\DecValTok{1}\NormalTok{])\{}
+\NormalTok{  comp\_out[i, }\DecValTok{3}\SpecialCharTok{:}\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{Apparent\_logistic\_func}\NormalTok{(}\AttributeTok{r1 =}\NormalTok{ comp\_out}\SpecialCharTok{$}\NormalTok{r1[i],}
+                                             \AttributeTok{r2 =}\NormalTok{ comp\_out}\SpecialCharTok{$}\NormalTok{r2[i],}
+                                             \AttributeTok{other.parameters =}\NormalTok{ Parms[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{)])}
+\NormalTok{\}}
+\NormalTok{end\_time }\OtherTok{\textless{}{-}} \FunctionTok{Sys.time}\NormalTok{() }\CommentTok{\# ending time}
+\NormalTok{end\_time }\SpecialCharTok{{-}}\NormalTok{ start\_time }\CommentTok{\# total time spent}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Time difference of 2.276686 mins
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\# Determine outcome status}
+\NormalTok{comp\_out}\SpecialCharTok{$}\NormalTok{Outcome }\OtherTok{\textless{}{-}}
+  \FunctionTok{ifelse}\NormalTok{ (comp\_out[, }\DecValTok{3}\NormalTok{] }\SpecialCharTok{\textless{}} \FloatTok{1e{-}4}\NormalTok{, }\StringTok{"N2 win"}\NormalTok{,}
+          \FunctionTok{ifelse}\NormalTok{(comp\_out[, }\DecValTok{4}\NormalTok{] }\SpecialCharTok{\textless{}} \FloatTok{1e{-}4}\NormalTok{, }\StringTok{"N1 win"}\NormalTok{, }\StringTok{"Coexist"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\# Visualize the competition outcomes in the grids {-}{-} base R}
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ comp\_out}\SpecialCharTok{$}\NormalTok{r1 }\SpecialCharTok{/}\NormalTok{ Parms[}\DecValTok{3}\NormalTok{]}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ comp\_out}\SpecialCharTok{$}\NormalTok{r2 }\SpecialCharTok{/}\NormalTok{ Parms[}\DecValTok{4}\NormalTok{]}
+\NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(comp\_out}\SpecialCharTok{$}\NormalTok{Outcome) }\CommentTok{\# Levels: Coexist N1 win N2 win}
+\NormalTok{color }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{, }\StringTok{"green"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(x, y, }\AttributeTok{type =} \StringTok{"n"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"r1/a1"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"r2/a2"}\NormalTok{)}
+\NormalTok{size }\OtherTok{\textless{}{-}} \FloatTok{0.008571429} \CommentTok{\#0.003/0.35}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(z))\{}
+  \FunctionTok{rect}\NormalTok{(x[i] }\SpecialCharTok{{-}}\NormalTok{ size, y[i] }\SpecialCharTok{{-}}\NormalTok{ size, x[i] }\SpecialCharTok{+}\NormalTok{ size, y[i] }\SpecialCharTok{+}\NormalTok{ size, }\AttributeTok{col =}\NormalTok{ color[z[i]], }\AttributeTok{border =}\NormalTok{ color[z[i]])}
+\NormalTok{\}}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{a =} \DecValTok{0}\NormalTok{, }\AttributeTok{b =}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ Parms[}\DecValTok{7}\NormalTok{] }\SpecialCharTok{/}\NormalTok{ (Parms[}\DecValTok{5}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ Parms[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ Parms[}\DecValTok{8}\NormalTok{])), }\AttributeTok{lwd =} \DecValTok{4}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{a =} \DecValTok{0}\NormalTok{, }\AttributeTok{b =}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ Parms[}\DecValTok{7}\NormalTok{] }\SpecialCharTok{/}\NormalTok{ (Parms[}\DecValTok{6}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ Parms[}\DecValTok{4}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ Parms[}\DecValTok{9}\NormalTok{]))}\SpecialCharTok{\^{}{-}}\DecValTok{1}\NormalTok{,, }\AttributeTok{lwd =} \DecValTok{4}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\AttributeTok{labels =} \StringTok{"N2 wins"}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\FloatTok{1.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\AttributeTok{labels =} \StringTok{"N1 wins"}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\FloatTok{1.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\AttributeTok{labels =} \StringTok{"Coexist"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\# Visualize the competition outcomes in the grids {-}{-} ggplot}
+\FunctionTok{ggplot}\NormalTok{(comp\_out, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ r1}\SpecialCharTok{/}\NormalTok{Parms[}\DecValTok{3}\NormalTok{], }\AttributeTok{y =}\NormalTok{ r2}\SpecialCharTok{/}\NormalTok{Parms[}\DecValTok{4}\NormalTok{], }\AttributeTok{z =}\NormalTok{ Outcome, }\AttributeTok{fill =}\NormalTok{ Outcome)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_abline}\NormalTok{(}\AttributeTok{intercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{slope =}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ Parms[}\DecValTok{7}\NormalTok{] }\SpecialCharTok{/}\NormalTok{ (Parms[}\DecValTok{5}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ Parms[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ Parms[}\DecValTok{8}\NormalTok{])), }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_abline}\NormalTok{(}\AttributeTok{intercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{slope =}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ Parms[}\DecValTok{7}\NormalTok{] }\SpecialCharTok{/}\NormalTok{ (Parms[}\DecValTok{6}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ Parms[}\DecValTok{4}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ Parms[}\DecValTok{9}\NormalTok{]))}\SpecialCharTok{\^{}{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \FunctionTok{expression}\NormalTok{(r[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{/}\NormalTok{a[}\DecValTok{1}\NormalTok{]), }\AttributeTok{y =} \FunctionTok{expression}\NormalTok{(r[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{/}\NormalTok{a[}\DecValTok{2}\NormalTok{])) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(r\_min}\SpecialCharTok{/}\NormalTok{Parms[}\DecValTok{3}\NormalTok{], r\_max}\SpecialCharTok{/}\NormalTok{Parms[}\DecValTok{4}\NormalTok{]), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(r\_min}\SpecialCharTok{/}\NormalTok{Parms[}\DecValTok{3}\NormalTok{], r\_max}\SpecialCharTok{/}\NormalTok{Parms[}\DecValTok{4}\NormalTok{]), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Set1"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{14}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{panel.grid =} \FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+}
+  \FunctionTok{coord\_fixed}\NormalTok{(}\AttributeTok{ratio =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{y =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{label =} \StringTok{"bold(bolditalic(N[2])\textasciitilde{}wins)"}\NormalTok{, }\AttributeTok{parse =}\NormalTok{ T) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{y =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{label =} \StringTok{"bold(Coexist)"}\NormalTok{, }\AttributeTok{parse =}\NormalTok{ T) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{y =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{label =} \StringTok{"bold(bolditalic(N[1])\textasciitilde{}wins)"}\NormalTok{, }\AttributeTok{parse =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-39-1.pdf}
+
+If the parameter space is extended and sliced into more tiny grid, the outcomes will be more complete:
+
+\includegraphics[width=10.67in]{assignment_figures/W13}
+
+\hypertarget{week-14---resource-competition}{%
+\chapter*{Week 14 - Resource competition}\label{week-14---resource-competition}}
+\addcontentsline{toc}{chapter}{Week 14 - Resource competition}
+
+\textbf{Part 1 - R* rule}
+
+In this part of the lab section, we are going to analyze the consumer-resource dynamics with two consumers and one resource:
+\begin{align*}
+\frac {dN_{1}}{dt} &= e_{1}a_{1}RN_{1}-dN_{1}\\
+\frac {dN_{2}}{dt} &= e_{2}a_{2}RN_{2}-dN_{2}\\
+\frac {dR}{dt} &= d(S_{0}-R)-a_{1}RN_{1}-a_{2}RN_{2}\\
+\end{align*}
+
+Please simulate the model using the parameter set (\(N_{1(0)}\) = 2, \(N_{2(0)}\) = 2, \(R\) = 0.1, \(a_1\) = 0.4, \(a_2\) = 0.6, \(e_1\) = 1, \(e_2\) = 1, \(d\) = 0.01, \(S_0\) = 0.1) and visualize the population trajectories of the two consumers as well as the resource.
+
+Below is a plot of resource level vs.~consumers' per capita growth rate. What would you predict about the system dynamics?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(deSolve)}
+
+\DocumentationTok{\#\#\# Parameters}
+\NormalTok{a1 }\OtherTok{\textless{}{-}} \FloatTok{0.4} 
+\NormalTok{a2 }\OtherTok{\textless{}{-}} \FloatTok{0.6}
+\NormalTok{e1 }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{e2 }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{d }\OtherTok{\textless{}{-}} \FloatTok{0.01} 
+\NormalTok{S0 }\OtherTok{\textless{}{-}} \FloatTok{0.1}
+
+\DocumentationTok{\#\#\# Resource level vs. consumers\textquotesingle{} per capita population growth}
+\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{R =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.001}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{N1 =}\NormalTok{ e1}\SpecialCharTok{*}\NormalTok{a1}\SpecialCharTok{*}\NormalTok{R}\SpecialCharTok{{-}}\NormalTok{d,}
+         \AttributeTok{N2 =}\NormalTok{ e2}\SpecialCharTok{*}\NormalTok{a2}\SpecialCharTok{*}\NormalTok{R}\SpecialCharTok{{-}}\NormalTok{d) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"Species"}\NormalTok{, }\AttributeTok{value =} \StringTok{"Growth"}\NormalTok{, N1}\SpecialCharTok{:}\NormalTok{N2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ R, }\AttributeTok{y =}\NormalTok{ Growth, }\AttributeTok{color =}\NormalTok{ Species)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Resource level"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Per capita growth rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_classic}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{14}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{bookdown-demo_files/figure-latex/unnamed-chunk-41-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Model specification}
+\NormalTok{CR\_model\_2C\_1R }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms)\{}
+  \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{    dN1\_dt }\OtherTok{=}\NormalTok{ e1}\SpecialCharTok{*}\NormalTok{a1}\SpecialCharTok{*}\NormalTok{R}\SpecialCharTok{*}\NormalTok{N1 }\SpecialCharTok{{-}}\NormalTok{ d}\SpecialCharTok{*}\NormalTok{N1}
+\NormalTok{    dN2\_dt }\OtherTok{=}\NormalTok{ e2}\SpecialCharTok{*}\NormalTok{a2}\SpecialCharTok{*}\NormalTok{R}\SpecialCharTok{*}\NormalTok{N2 }\SpecialCharTok{{-}}\NormalTok{ d}\SpecialCharTok{*}\NormalTok{N2}
+\NormalTok{    dR\_dt }\OtherTok{=}\NormalTok{  d}\SpecialCharTok{*}\NormalTok{(S0}\SpecialCharTok{{-}}\NormalTok{R) }\SpecialCharTok{{-}}\NormalTok{ a1}\SpecialCharTok{*}\NormalTok{R}\SpecialCharTok{*}\NormalTok{N1 }\SpecialCharTok{{-}}\NormalTok{ a2}\SpecialCharTok{*}\NormalTok{R}\SpecialCharTok{*}\NormalTok{N2}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN1\_dt, dN2\_dt, dR\_dt)))}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\DocumentationTok{\#\#\# Model parameters}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\DecValTok{1000}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)  }
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N1 =} \DecValTok{2}\NormalTok{, }\AttributeTok{N2 =} \DecValTok{2}\NormalTok{, }\AttributeTok{R =} \FloatTok{0.1}\NormalTok{)  }
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{a1 =} \FloatTok{0.4}\NormalTok{, }\AttributeTok{a2 =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{e1 =} \DecValTok{1}\NormalTok{, }\AttributeTok{e2 =} \DecValTok{1}\NormalTok{, }\AttributeTok{d =} \FloatTok{0.01}\NormalTok{, }\AttributeTok{S0 =} \FloatTok{0.1}\NormalTok{)}
+
+\DocumentationTok{\#\#\# Model application}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ CR\_model\_2C\_1R, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\DocumentationTok{\#\#\# Visualize the population dynamics}
+\NormalTok{pop\_size }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"Species"}\NormalTok{, }\AttributeTok{value =} \StringTok{"N"}\NormalTok{, N1}\SpecialCharTok{:}\NormalTok{R)  }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{trophic =} \FunctionTok{case\_when}\NormalTok{(Species }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"N1"}\NormalTok{, }\StringTok{"N2"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Consumer"}\NormalTok{,}
+                             \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"Resource"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ time, }\AttributeTok{y =}\NormalTok{ N, }\AttributeTok{color =}\NormalTok{ Species)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ trophic, }
+             \AttributeTok{ncol =} \DecValTok{2}\NormalTok{, }
+             \AttributeTok{scales =} \StringTok{"free\_y"}\NormalTok{,}
+             \AttributeTok{strip.position =} \StringTok{"left"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_classic}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{14}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{strip.background =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{strip.placement =} \StringTok{"outside"}\NormalTok{,}
+        \AttributeTok{legend.position =} \StringTok{"top"}\NormalTok{,}
+        \AttributeTok{legend.title =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{plot.margin =} \FunctionTok{margin}\NormalTok{(}\AttributeTok{r =} \DecValTok{5}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Time"}\NormalTok{, }\AttributeTok{y =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{bookdown-demo_files/figure-latex/unnamed-chunk-42-1} \end{center}
+
+We can see that \(N_1\) goes extinct, as predicted by the R* rule; the remaining consumer \(N_2\) and the resource \(R\) exhibit stable coexistence.
+
+\textbf{Part 2 - Tilman's resource ratio hypothesis}
+
+Now we will extend the model in Part 1. into two consumers and two resources:
+\begin{align*}
+\frac {dN_{1}}{dt} &= e_{1}a_{1a}R_{a}N_{1}+e_{1}a_{1b}R_{b}N_{1}-dN_{1}\\
+\frac {dN_{2}}{dt} &= e_{2}a_{2a}R_{a}N_{2}+e_{2}a_{2b}R_{b}N_{2}-dN_{2}\\
+\frac {dR_{a}}{dt} &= d(S_{a}-R_{a})-a_{1a}R_{a}N_{1}-a_{2a}R_{a}N_{2}\\
+\frac {dR_{b}}{dt} &= d(S_{b}-R_{b})-a_{1b}R_{b}N_{1}-a_{2b}R_{b}N_{2}\\
+\end{align*}
+
+Here, the two consumers \(N_1\) and \(N_2\) compete for two substitutable resources \(R_1\) and \(R_2\). Under certain conditions, the two consumers are able to coexist:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Model specification}
+\NormalTok{CR\_model\_2C\_2R }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(time, state, parms)\{}
+  \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{    dN1\_dt }\OtherTok{=}\NormalTok{ e1}\SpecialCharTok{*}\NormalTok{a1a}\SpecialCharTok{*}\NormalTok{Ra}\SpecialCharTok{*}\NormalTok{N1 }\SpecialCharTok{+}\NormalTok{ e1}\SpecialCharTok{*}\NormalTok{a1b}\SpecialCharTok{*}\NormalTok{Rb}\SpecialCharTok{*}\NormalTok{N1 }\SpecialCharTok{{-}}\NormalTok{ d}\SpecialCharTok{*}\NormalTok{N1}
+\NormalTok{    dN2\_dt }\OtherTok{=}\NormalTok{ e2}\SpecialCharTok{*}\NormalTok{a2a}\SpecialCharTok{*}\NormalTok{Ra}\SpecialCharTok{*}\NormalTok{N2 }\SpecialCharTok{+}\NormalTok{ e2}\SpecialCharTok{*}\NormalTok{a2b}\SpecialCharTok{*}\NormalTok{Rb}\SpecialCharTok{*}\NormalTok{N2 }\SpecialCharTok{{-}}\NormalTok{ d}\SpecialCharTok{*}\NormalTok{N2}
+\NormalTok{    dRa\_dt }\OtherTok{=}\NormalTok{ d}\SpecialCharTok{*}\NormalTok{(Sa}\SpecialCharTok{{-}}\NormalTok{Ra) }\SpecialCharTok{{-}}\NormalTok{ (a1a}\SpecialCharTok{*}\NormalTok{N1}\SpecialCharTok{*}\NormalTok{Ra) }\SpecialCharTok{{-}}\NormalTok{ (a2a}\SpecialCharTok{*}\NormalTok{N2}\SpecialCharTok{*}\NormalTok{Ra) }
+\NormalTok{    dRb\_dt }\OtherTok{=}\NormalTok{ d}\SpecialCharTok{*}\NormalTok{(Sb}\SpecialCharTok{{-}}\NormalTok{Rb) }\SpecialCharTok{{-}}\NormalTok{ (a1b}\SpecialCharTok{*}\NormalTok{N1}\SpecialCharTok{*}\NormalTok{Rb) }\SpecialCharTok{{-}}\NormalTok{ (a2b}\SpecialCharTok{*}\NormalTok{N2}\SpecialCharTok{*}\NormalTok{Rb)}
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN1\_dt, dN2\_dt, dRa\_dt, dRb\_dt)))}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\DocumentationTok{\#\#\# Model parameters}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\DecValTok{2000}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.01}\NormalTok{)}
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N1 =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{N2 =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{Ra =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{Rb =} \FloatTok{0.3}\NormalTok{)}
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{a1a =} \FloatTok{0.4}\NormalTok{, }\AttributeTok{a1b =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{a2a =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{a2b =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{e1 =} \DecValTok{1}\NormalTok{, }\AttributeTok{e2 =} \DecValTok{1}\NormalTok{, }\AttributeTok{d =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{Sa =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{Sb =} \FloatTok{0.3}\NormalTok{)  }
+
+\DocumentationTok{\#\#\# Model application}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ CR\_model\_2C\_2R, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+
+\DocumentationTok{\#\#\# Visualize the population dynamics}
+\NormalTok{pop\_size }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"Species"}\NormalTok{, }\AttributeTok{value =} \StringTok{"N"}\NormalTok{, N1}\SpecialCharTok{:}\NormalTok{Rb) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{trophic =} \FunctionTok{case\_when}\NormalTok{(Species }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"N1"}\NormalTok{, }\StringTok{"N2"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Consumer"}\NormalTok{,}
+                             \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"Resource"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ time, }\AttributeTok{y =}\NormalTok{ N, }\AttributeTok{color =}\NormalTok{ Species)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ trophic, }
+             \AttributeTok{ncol =} \DecValTok{2}\NormalTok{, }
+             \AttributeTok{scales =} \StringTok{"free\_y"}\NormalTok{,}
+             \AttributeTok{strip.position =} \StringTok{"left"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_classic}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{14}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{strip.background =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{strip.placement =} \StringTok{"outside"}\NormalTok{,}
+        \AttributeTok{legend.position =} \StringTok{"top"}\NormalTok{,}
+        \AttributeTok{legend.title =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{plot.margin =} \FunctionTok{margin}\NormalTok{(}\AttributeTok{r =} \DecValTok{8}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Time"}\NormalTok{, }\AttributeTok{y =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{2050}\NormalTok{), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\ConstantTok{NA}\NormalTok{), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{, }\StringTok{"purple"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{bookdown-demo_files/figure-latex/unnamed-chunk-43-1} \end{center}
+
+The phase diagram also illustrates stable coexistence of the two consumers:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Parameters}
+\NormalTok{a1a }\OtherTok{\textless{}{-}} \FloatTok{0.4}
+\NormalTok{a1b }\OtherTok{\textless{}{-}} \FloatTok{0.8}
+\NormalTok{a2a }\OtherTok{\textless{}{-}} \FloatTok{0.6}
+\NormalTok{a2b }\OtherTok{\textless{}{-}} \FloatTok{0.5}
+\NormalTok{e1 }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{e2 }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{d }\OtherTok{\textless{}{-}} \FloatTok{0.1}
+
+\DocumentationTok{\#\#\# Slopes and intercepts of the ZNGI\textquotesingle{}s}
+\NormalTok{ZNGI\_slope\_N1 }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\NormalTok{a1a}\SpecialCharTok{/}\NormalTok{a1b}
+\NormalTok{ZNGI\_intercept\_N1 }\OtherTok{\textless{}{-}}\NormalTok{ d}\SpecialCharTok{/}\NormalTok{(e1}\SpecialCharTok{*}\NormalTok{a1b)  }
+\NormalTok{ZNGI\_slope\_N2 }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\NormalTok{a2a}\SpecialCharTok{/}\NormalTok{a2b}
+\NormalTok{ZNGI\_intercept\_N2 }\OtherTok{\textless{}{-}}\NormalTok{ d}\SpecialCharTok{/}\NormalTok{(e2}\SpecialCharTok{*}\NormalTok{a2b)}
+
+\DocumentationTok{\#\#\# Consumption vectors}
+\NormalTok{eqilibrium\_Ra }\OtherTok{\textless{}{-}}\NormalTok{ (d}\SpecialCharTok{/}\NormalTok{e1)}\SpecialCharTok{*}\NormalTok{((a1b}\SpecialCharTok{{-}}\NormalTok{a2b)}\SpecialCharTok{/}\NormalTok{(a2a}\SpecialCharTok{*}\NormalTok{a1b}\SpecialCharTok{{-}}\NormalTok{a2b}\SpecialCharTok{*}\NormalTok{a1a))}
+\NormalTok{eqilibrium\_Rb }\OtherTok{\textless{}{-}}\NormalTok{ (d}\SpecialCharTok{/}\NormalTok{e2)}\SpecialCharTok{*}\NormalTok{((a1a}\SpecialCharTok{{-}}\NormalTok{a2a)}\SpecialCharTok{/}\NormalTok{(a2b}\SpecialCharTok{*}\NormalTok{a1a}\SpecialCharTok{{-}}\NormalTok{a2a}\SpecialCharTok{*}\NormalTok{a1b))}
+
+\NormalTok{convec\_df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \FunctionTok{c}\NormalTok{(eqilibrium\_Ra }\SpecialCharTok{+} \DecValTok{6}\SpecialCharTok{*}\NormalTok{a1a}\SpecialCharTok{*}\NormalTok{eqilibrium\_Ra, }
+\NormalTok{                              eqilibrium\_Ra }\SpecialCharTok{+} \DecValTok{6}\SpecialCharTok{*}\NormalTok{a2a}\SpecialCharTok{*}\NormalTok{eqilibrium\_Ra),}
+                        \AttributeTok{y =} \FunctionTok{c}\NormalTok{(eqilibrium\_Rb }\SpecialCharTok{+} \DecValTok{6}\SpecialCharTok{*}\NormalTok{a1b}\SpecialCharTok{*}\NormalTok{eqilibrium\_Rb, }
+\NormalTok{                              eqilibrium\_Rb }\SpecialCharTok{+} \DecValTok{6}\SpecialCharTok{*}\NormalTok{a2b}\SpecialCharTok{*}\NormalTok{eqilibrium\_Rb),}
+                        \AttributeTok{xend =} \FunctionTok{c}\NormalTok{(eqilibrium\_Ra }\SpecialCharTok{{-}}\NormalTok{ a1a}\SpecialCharTok{*}\NormalTok{eqilibrium\_Ra, }
+\NormalTok{                              eqilibrium\_Ra }\SpecialCharTok{{-}}\NormalTok{ a2a}\SpecialCharTok{*}\NormalTok{eqilibrium\_Ra),}
+                        \AttributeTok{yend =} \FunctionTok{c}\NormalTok{(eqilibrium\_Rb }\SpecialCharTok{{-}}\NormalTok{ a1b}\SpecialCharTok{*}\NormalTok{eqilibrium\_Rb, }
+\NormalTok{                              eqilibrium\_Rb }\SpecialCharTok{{-}}\NormalTok{ a2b}\SpecialCharTok{*}\NormalTok{eqilibrium\_Rb),}
+                        \AttributeTok{species =} \FunctionTok{c}\NormalTok{(}\StringTok{"N1"}\NormalTok{, }\StringTok{"N2"}\NormalTok{))}
+
+\DocumentationTok{\#\#\# Phase diagram}
+\FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_abline}\NormalTok{(}\AttributeTok{slope =}\NormalTok{ ZNGI\_slope\_N1, }\AttributeTok{intercept =}\NormalTok{ ZNGI\_intercept\_N1, }\AttributeTok{color =} \StringTok{"\#377EB8"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_abline}\NormalTok{(}\AttributeTok{slope =}\NormalTok{ ZNGI\_slope\_N2, }\AttributeTok{intercept =}\NormalTok{ ZNGI\_intercept\_N2, }\AttributeTok{color =} \StringTok{"\#E41A1C"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_segment}\NormalTok{(}\AttributeTok{data =}\NormalTok{ convec\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y, }\AttributeTok{xend =}\NormalTok{ xend, }\AttributeTok{yend =}\NormalTok{ yend, }\AttributeTok{color =}\NormalTok{ species), }\AttributeTok{linetype =} \StringTok{"blank"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_segment}\NormalTok{(}\AttributeTok{data =}\NormalTok{ convec\_df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y, }\AttributeTok{xend =}\NormalTok{ xend, }\AttributeTok{yend =}\NormalTok{ yend, }\AttributeTok{color =}\NormalTok{ species), }\AttributeTok{size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{arrow =} \FunctionTok{arrow}\NormalTok{(}\AttributeTok{type =} \StringTok{"closed"}\NormalTok{, }\AttributeTok{length =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\StringTok{"inches"}\NormalTok{)), }\AttributeTok{show.legend =}\NormalTok{ F) }\SpecialCharTok{+}
+  \FunctionTok{geom\_path}\NormalTok{(}\AttributeTok{data =} \FunctionTok{as.data.frame}\NormalTok{(pop\_size), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Ra, }\AttributeTok{y =}\NormalTok{ Rb), }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =} \FunctionTok{as.data.frame}\NormalTok{(pop\_size), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{last}\NormalTok{(Ra), }\AttributeTok{y =} \FunctionTok{last}\NormalTok{(Rb)), }\AttributeTok{size =} \FloatTok{2.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_classic}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{14}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \FunctionTok{expression}\NormalTok{(}\FunctionTok{italic}\NormalTok{(R[a])), }\AttributeTok{y =} \FunctionTok{expression}\NormalTok{(}\FunctionTok{italic}\NormalTok{(R[b]))) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_brewer}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{palette =} \StringTok{"Set1"}\NormalTok{, }\AttributeTok{direction =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}
+                     \AttributeTok{guide =} \FunctionTok{guide\_legend}\NormalTok{(}\AttributeTok{override.aes =} \FunctionTok{list}\NormalTok{(}
+                       \AttributeTok{linetype =} \StringTok{"solid"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{coord\_fixed}\NormalTok{(}\AttributeTok{ratio =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{bookdown-demo_files/figure-latex/unnamed-chunk-44-1} \end{center}
+
+In this particular case, if the initial resource levels \(R_{a(0)}\) and \(R_{b(0)}\) fall within the upper area bounded by the two consumption vectors, then the two species will coexist.
+
+\textbf{Part 3 - Relative nonlinearity}
+
+We have seen in Part 1. that two species cannot coexist on one resource if the consumers consume it in a linear fashion. What if the consumers consume the resource in a non-linear fashion? Could that generate stable coexistence?
+
+In this part of the lab section, we will introduce non-linear (type II) functional response into the consumer-resource model in Part 1. for one of the consumers. We also change the resource equation to logistic growth and allow the two consumers to have different conversion efficiencies and mortality rates:
+\begin{align*}
+\frac {dN_{1}}{dt} &= e_{1}a_{1}RN_{1}-d_{1}N_{1}\\
+\frac {dN_{2}}{dt} &= e_{2}\frac{a_{2}R}{k_{2}+R}N_{2}-d_{2}N_{2}\\
+\frac {dR}{dt} &= rR(1-\frac{R}{K})-a_{1}RN_{1}-\frac{a_{2}R}{k_{2}+R}N_{2}\\
+\end{align*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Model specification}
+\NormalTok{CR\_model\_nonlinear }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(times, state, parms)\{}
+  \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(}\FunctionTok{c}\NormalTok{(state, parms)), \{}
+\NormalTok{         dN1\_dt }\OtherTok{=}\NormalTok{ e1}\SpecialCharTok{*}\NormalTok{a1}\SpecialCharTok{*}\NormalTok{R}\SpecialCharTok{*}\NormalTok{N1 }\SpecialCharTok{{-}}\NormalTok{ d1}\SpecialCharTok{*}\NormalTok{N1}
+\NormalTok{         dN2\_dt }\OtherTok{=}\NormalTok{ e2}\SpecialCharTok{*}\NormalTok{(a2}\SpecialCharTok{*}\NormalTok{R}\SpecialCharTok{/}\NormalTok{(k2}\SpecialCharTok{+}\NormalTok{R))}\SpecialCharTok{*}\NormalTok{N2 }\SpecialCharTok{{-}}\NormalTok{ d2}\SpecialCharTok{*}\NormalTok{N2}
+\NormalTok{         dR\_dt }\OtherTok{=}\NormalTok{  r}\SpecialCharTok{*}\NormalTok{R}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(R}\SpecialCharTok{/}\NormalTok{K)) }\SpecialCharTok{{-}}\NormalTok{ a1}\SpecialCharTok{*}\NormalTok{R}\SpecialCharTok{*}\NormalTok{N1 }\SpecialCharTok{{-}}\NormalTok{ ((a2}\SpecialCharTok{*}\NormalTok{R)}\SpecialCharTok{/}\NormalTok{(k2}\SpecialCharTok{+}\NormalTok{R))}\SpecialCharTok{*}\NormalTok{N2}
+         \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(dN1\_dt, dN2\_dt, dR\_dt)))}
+\NormalTok{       \})}
+\NormalTok{\}}
+
+\DocumentationTok{\#\#\# Model parameters}
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{5000}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.1}\NormalTok{)  }
+\NormalTok{state }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{N1 =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{N2 =} \DecValTok{19}\NormalTok{, }\AttributeTok{R =} \DecValTok{106}\NormalTok{) }
+\NormalTok{parms }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{a1 =} \FloatTok{0.003}\NormalTok{, }\AttributeTok{a2 =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{k2 =} \DecValTok{50}\NormalTok{, }\AttributeTok{e1 =} \FloatTok{0.33}\NormalTok{, }\AttributeTok{e2 =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{d1 =} \FloatTok{0.11}\NormalTok{, }\AttributeTok{d2 =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{r =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{K =} \DecValTok{300}\NormalTok{)}
+
+\DocumentationTok{\#\#\# Model application}
+\NormalTok{pop\_size }\OtherTok{\textless{}{-}} \FunctionTok{ode}\NormalTok{(}\AttributeTok{func =}\NormalTok{ CR\_model\_nonlinear, }\AttributeTok{times =}\NormalTok{ times, }\AttributeTok{y =}\NormalTok{ state, }\AttributeTok{parms =}\NormalTok{ parms)}
+
+\DocumentationTok{\#\#\# Visualize the population dynamics}
+\NormalTok{pop\_size }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{as.data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key =} \StringTok{"Species"}\NormalTok{, }\AttributeTok{value =} \StringTok{"N"}\NormalTok{, N1}\SpecialCharTok{:}\NormalTok{R) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{trophic =} \FunctionTok{case\_when}\NormalTok{(Species }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"N1"}\NormalTok{, }\StringTok{"N2"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"Consumer"}\NormalTok{,}
+                             \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"Resource"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ time, }\AttributeTok{y =}\NormalTok{ N, }\AttributeTok{color =}\NormalTok{ Species)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ trophic, }
+             \AttributeTok{ncol =} \DecValTok{2}\NormalTok{, }
+             \AttributeTok{scales =} \StringTok{"free\_y"}\NormalTok{,}
+             \AttributeTok{strip.position =} \StringTok{"left"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_classic}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{14}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{strip.background =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{strip.placement =} \StringTok{"outside"}\NormalTok{,}
+        \AttributeTok{legend.position =} \StringTok{"top"}\NormalTok{,}
+        \AttributeTok{legend.title =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{plot.margin =} \FunctionTok{margin}\NormalTok{(}\AttributeTok{r =} \DecValTok{5}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Time"}\NormalTok{, }\AttributeTok{y =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{bookdown-demo_files/figure-latex/unnamed-chunk-45-1} \end{center}
+
+As shown in the figure, the two consumers coexist in a fluctuating manner. In fact, the fluctuating properties generated by the combination of logistically growing resources and different nonlinear functions are critical for the coexistence of \(n\) species on \(k<n\) resources in certain parameter spaces.
+
+\hypertarget{week-15---research-applications-modern-coexistence-theory-and-plant-soil-feedback}{%
+\chapter*{Week 15 - Research applications: modern coexistence theory and plant-soil feedback}\label{week-15---research-applications-modern-coexistence-theory-and-plant-soil-feedback}}
+\addcontentsline{toc}{chapter}{Week 15 - Research applications: modern coexistence theory and plant-soil feedback}
+
+\hypertarget{week-16---final-exam}{%
+\chapter*{Week 16 - Final exam}\label{week-16---final-exam}}
+\addcontentsline{toc}{chapter}{Week 16 - Final exam}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

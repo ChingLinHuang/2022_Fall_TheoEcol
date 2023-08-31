@@ -1,30 +1,33 @@
 --- 
 title: "Introduction to Theoretical Ecology"
-author: "Instructor: Po-Ju Ke $~~~~~$ Teaching Assistant: Ching-Lin Huang (Andy)"
-date: "2022 Fall at National Taiwan Univeristy ![](./bifurcation.gif)"
-
-url: "https://ChingLinHuang.github.io/2022_Fall_TheoEcol/"
-github-repo: "ChingLinHuang/2022_Fall_TheoEcol"
-cover-image: "bifurcation.gif"
-
+author: "Instructor: Po-Ju Ke $~~~~~$ Teaching Assistant: Sun Yi"
+date: "2023 Fall at National Taiwan Univeristy ![](./bifurcation.gif)"
+output:
+  html_document:
+    df_print: paged
+github-repo: pojuke/TheoreticalEcologyPJK
+cover-image: bifurcation.gif
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography:
+- book.bib
+- packages.bib
 biblio-style: apalike
 link-citations: yes
-
-description: "This is the course website for **_Introduction to Theoretical Ecology_** 2022 Fall at National Taiwan University."
+description: This is the course website for **_Introduction to Theoretical Ecology_**
+  2023 Fall at National Taiwan University.
+url: https://pojuke.github.io/TheoreticalEcologyPJK/
 ---
 # Course information{-}
-<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Description** </p> The development of theory plays an important role in advancing ecology as a scientific field. This three-unit course is for students at the graduate or advanced undergraduate level. The course will cover classic theoretical topics in ecology, starting from single-species dynamics and gradually build up to multi-species models. The course will primarily focus on population and community ecology, but we will also briefly discuss models in epidemiology and ecosystem ecology. Emphasis will be on theoretical concepts and corresponding mathematical approaches.
+<p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Description** </p> The development of theory plays an important role in advancing ecology as a scientific field. This three-unit course is for students at the graduate or advanced undergraduate level. The course will cover classic theoretical topics in population and community ecology, staring from single-species dynamics and gradually build up to multispecies models. Emphasis will be on theoretical concepts and corresponding mathematical approaches.
 
-This course is designed as a two-hour lecture followed by a one-hour hands-on practice module. In the lecture, we will analyze dynamical models and derive general theories in ecology. In the hands-on practice section, we will use a combination of analytical problem sets, interactive applications, and numerical simulations to gain a general understanding of the dynamics and behavior of different models. 
+This course is designed as a two-hour lecture (written on black board) followed by a one-hour complementary hands-on practice module. In the lecture, we will analyze dynamical models and discuss their theoretical implications. In the practice section, we will use a combination interactive applications and numerical simulations to gain more intuition of the dynamics and behavior of different models. 
 
 <p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Objective** </p>
-By the end of the course, students are expected to be familiar with the basic building blocks of ecological models and would be able to formulate and analyze simple models of their own. The hands-on practice component should allow students to link their ecological intuition with the underlying mathematical model, helping them to better understand the primary literature of theoretical ecology. 
+By the end of the course, students are expected to be familiar with the basic building blocks of ecological models, and would be able to formulate and analyze simple models of their own. The hands-on practice component should allow students to link their ecological intuition with the underlying mathematical model, helping them to better understand the primary literature of theoretical ecology. 
 
 <p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Requirement** </p>
-Students are expected to have a basic understanding of **Calculus** (e.g., freshman introductory course) and **Ecology**.
+Students are only expected to have a basic understanding of **Calculus** (e.g., freshman introductory course) and **Ecology**. It's OK if you're not familiar with calculus as we will provide relevant material for you to review during the first week.
 
 <p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Format** </p>
 Tuesday 6,7,8 (1:20 pm ~ 4:20 pm) at 共207
@@ -39,14 +42,15 @@ The final grade consists of:
 (4) Course participation (10%)
 
 <p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Course materials** </p>
-We will be using a combination of textbooks and literature articles on theoretical ecology in this course. Textbook chapters and additional reading materials will be provided (see [**Syllabus**](https://chinglinhuang.github.io/2022_Fall_TheoEcol/syllabus.html) for more details).
+We will use a combination of textbooks of theoretical ecology. Textbook chapters and additional reading materials (listed in the course outline) will be provided. (see [**Syllabus**](https://pojuke.github.io/TheoreticalEcologyPJK/syllabus.html) for more details).
 
 Below are the textbook references:
 
-(1) *A Primer of Ecology 4^th^ edition. Nicholas Gotelli*, 2008. 
+(1) *A Primer of Ecology* (4^th^ edition). Nicholas Gotelli, 2008. 
 (2) *An Illustrated Guide to Theoretical Ecology*. Ted Case, 2000. 
 (3) *A Biologist's Guide to Mathematical Modeling in Ecology and Evolution*. Sarah Otto & Troy Day, 2011. 
 (4) *Mathematical Ecology of Populations and Ecosystems*. John Pastor, 2008. 
+(5) *Nonlinear Dynamics and Choas*. Steven Strogatz, 2000.
 
 
 <p style = "font-size: 24pt; margin-bottom: 5px; margin-top: 25px"> **Contacts** </p>
@@ -56,11 +60,11 @@ Below are the textbook references:
 - Email: pojuke@ntu.edu.tw
 - Office hours: by appointment
 
-**Teaching assistant**: Ching-Lin Huang (Andy)
+**Teaching assistant**: Sun Yi
 
 - Office: Life Science Building R635
-- Email: r09b44010@ntu.edu.tw
-- Office hours: 14:00 ~ 15:00 on Thursday
+- Email: r11b44014@ntu.edu.tw
+- Office hours: 14:00 ~ 15:00 on Thursday or by appointment
 
 
 # Syllabus {-}
@@ -71,51 +75,51 @@ library(kableExtra)
 
 syllabus <- tibble(
   Date = c("**Week 1** <span style='vertical-align:-30%'> </span>
-           <br> 9/6",
+           <br> 9/5",
            "**Week 2** <span style='vertical-align:-30%'> </span>
-           <br> 9/13",
+           <br> 9/12",
            "**Week 3** <span style='vertical-align:-30%'> </span>
-           <br> 9/20",
+           <br> 9/19",
            "**Week 4** <span style='vertical-align:-30%'> </span>
-           <br> 9/27",
+           <br> 9/26",
            "**Week 5** <span style='vertical-align:-30%'> </span>
-           <br> 10/4",
+           <br> 10/3",
            "**Week 6** <span style='vertical-align:-30%'> </span>
-           <br> 10/11",
+           <br> 10/10",
            "**Week 7** <span style='vertical-align:-30%'> </span>
-           <br> 10/18",
+           <br> 10/17",
            "**Week 8** <span style='vertical-align:-30%'> </span>
-           <br> 10/25",
+           <br> 10/24",
            "**Week 9** <span style='vertical-align:-30%'> </span>
-           <br> 11/1",
+           <br> 10/31",
            "**Week 10** <span style='vertical-align:-30%'> </span>
-           <br> 11/8",
+           <br> 11/7",
            "**Week 11** <span style='vertical-align:-30%'> </span>
-           <br> 11/15",
+           <br> 11/14",
            "**Week 12** <span style='vertical-align:-30%'> </span>
-           <br> 11/22",
+           <br> 11/21",
            "**Week 13** <span style='vertical-align:-30%'> </span>
-           <br> 11/29",
+           <br> 11/28",
            "**Week 14** <span style='vertical-align:-30%'> </span>
-           <br> 12/6",
+           <br> 12/5",
            "**Week 15** <span style='vertical-align:-30%'> </span>
-           <br> 12/13",
+           <br> 12/12",
            "**Week 16** <span style='vertical-align:-30%'> </span>
-           <br> 12/20"),
+           <br> 12/19"),
   
   `Lecture topic` = c("Introduction: what is theoretical ecology?",
                       "Exponential population growth",
                       "Logistic population growth and stability analysis",
-                      "Discrete population models",
-                      "Age-structured population models",
+                      "Harvesting and bifurcation",
                       "Metapopulations and patch occupancy models",
+                      "No class (National holiday)",
+                      "Age-structured population models",
                       "Lotka-Volterra model of competition: graphical analysis",
                       "Midterm exam",
                       "Lotka-Volterra model of competition: invasion analysis and linear stability analysis",
-                      "Predator-prey interactions (I) and time scale separation",
-                      "No class due to NTU anniversary",
-                      "Predator-prey interactions (II) and complexity-stability relationship",
-                      "Multispecies models of competition: consumer-resource dynamics",
+                      "Predator-prey interactions (I)",
+                      "Predator-prey interactions (II) + Discussion on May (1972)",
+                      "Mechanistic models for consumer-resource dynamics",
                       "Multispecies models of predation: apparent competition",
                       "Research applcations: plant-soil feedback as an example",
                       "Final exam"),
@@ -123,14 +127,14 @@ syllabus <- tibble(
   Lab = c(" \\- ",
           'Solving exponential growth equation using "deSolve" & Visualization',
           "Shinny App for logistic population growth",
-          "Discrete logistic population growth model and bifurcation",
-          "Age-structured population model",
+          "Alternative stable state diagram",
           "Metapopulations and patch occupancy models",
+          " \\-",
+          "Age-structured population model",
           "Lotka-Volterra competition model - Population dynamics",
-          " \\- ",
+          " \\-",
           "Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues",
           "Lotka-Volterra model of predator-prey interactions and time-scale separation",
-          " \\- ",
           "Rosenzweig-MacArthur predator-prey model and May's complexity-stability relationship",
           "Parameter space for apparent competition model",
           "Resource competition",
@@ -138,20 +142,26 @@ syllabus <- tibble(
           " \\- "),
     
     
-  Readings = c("Grainger et al., 2021",
+  Readings = c("Grainger et al. (2021) An empiricist's guide to using ecological theroy. The American Naturalist, 199: 1-20",
+               "Gotelli [Ch.1], Case[Ch.1]",
+               "Gotelli [Ch.2], Case[Ch.5], Otto & Day[Ch.5]",
+               "Pastor [Ch. 7], Strogatz [Ch. 3]",
+               "Gotelli [Ch.4], Case[Ch.16]",
                " \\- ",
+               "Gotelli [Ch.3], Case[Ch.3]",
+               "Gotelli [Ch.5], Case[Ch.14]",
                " \\- ",
-               " \\- ",
-               " \\- ",
-               " \\- ",
-               " \\- ",
-               " \\- ",
-               " \\- ",
-               " \\- ",
-               " \\- ",
-               " \\- ",
-               " \\- ",
-               " \\- ",
+               "Otto & Day [Ch.8] 
+Broekman et al. (2019) Signs of stabilization and stable coexistence. Ecology Letters, 22: 1957-1975
+",
+               "Gotelli [Ch.6], Case[Ch.12, 13]",
+               "Gotelli [Ch.6], Case[Ch.12, 13]
+May (1972). Will a large complex system be stable? Nature, 238: 413-414
+",
+               "Tilman (1980) Resources: A graphical-mechanistic approach to competition and predation. The American Naturalist, 116: 162-193
+Armstrong & McGehee (1980) Competitive exclusion. The American Naturalist, 115: 151-170.
+",
+               "Holt (1977) Predation, apparent competition, and the structure of prey communities. Theoretical Population Biology, 12:197-229",
                " \\- ",
                " \\- ")  
   

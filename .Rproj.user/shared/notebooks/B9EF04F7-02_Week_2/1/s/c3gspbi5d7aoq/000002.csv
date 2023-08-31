@@ -1,6 +1,0 @@
-"0","# default: LSODA
-pop_size <- ode(func = exponential_model, times = times, y = state, parms = parms)
-"
-"2","錯誤發生在 ode(func = exponential_model, times = times, y = state, parms = parms)：
-  沒有這個函式 ""ode""
-"

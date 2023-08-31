@@ -5,22 +5,22 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Week 4 - Discrete exponential and logistic models | Introduction to Theoretical Ecology</title>
-  <meta name="description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
-  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+  <meta name="description" content="This is the course website for Introduction to Theoretical Ecology 2023 Fall at National Taiwan University." />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Week 4 - Discrete exponential and logistic models | Introduction to Theoretical Ecology" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://ChingLinHuang.github.io/2022_Fall_TheoEcol/bifurcation.gif" />
-  <meta property="og:description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
-  <meta name="github-repo" content="ChingLinHuang/2022_Fall_TheoEcol" />
+  <meta property="og:image" content="https://pojuke.github.io/TheoreticalEcologyPJK/bifurcation.gif" />
+  <meta property="og:description" content="This is the course website for Introduction to Theoretical Ecology 2023 Fall at National Taiwan University." />
+  <meta name="github-repo" content="pojuke/TheoreticalEcologyPJK" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Week 4 - Discrete exponential and logistic models | Introduction to Theoretical Ecology" />
   
-  <meta name="twitter:description" content="This is the course website for Introduction to Theoretical Ecology 2022 Fall at National Taiwan University." />
-  <meta name="twitter:image" content="https://ChingLinHuang.github.io/2022_Fall_TheoEcol/bifurcation.gif" />
+  <meta name="twitter:description" content="This is the course website for Introduction to Theoretical Ecology 2023 Fall at National Taiwan University." />
+  <meta name="twitter:image" content="https://pojuke.github.io/TheoreticalEcologyPJK/bifurcation.gif" />
 
-<meta name="author" content="Instructor: Po-Ju Ke ~~~~~ Teaching Assistant: Ching-Lin Huang (Andy)" />
+<meta name="author" content="Instructor: Po-Ju Ke ~~~~~ Teaching Assistant: Sun Yi" />
 
 
 
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -57,18 +56,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -88,13 +87,13 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -107,7 +106,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -121,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -182,19 +185,19 @@ Model:
 <span class="math display">\[
 N_{t+1} = N_t(1+r(1-\frac{N_t}{K}))
 \]</span></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb16-1"></a><span class="co">### (1) Define the discrete logistic growth equation</span></span>
-<span id="cb16-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb16-2"></a>log_fun &lt;-<span class="st"> </span><span class="cf">function</span>(r, N, K){N <span class="op">+</span><span class="st"> </span>r<span class="op">*</span>N<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N<span class="op">/</span>K)}</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb16-1" tabindex="-1"></a><span class="do">### (1) Define the discrete logistic growth equation</span></span>
+<span id="cb16-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb16-2" tabindex="-1"></a>log_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(r, N, K){N <span class="sc">+</span> r<span class="sc">*</span>N<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>N<span class="sc">/</span>K)}</span></code></pre></div>
 <p>You may modify <span class="math inline">\(r\)</span> to see the change in stability of equilibrium <span class="math inline">\(K\)</span>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-1"></a><span class="co">### (2) Set the parameters</span></span>
-<span id="cb17-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-2"></a>r &lt;-<span class="st"> </span><span class="fl">1.8</span></span>
-<span id="cb17-3"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-3"></a>K &lt;-<span class="st"> </span><span class="dv">500</span></span>
-<span id="cb17-4"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-4"></a>N0 &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb17-5"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-5"></a>time &lt;-<span class="st"> </span><span class="dv">100</span></span>
-<span id="cb17-6"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-6"></a></span>
-<span id="cb17-7"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-7"></a><span class="co">### (3) Use for loop to iterate over the time sequence</span></span>
-<span id="cb17-8"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-8"></a>pop_size &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">times =</span> <span class="dv">1</span><span class="op">:</span>time)</span>
-<span id="cb17-9"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-9"></a>pop_size<span class="op">$</span>N[<span class="dv">1</span>] &lt;-<span class="st"> </span>N0</span>
-<span id="cb17-10"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-10"></a><span class="kw">head</span>(pop_size)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-1" tabindex="-1"></a><span class="do">### (2) Set the parameters</span></span>
+<span id="cb17-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-2" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fl">1.8</span></span>
+<span id="cb17-3"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-3" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb17-4"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-4" tabindex="-1"></a>N0 <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb17-5"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-5" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb17-6"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-6" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-7" tabindex="-1"></a><span class="do">### (3) Use for loop to iterate over the time sequence</span></span>
+<span id="cb17-8"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-8" tabindex="-1"></a>pop_size <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">times =</span> <span class="dv">1</span><span class="sc">:</span>time)</span>
+<span id="cb17-9"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-9" tabindex="-1"></a>pop_size<span class="sc">$</span>N[<span class="dv">1</span>] <span class="ot">&lt;-</span> N0</span>
+<span id="cb17-10"><a href="week-4---discrete-exponential-and-logistic-models.html#cb17-10" tabindex="-1"></a><span class="fu">head</span>(pop_size)</span></code></pre></div>
 <pre><code>##   times  N
 ## 1     1 10
 ## 2     2 10
@@ -202,11 +205,11 @@ N_{t+1} = N_t(1+r(1-\frac{N_t}{K}))
 ## 4     4 10
 ## 5     5 10
 ## 6     6 10</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb19-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>time){</span>
-<span id="cb19-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb19-2"></a>  pop_size<span class="op">$</span>N[i] &lt;-<span class="st"> </span><span class="kw">log_fun</span>(<span class="dt">r =</span> r, <span class="dt">N =</span> pop_size<span class="op">$</span>N[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">K =</span> K)</span>
-<span id="cb19-3"><a href="week-4---discrete-exponential-and-logistic-models.html#cb19-3"></a>}</span>
-<span id="cb19-4"><a href="week-4---discrete-exponential-and-logistic-models.html#cb19-4"></a></span>
-<span id="cb19-5"><a href="week-4---discrete-exponential-and-logistic-models.html#cb19-5"></a><span class="kw">head</span>(pop_size)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb19-1" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>time){</span>
+<span id="cb19-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb19-2" tabindex="-1"></a>  pop_size<span class="sc">$</span>N[i] <span class="ot">&lt;-</span> <span class="fu">log_fun</span>(<span class="at">r =</span> r, <span class="at">N =</span> pop_size<span class="sc">$</span>N[i <span class="sc">-</span> <span class="dv">1</span>], <span class="at">K =</span> K)</span>
+<span id="cb19-3"><a href="week-4---discrete-exponential-and-logistic-models.html#cb19-3" tabindex="-1"></a>}</span>
+<span id="cb19-4"><a href="week-4---discrete-exponential-and-logistic-models.html#cb19-4" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="week-4---discrete-exponential-and-logistic-models.html#cb19-5" tabindex="-1"></a><span class="fu">head</span>(pop_size)</span></code></pre></div>
 <pre><code>##   times         N
 ## 1     1  10.00000
 ## 2     2  27.64000
@@ -214,10 +217,10 @@ N_{t+1} = N_t(1+r(1-\frac{N_t}{K}))
 ## 4     4 188.93980
 ## 5     5 400.51775
 ## 6     6 543.95762</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb21-1"></a><span class="co">### (4) Population trajectory</span></span>
-<span id="cb21-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb21-2"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>times, <span class="dt">data =</span> pop_size, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span>
-<span id="cb21-3"><a href="week-4---discrete-exponential-and-logistic-models.html#cb21-3"></a><span class="kw">abline</span>(<span class="dt">h =</span> K, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb21-4"><a href="week-4---discrete-exponential-and-logistic-models.html#cb21-4"></a><span class="kw">points</span>(N <span class="op">~</span><span class="st"> </span>times, <span class="dt">data =</span> pop_size)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb21-1" tabindex="-1"></a><span class="do">### (4) Population trajectory</span></span>
+<span id="cb21-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb21-2" tabindex="-1"></a><span class="fu">plot</span>(N <span class="sc">~</span> times, <span class="at">data =</span> pop_size, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span>
+<span id="cb21-3"><a href="week-4---discrete-exponential-and-logistic-models.html#cb21-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> K, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb21-4"><a href="week-4---discrete-exponential-and-logistic-models.html#cb21-4" tabindex="-1"></a><span class="fu">points</span>(N <span class="sc">~</span> times, <span class="at">data =</span> pop_size)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p><br></p>
 <p>Here is a shiny app for the discrete logistic growth model.</p>
@@ -225,16 +228,16 @@ N_{t+1} = N_t(1+r(1-\frac{N_t}{K}))
 </iframe>
 <p>Credit to <a href="https://genchanghsu.github.io/index.html">Gen-Chang Hsu</a></p>
 <p><strong>Part 2 - Bifurcation</strong></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-1"></a><span class="co">###### Part 2: Bifurcation curve</span></span>
-<span id="cb22-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-2"></a><span class="co">### (1) data setting</span></span>
-<span id="cb22-3"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-3"></a><span class="co"># intrinsic growth rate sequence</span></span>
-<span id="cb22-4"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-4"></a>r_seq &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="fl">1.8</span>, <span class="dt">to =</span> <span class="dv">3</span>, <span class="dt">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb22-5"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-5"></a><span class="co"># number of sampling</span></span>
-<span id="cb22-6"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-6"></a>N_rep &lt;-<span class="st"> </span><span class="dv">200</span></span>
-<span id="cb22-7"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-7"></a></span>
-<span id="cb22-8"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-8"></a><span class="co"># data </span></span>
-<span id="cb22-9"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-9"></a>dat_plot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">r =</span> <span class="kw">rep</span>(r_seq, <span class="dt">each =</span> N_rep), <span class="dt">N =</span> <span class="dv">0</span>)</span>
-<span id="cb22-10"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-10"></a><span class="kw">head</span>(dat_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-1" tabindex="-1"></a><span class="do">###### Part 2: Bifurcation curve</span></span>
+<span id="cb22-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-2" tabindex="-1"></a><span class="do">### (1) data setting</span></span>
+<span id="cb22-3"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-3" tabindex="-1"></a><span class="co"># intrinsic growth rate sequence</span></span>
+<span id="cb22-4"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-4" tabindex="-1"></a>r_seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.8</span>, <span class="at">to =</span> <span class="dv">3</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb22-5"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-5" tabindex="-1"></a><span class="co"># number of sampling</span></span>
+<span id="cb22-6"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-6" tabindex="-1"></a>N_rep <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb22-7"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-7" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-8" tabindex="-1"></a><span class="co"># data </span></span>
+<span id="cb22-9"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-9" tabindex="-1"></a>dat_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">r =</span> <span class="fu">rep</span>(r_seq, <span class="at">each =</span> N_rep), <span class="at">N =</span> <span class="dv">0</span>)</span>
+<span id="cb22-10"><a href="week-4---discrete-exponential-and-logistic-models.html#cb22-10" tabindex="-1"></a><span class="fu">head</span>(dat_plot)</span></code></pre></div>
 <pre><code>##     r N
 ## 1 1.8 0
 ## 2 1.8 0
@@ -242,27 +245,27 @@ N_{t+1} = N_t(1+r(1-\frac{N_t}{K}))
 ## 4 1.8 0
 ## 5 1.8 0
 ## 6 1.8 0</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-1"></a><span class="co">### (2) Run the discrete logistic model</span></span>
-<span id="cb24-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-2"></a><span class="cf">for</span> (lo <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(r_seq)){</span>
-<span id="cb24-3"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-3"></a>  log_fun &lt;-<span class="st"> </span><span class="cf">function</span>(r, N, K){N <span class="op">+</span><span class="st"> </span>r<span class="op">*</span>N<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N<span class="op">/</span>K)}</span>
-<span id="cb24-4"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-4"></a></span>
-<span id="cb24-5"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-5"></a>  r &lt;-<span class="st"> </span>r_seq[lo]</span>
-<span id="cb24-6"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-6"></a>  K &lt;-<span class="st"> </span><span class="dv">500</span></span>
-<span id="cb24-7"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-7"></a>  N0 &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb24-8"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-8"></a>  time &lt;-<span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb24-9"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-9"></a></span>
-<span id="cb24-10"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-10"></a>  pop_size &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">times =</span> <span class="dv">1</span><span class="op">:</span>time)</span>
-<span id="cb24-11"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-11"></a>  pop_size<span class="op">$</span>N[<span class="dv">1</span>] &lt;-<span class="st"> </span>N0</span>
-<span id="cb24-12"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-12"></a></span>
-<span id="cb24-13"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-13"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>time){</span>
-<span id="cb24-14"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-14"></a>    pop_size<span class="op">$</span>N[i] &lt;-<span class="st"> </span><span class="kw">log_fun</span>(<span class="dt">r =</span> r, <span class="dt">N =</span> pop_size<span class="op">$</span>N[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">K =</span> K)</span>
-<span id="cb24-15"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-15"></a>  }</span>
-<span id="cb24-16"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-16"></a></span>
-<span id="cb24-17"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-17"></a>  <span class="co"># save the data</span></span>
-<span id="cb24-18"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-18"></a>  dat_plot<span class="op">$</span>N[(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(lo <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">*</span>N_rep)<span class="op">:</span>(lo<span class="op">*</span>N_rep)] &lt;-<span class="st"> </span>pop_size<span class="op">$</span>N[(<span class="kw">nrow</span>(pop_size) <span class="op">-</span><span class="st"> </span>N_rep <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">:</span><span class="kw">nrow</span>(pop_size)]</span>
-<span id="cb24-19"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-19"></a>}</span>
-<span id="cb24-20"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-20"></a></span>
-<span id="cb24-21"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-21"></a><span class="kw">plot</span>(N <span class="op">~</span><span class="st"> </span>r, <span class="dt">data =</span> dat_plot, <span class="dt">cex =</span> <span class="fl">0.7</span>, <span class="dt">pch =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-1" tabindex="-1"></a><span class="do">### (2) Run the discrete logistic model</span></span>
+<span id="cb24-2"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-2" tabindex="-1"></a><span class="cf">for</span> (lo <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(r_seq)){</span>
+<span id="cb24-3"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-3" tabindex="-1"></a>  log_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(r, N, K){N <span class="sc">+</span> r<span class="sc">*</span>N<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>N<span class="sc">/</span>K)}</span>
+<span id="cb24-4"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-4" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-5" tabindex="-1"></a>  r <span class="ot">&lt;-</span> r_seq[lo]</span>
+<span id="cb24-6"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-6" tabindex="-1"></a>  K <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb24-7"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-7" tabindex="-1"></a>  N0 <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb24-8"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-8" tabindex="-1"></a>  time <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb24-9"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-9" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-10" tabindex="-1"></a>  pop_size <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">times =</span> <span class="dv">1</span><span class="sc">:</span>time)</span>
+<span id="cb24-11"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-11" tabindex="-1"></a>  pop_size<span class="sc">$</span>N[<span class="dv">1</span>] <span class="ot">&lt;-</span> N0</span>
+<span id="cb24-12"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-12" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-13" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>time){</span>
+<span id="cb24-14"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-14" tabindex="-1"></a>    pop_size<span class="sc">$</span>N[i] <span class="ot">&lt;-</span> <span class="fu">log_fun</span>(<span class="at">r =</span> r, <span class="at">N =</span> pop_size<span class="sc">$</span>N[i <span class="sc">-</span> <span class="dv">1</span>], <span class="at">K =</span> K)</span>
+<span id="cb24-15"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-15" tabindex="-1"></a>  }</span>
+<span id="cb24-16"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-16" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-17" tabindex="-1"></a>  <span class="co"># save the data</span></span>
+<span id="cb24-18"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-18" tabindex="-1"></a>  dat_plot<span class="sc">$</span>N[(<span class="dv">1</span> <span class="sc">+</span> (lo <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">*</span>N_rep)<span class="sc">:</span>(lo<span class="sc">*</span>N_rep)] <span class="ot">&lt;-</span> pop_size<span class="sc">$</span>N[(<span class="fu">nrow</span>(pop_size) <span class="sc">-</span> N_rep <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">nrow</span>(pop_size)]</span>
+<span id="cb24-19"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-19" tabindex="-1"></a>}</span>
+<span id="cb24-20"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-20" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="week-4---discrete-exponential-and-logistic-models.html#cb24-21" tabindex="-1"></a><span class="fu">plot</span>(N <span class="sc">~</span> r, <span class="at">data =</span> dat_plot, <span class="at">cex =</span> <span class="fl">0.7</span>, <span class="at">pch =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 
 </div>
