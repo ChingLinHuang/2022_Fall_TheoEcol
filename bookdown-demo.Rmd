@@ -1,0 +1,343 @@
+--- 
+title: "Introduction to Theoretical Ecology"
+author: "Instructor: Po-Ju Ke $~~~~~$ Teaching Assistant: Sun Yi"
+date: "2023 Fall at National Taiwan Univeristy ![](./bifurcation.gif)"
+output:
+  html_document:
+    df_print: paged
+github-repo: pojuke/TheoreticalEcologyPJK
+cover-image: bifurcation.gif
+site: bookdown::bookdown_site
+documentclass: book
+bibliography:
+- book.bib
+- packages.bib
+biblio-style: apalike
+link-citations: yes
+description: This is the course website for **_Introduction to Theoretical Ecology_**
+  2023 Fall at National Taiwan University.
+url: https://pojuke.github.io/TheoreticalEcologyPJK/
+---
+
+# Course information{-}
+
+Placeholder
+
+
+
+<!--chapter:end:index.Rmd-->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = F, 
+                      error = F, 
+                      warning = F)
+
+```
+
+# Week 2 - Exponential population growth {-} 
+
+In part 1, we will solve the differential equation for exponential population growth and visualize how the population sizes change over time. 
+
+<br>
+
+**Part 1 - Numerical solution using the package "deSolve"**
+
+Two main phases:
+
+(1) Model specification: specify the structure of differential equation model
+
+(2) Model application: set the time steps, initial population size and model parameters (e.g., intrinsic population growth rate *r*), and then solve the equation model
+
+<style>
+
+p span#aaa:before { 
+  content: "(1) "; 
+  display: inline-block;
+  margin-left: -1.5em;
+  margin-right: 0.3em;
+}
+
+p span#bbb:before { 
+  content: "(2) "; 
+  display: inline-block;
+  margin-left: -1.5em;
+  margin-right: 0.3em;
+}
+
+d-article table.lightable-paper {
+  margin-bottom: 0px; 
+}
+
+</style>
+
+Consider the model
+\[
+\frac{dN}{dt} = rN
+\]
+where $N$ is population size and $r$ is the intrinsic growth rate.
+```{r}
+###### part 1 ######
+# install.packages("deSolve")
+library(deSolve)
+
+### (1) Model specification
+exponential_model <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dN_dt = r*N  # exponential growth equation
+    return(list(c(dN_dt)))  # return the results
+  })
+}
+```
+
+Set the time steps, initial population size and model parameters.
+```{r}
+### (2) Model application
+times <- seq(0, 10, by = 0.1)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r = 1.5)  # intrinsic growth rate
+```
+
+Solve the equation by `ode()` numerically.
+```{r}
+# run the ode solver
+pop_size <- ode(func = exponential_model, times = times, y = state, parms = parms)
+
+# take a look at the results
+head(pop_size)
+
+```
+
+Visualization
+```{r}
+plot(N ~ time, data = pop_size)
+plot(N ~ time, data = pop_size, log = "y")
+```
+
+
+<br>
+
+**Part 2 - Comparing different ode solvers**
+<br>
+In default of `ode()`, the equations are solved by LSODA method. We can change the method by modifying the argument `method` in `ode()`. 
+
+```{r}
+
+###### part 2 ######
+# original setting
+times <- seq(0, 10, by = 0.1)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r = 1.5)  # intrinsic growth rate
+# default: LSODA
+pop_size <- ode(func = exponential_model, times = times, y = state, parms = parms)
+
+# Euler's method
+pop_size_1 <- ode(func = exponential_model, times = times, y = state, parms = parms, method = "euler")
+
+# compare different method
+par(mfrow = c(1,2))
+plot(N ~ time, data = pop_size, main = "LSODA")
+curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
+plot(N ~ time, data = pop_size_1, main = "Euler")
+curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
+
+# minimize the time step
+times <- seq(0, 10, by = 0.01)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r = 1.5)  # intrinsic growth rate
+# default: LSODA
+pop_size <- ode(func = exponential_model, times = times, y = state, parms = parms)
+
+# Euler's method
+pop_size_1 <- ode(func = exponential_model, times = times, y = state, parms = parms, method = "euler")
+
+# compare different method
+par(mfrow = c(1,2))
+plot(N ~ time, data = pop_size, main = "LSODA")
+curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
+plot(N ~ time, data = pop_size_1, main = "Euler")
+curve(state[1]*exp(parms[1]*x), times[1], times[length(times)], col = "red", add = T) # correct curve
+```
+
+<br>
+
+**Part 3 - Solving exponential growth model with fluctuating growth rate**
+<br>
+Consider the model
+\[
+\frac{dN}{dt} = r(t)N \ \text{, } r(t) = \overline{r} + \sigma\sin(\omega t)
+\]
+where $\overline{r}$ and $\omega$ are constants.
+The analytical solution of the ode model is 
+\[
+N(t) = N_0\exp\{\overline{r}t - \frac{\sigma}{\omega}[\cos(\omega t) - 1]\}
+\]
+
+```{r}
+###### part 3 ######
+### Model specification
+exponential_model_fluc <- function(times, state, parms) {
+  with(as.list(c(state, parms)), {
+    dN_dt = (r_bar + sigma*sin(omega*times))*N  # exponential growth equation
+    return(list(c(dN_dt)))  # return the results
+  })
+}
+```
+
+
+```{r}
+### Parameters
+times <- seq(0, 10, by = 0.1)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r_bar = 1.5, sigma = 5, omega = 2*pi)  # intrinsic growth rate
+```
+
+Plot $r(t)$
+```{r}
+### Fluctuating growth rate
+r = parms[1] + parms[2]*sin(parms[3]*times)
+plot(r ~ times, type = "l")
+```
+
+```{r}
+### Solving model
+pop_size <- ode(func = exponential_model_fluc, times = times, y = state, parms = parms)
+
+### Plotting
+plot(N ~ times, data = pop_size)
+curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T, col = "red") # correct curve
+plot(N ~ times, data = pop_size, log = "y")
+curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T, col = "red") # correct curve
+```
+
+Adjust $\overline{r}$
+```{r}
+### Parameters
+times <- seq(0, 10, by = 0.1)  # time steps to integrate over
+state <- c(N = 10)  # initial population size
+parms <- c(r_bar = 0.1, sigma = 5, omega = 2*pi)  # intrinsic growth rate
+
+### Fluctuating growth rate
+r = parms[1] + parms[2]*sin(parms[3]*times)
+plot(r ~ times, type = "l")
+
+### Solving model
+pop_size <- ode(func = exponential_model_fluc, times = times, y = state, parms = parms)
+
+### Plotting
+plot(N ~ times, data = pop_size)
+curve(state[1]*exp(parms[1]*x - parms[2]/parms[3]*(cos(parms[3]*x) - 1)), add = T, col = "red") # correct curve
+```
+
+<!--chapter:end:02_Week_2.Rmd-->
+
+# Week 3 - Logistic population growth and stability analysis  {-} 
+
+```{r, out.width="800px", echo = F}
+knitr::include_app("https://genchanghsu0115.shinyapps.io/Logistic_mod_shinyapp/", height = "500px")
+```
+Credit to [Gen-Chang Hsu](https://genchanghsu.github.io/index.html)
+
+<!--chapter:end:03_Week_3.Rmd-->
+
+
+# Week 4 - Discrete exponential and logistic models{-} 
+
+Placeholder
+
+
+
+<!--chapter:end:04_Week_4.Rmd-->
+
+
+# Week 5 - Age-structure population model{-} 
+
+Placeholder
+
+
+
+<!--chapter:end:05_Week_5.Rmd-->
+
+
+# Week 6 - Metapopulations and patch occupancy models{-} 
+
+Placeholder
+
+
+
+<!--chapter:end:06_Week_6.Rmd-->
+
+
+# Week 7 - Lotka-Volterra competition model - Population dynamics{-} 
+
+Placeholder
+
+
+
+<!--chapter:end:07_Week_7.Rmd-->
+
+
+# Week 8 - Midterm {-} 
+
+
+<!--chapter:end:08_Week_8.Rmd-->
+
+
+# Week 9 - Lotka-Volterra competition model - Visualization of dynamics with complex eigenvalues {-} 
+
+Placeholder
+
+
+
+<!--chapter:end:09_Week_9.Rmd-->
+
+
+# Week 10 - Lotka-Volterra model of predator-prey interactions and time-scale separation {-} 
+
+Placeholder
+
+
+
+<!--chapter:end:10_Week_10.Rmd-->
+
+# Week 11 - No class due to NTU anniversary {-} 
+
+
+<!--chapter:end:11_Week_11.Rmd-->
+
+
+# Week 12 - Rosenzweig-MacArthur predator-prey model and May's complexity-stability relationship{-} 
+
+Placeholder
+
+
+
+<!--chapter:end:12_Week_12.Rmd-->
+
+
+# Week 13 - Parameter space for apparent competition model {-} 
+
+Placeholder
+
+
+
+<!--chapter:end:13_Week_13.Rmd-->
+
+
+# Week 14 - Resource competition {-} 
+
+Placeholder
+
+
+
+<!--chapter:end:14_Week_14.Rmd-->
+
+
+# Week 15 - Research applications: modern coexistence theory and plant-soil feedback {-} 
+
+<!--chapter:end:15_Week_15.Rmd-->
+
+
+# Week 16 - Final exam {-} 
+
+<!--chapter:end:16_Week_16.Rmd-->
+
